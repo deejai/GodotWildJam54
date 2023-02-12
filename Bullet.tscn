@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://du2y7k5jebfc0"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_macft"]
+
+[node name="Bullet" type="Node2D"]
+scale = Vector2(5.08318, 5.08318)
+script = ExtResource("1_macft")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.403922, 0.160784, 0.286275, 1)
+polygon = PackedVector2Array(-2, 0, 0, -2, 2, 0, 0, 2)
