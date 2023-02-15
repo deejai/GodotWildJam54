@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://chvu4q4g1rkd5"]
+
+[ext_resource type="Texture2D" uid="uid://bdy0pwsjeoeit" path="res://Assets/Sprites/Tiles/wall_2.png" id="1_c5v07"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhevh"]
+size = Vector2(100, 100)
+
+[node name="BasicWall" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_rhevh")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_c5v07")
+expand_mode = 1
