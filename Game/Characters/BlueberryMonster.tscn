@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=3 uid="uid://73qd82ubajnj"]
+
+[ext_resource type="Script" path="res://Game/Characters/Enemy.gd" id="1_tvufh"]
+[ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_jsrdm"]
+[ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_8rnm1"]
+[ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_ngs0g"]
+[ext_resource type="PackedScene" uid="uid://ya72jqcl2115" path="res://Game/Objects/Projectiles/Goo.tscn" id="5_ba12a"]
+[ext_resource type="Texture2D" uid="uid://d38gehf14068l" path="res://Assets/Sprites/Characters/blueberry_monster.png" id="6_g0ba3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41hei"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(0, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68w18"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(797, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jkmo"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(1594, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2fmv"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(2391, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nblp4"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(3188, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi4wq"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(3985, 0, 797, 423)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yphe1"]
+atlas = ExtResource("6_g0ba3")
+region = Rect2(4782, 0, 797, 423)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7deg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41hei")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68w18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jkmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2fmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nblp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi4wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yphe1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2871s"]
+radius = 30.0
+height = 72.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isxb8"]
+radius = 423.959
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
+script = ExtResource("1_tvufh")
+alliance = 2
+hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_jsrdm"), ExtResource("3_8rnm1"), ExtResource("4_ngs0g")])
+char_sprite = NodePath("AnimatedSprite2D7")
+bullet = ExtResource("5_ba12a")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_7deg7")
+animation = &"idle"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_2871s")
+
+[node name="AggroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_isxb8")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0.0627451, 1)
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -42.0
+value = 100.0
+show_percentage = false
+
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

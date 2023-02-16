@@ -1,10 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://cftgg5ttmyjox"]
+[gd_scene load_steps=17 format=3 uid="uid://cftgg5ttmyjox"]
 
 [ext_resource type="Script" path="res://Game/Characters/Enemy.gd" id="1_fntm4"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_rvip2"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_rwq2y"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_6fvwd"]
 [ext_resource type="Texture2D" uid="uid://c3s5glycjj7a" path="res://Assets/Sprites/Characters/banana_monster.png" id="5_17qnx"]
+[ext_resource type="Texture2D" uid="uid://b5334d2in4p07" path="res://Assets/Sprites/Characters/banana_monster_hit.png" id="5_tl4fp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jo02"]
+atlas = ExtResource("5_tl4fp")
+region = Rect2(0, 0, 785, 348)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sece"]
 atlas = ExtResource("5_17qnx")
@@ -34,6 +39,14 @@ region = Rect2(3925, 0, 785, 348)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2jo02")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2sece")
 }, {
 "duration": 1.0,
@@ -52,7 +65,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hh2n7")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -60,10 +73,11 @@ animations = [{
 radius = 343.431
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsxnc"]
-radius = 35.0
-height = 180.0
+radius = 24.0
+height = 94.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
 script = ExtResource("1_fntm4")
 alliance = 2
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_rvip2"), ExtResource("3_rwq2y"), ExtResource("4_6fvwd")])
@@ -71,8 +85,9 @@ char_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)
-scale = Vector2(-0.4, 0.4)
+scale = Vector2(-0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7deg7")
+animation = &"idle"
 speed_scale = 2.0
 
 [node name="AggroArea" type="Area2D" parent="."]
@@ -92,6 +107,7 @@ value = 100.0
 show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_wsxnc")
 

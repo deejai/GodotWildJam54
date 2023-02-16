@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnolrdx6p4e4r"
-path="res://.godot/imported/snakey.png-a19fe248712e48c705a7f91b0a748a9b.ctex"
+uid="uid://d38gehf14068l"
+path="res://.godot/imported/blueberry_monster.png-d52f47cc99386700ff69dab3adf752e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/snakey.png"
-dest_files=["res://.godot/imported/snakey.png-a19fe248712e48c705a7f91b0a748a9b.ctex"]
+source_file="res://Assets/Sprites/Characters/blueberry_monster.png"
+dest_files=["res://.godot/imported/blueberry_monster.png-d52f47cc99386700ff69dab3adf752e5.ctex"]
 
 [params]
 

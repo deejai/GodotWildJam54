@@ -20,7 +20,15 @@ var can_shoot = false
 @export var stat_lifesteal = 0.0
 
 var timers: Dictionary = {
-	"modulate": {"value": 0.0, "activate": func(): char_sprite.modulate = Color(1,0,0,1), "deactivate": func(): char_sprite.modulate = Color(1,1,1,1)},
+	"flinch": {"value": 0.0,
+		"activate": func():
+			char_sprite.modulate = Color(1,0,0,1)
+			if char_sprite.sprite_frames.has_animation("hit"):
+				char_sprite.animation = "hit",
+		"deactivate": func():
+			char_sprite.modulate = Color(1,1,1,1)
+			char_sprite.animation = "idle"
+			},
 	"invuln": {"value": 0.0, "activate": func(): invulnerable = true, "deactivate": func(): invulnerable = false},
 	"ministun_cd": {"value": 0.0, "activate": func(): pass, "deactivate": func(): pass},
 	"shoot": {"value": 0.0, "activate": func(): can_shoot = false, "deactivate": func(): can_shoot = true},
@@ -56,7 +64,7 @@ func receive_damage(amount: float):
 
 	hp = max(0.0, hp - amount * damage_received_mult)
 
-	engage_timer("modulate", 0.15)
+	engage_timer("flinch", 0.15)
 	engage_timer("invuln", 0.5)
 	Main.play_random_sound(hurt_sounds, global_position)
 

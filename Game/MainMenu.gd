@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var charsprite: AnimatedSprite2D = $AnimatedSprite2D
-var firstlevel: PackedScene = load("res://Demo.tscn")
+var firstlevel: PackedScene = load("res://RandomFloor.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bccurbw3f6h2x"
-path="res://.godot/imported/wall_brick_mossy.jpg-b3a9956685b738c2ff17e803aaa957b6.ctex"
+uid="uid://b5334d2in4p07"
+path="res://.godot/imported/banana_monster_hit.png-0e5caa2da11c343b42b556ca06838844.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Tiles/wall_brick_mossy.jpg"
-dest_files=["res://.godot/imported/wall_brick_mossy.jpg-b3a9956685b738c2ff17e803aaa957b6.ctex"]
+source_file="res://Assets/Sprites/Characters/banana_monster_hit.png"
+dest_files=["res://.godot/imported/banana_monster_hit.png-0e5caa2da11c343b42b556ca06838844.ctex"]
 
 [params]
 

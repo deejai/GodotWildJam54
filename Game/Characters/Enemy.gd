@@ -25,7 +25,7 @@ func _process(delta):
 	if nav_cd == 0.0 and is_instance_valid(target) and target.position != last_nav_pos:
 		last_nav_pos = target.position
 		nav_agent.set_target_position(target.position)
-		
+
 	if bullet and is_instance_valid(target) and engage_timer("shoot", 1.0 / stat_rof_mult):
 		var new_bullet: Bullet = bullet.instantiate()
 		new_bullet.position = position
@@ -45,8 +45,9 @@ func _physics_process(delta):
 		
 		var body = collision.get_collider()
 		if body is PlayerCharacter:
-			body.receive_damage(10.0)
-			body.ministun(position)
+			if body.receive_damage(10.0):
+				body.ministun(position)
+				position += body.position.direction_to(position) * 15.0
 
 	move_and_slide()
 

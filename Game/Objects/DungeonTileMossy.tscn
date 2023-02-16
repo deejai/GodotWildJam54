@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ha2oa8m2pwep"]
+
+[ext_resource type="Texture2D" uid="uid://bccurbw3f6h2x" path="res://Assets/Sprites/Tiles/brick_mossy.jpg" id="1_k3dw8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_k3dw8")
+expand_mode = 1

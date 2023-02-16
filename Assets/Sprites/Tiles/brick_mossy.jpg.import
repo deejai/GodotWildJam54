@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfqbowgkiri4c"
-path="res://.godot/imported/baldy.png-53afa22e9de8191b92de4e2f4c2dcf35.ctex"
+uid="uid://bccurbw3f6h2x"
+path="res://.godot/imported/brick_mossy.jpg-cd24bfbcd28e6b6ad962374dcb316237.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/baldy.png"
-dest_files=["res://.godot/imported/baldy.png-53afa22e9de8191b92de4e2f4c2dcf35.ctex"]
+source_file="res://Assets/Sprites/Tiles/brick_mossy.jpg"
+dest_files=["res://.godot/imported/brick_mossy.jpg-cd24bfbcd28e6b6ad962374dcb316237.ctex"]
 
 [params]
 

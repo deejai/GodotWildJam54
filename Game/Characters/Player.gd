@@ -13,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var gunshot_sound = $GunshotSound
 @onready var gun_windup_sound = $GunWindupSound
 
+@onready var camera: Camera2D = $Camera2D
+
 var state: Main.CharState = Main.CharState.IDLE
 
 var last_shot: int = 0
@@ -54,11 +56,12 @@ func _process(delta):
 		dir_x += 1.0
 	
 	move_dir = Vector2(dir_x, dir_y).normalized()
-	
-	if move_dir == Vector2.ZERO:
-		char_sprite.animation = "idle"
-	else:
-		char_sprite.animation = "walk"
+
+	if timers["flinch"].value == 0.0:
+		if move_dir == Vector2.ZERO:
+			char_sprite.animation = "idle"
+		else:
+			char_sprite.animation = "walk"
 
 	position += move_dir * SPEED
 	velocity = move_dir * SPEED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bpvsk6u4sgojx"]
+[gd_scene load_steps=39 format=3 uid="uid://bpvsk6u4sgojx"]
 
 [ext_resource type="Script" path="res://Game/Characters/Player.gd" id="1_xhk00"]
 [ext_resource type="AudioStream" uid="uid://cxr3v80lemb3w" path="res://Assets/SFX/05._Hurt_2_variation_1.wav" id="2_12cxk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://btl70wu67ek20" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-3.png" id="4_kewjc"]
 [ext_resource type="Texture2D" uid="uid://b06v11c6l1yb2" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-4.png" id="5_ewmua"]
 [ext_resource type="PackedScene" uid="uid://boihhkdc0o55y" path="res://Game/Objects/Projectiles/Bullet.tscn" id="5_y5p60"]
+[ext_resource type="Texture2D" uid="uid://d3ac0m2741leh" path="res://Assets/Sprites/Characters/player_hit.png" id="6_3m1gp"]
 [ext_resource type="Texture2D" uid="uid://b6qluhshkj03j" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-1.png" id="6_h1u13"]
 [ext_resource type="Texture2D" uid="uid://b2hgouhogl1e4" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-2.png" id="7_picld"]
 [ext_resource type="Texture2D" uid="uid://b4sh0phyyme7k" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-3.png" id="8_530kk"]
@@ -20,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://c1aev23odi2hu" path="res://Assets/Sprites/Characters/Banana gun/Untitled_Artwork-5.png" id="14_lh07b"]
 [ext_resource type="AudioStream" uid="uid://d4dur13ie051v" path="res://Assets/SFX/02._Gun_Shoot.wav" id="18_rqjiw"]
 [ext_resource type="AudioStream" uid="uid://b6y0kc8c3e381" path="res://Assets/SFX/01._Wind-Up_Gun.wav" id="19_j7kyp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hthkk"]
+atlas = ExtResource("6_3m1gp")
+region = Rect2(0, 0, 1920, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lcol7"]
 atlas = ExtResource("2_gsq1n")
@@ -55,6 +60,14 @@ region = Rect2(0, 0, 1920, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjqsm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hthkk")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 0.7,
 "texture": SubResource("AtlasTexture_lcol7")
@@ -143,9 +156,9 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
 script = ExtResource("1_xhk00")
 alliance = 1
-damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
@@ -154,8 +167,7 @@ bullet = ExtResource("5_y5p60")
 position = Vector2(-1, -23)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_cjqsm")
-animation = &"idle"
-frame_progress = 0.483412
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -8)

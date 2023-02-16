@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c80xtvafnruws"
-path="res://.godot/imported/guy.png-0bf80a2cf6710dffa40cd2035a99f323.ctex"
+uid="uid://d4a5bwiwwrlmm"
+path="res://.godot/imported/brick_light.jpg-775ed3a33d99764b3e33959ede5c582a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/guy.png"
-dest_files=["res://.godot/imported/guy.png-0bf80a2cf6710dffa40cd2035a99f323.ctex"]
+source_file="res://Assets/Sprites/Tiles/brick_light.jpg"
+dest_files=["res://.godot/imported/brick_light.jpg-775ed3a33d99764b3e33959ede5c582a.ctex"]
 
 [params]
 
