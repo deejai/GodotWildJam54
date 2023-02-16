@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://boihhkdc0o55y"]
+
+[ext_resource type="Texture2D" uid="uid://dkm8y86f3beb8" path="res://Assets/Sprites/Characters/slorg.png" id="1_7myxj"]
+[ext_resource type="Script" path="res://Game/Objects/Projectiles/Bullet.gd" id="2_kl183"]
+[ext_resource type="AudioStream" uid="uid://dbxn2tw0d3g5c" path="res://Assets/SFX/03._Bullet_Impact.wav" id="3_ehuow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bca0x"]
+atlas = ExtResource("1_7myxj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4046"]
+atlas = ExtResource("1_7myxj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6bi4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bca0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4046")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eug3h"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+position = Vector2(-1, -6)
+sprite_frames = SubResource("SpriteFrames_a6bi4")
+script = ExtResource("2_kl183")
+impact_sounds = Array[AudioStreamWAV]([ExtResource("3_ehuow")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eug3h")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

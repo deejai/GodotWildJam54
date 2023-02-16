@@ -7,6 +7,10 @@ var audio_players: Array[AudioStreamPlayer2D] = []
 var audio_player_index: int = 0
 const num_audio_players: int = 16
 
+var level = 0
+
+var player = load("res://Game/Characters/Player.tscn").instantiate()
+
 func play_random_sound(array: Array[AudioStreamWAV], position):
 	var arr_len = len(array)
 	var audio_player = audio_players[audio_player_index]

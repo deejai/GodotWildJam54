@@ -1,10 +1,13 @@
 extends Node2D
 
+var level = 0
+
 var wall = load("res://Game/Objects/BasicWall.tscn")
 var wall_bot = load("res://Game/Objects/BasicWallBottom.tscn")
 var wall_top = load("res://Game/Objects/BasicWallTop.tscn")
 var tile = load("res://Game/Objects/BasicTile.tscn")
-var mob = load("res://Game/Characters/Grunt.tscn")
+var mob_orange = load("res://Game/Characters/Grunt.tscn")
+var mob_banana = load("res://Game/Characters/BananaMonster.tscn")
 var item = load("res://Game/Objects/BasicItem.tscn")
 
 var n_loot: int = 3
@@ -13,6 +16,7 @@ var room_size: int = 5
 var floor_cols: int = 5
 var floor_rows: int = 5
 var map: Array[Array] = []
+var all_room_coords: Array[Array] = []
 
 var start_coords
 var end_coords
@@ -28,6 +32,12 @@ func initialize_map():
 			else:
 				row.append(" ")
 		map.append(row)
+
+	all_room_coords = []
+	
+	for floor_row in floor_rows:
+		for floor_col in floor_cols:
+			all_room_coords.append([floor_row, floor_col])
 
 func can_open_wall(room_row: int, room_col: int, dir: String):
 	assert(room_row >= 0 and room_row < floor_rows)
@@ -65,7 +75,7 @@ func build_door(room_row: int, room_col: int, dir: String):
 
 	map[coords[0]][coords[1]] = "D"
 
-func get_door_tile_row_col(room_row, room_col, dir):
+func get_door_tile_row_col(room_row: int, room_col: int, dir: String):
 	var row_n: int
 	var col_n: int
 
@@ -179,28 +189,40 @@ func floodfill_connected_rooms(current_coords, connected_rooms = null):
 
 	return connected_rooms
 
-func randomize_settings(level=0):
+func randomize_settings():
 	room_size = randi_range(5, 6 + level / 3)
 	floor_cols = randi_range(3 + level / 3, 4 + level / 2)
 	floor_rows = randi_range(3 + level / 4, 4 + level / 3)
 	n_loot = randi_range(2 + level / 4, 2 + (1 if level > 0 else 0) + level / 2)
-	n_mobs = randi_range(6 + level / 2, 8 + level)
+	n_mobs = randi_range(8 + level / 2, 10 + 1 * level) * 10
 
-func pick_random_distinct_rooms(num, avoid=[]):
+func pick_random_distinct_rooms(num: int, avoid=[]):
+	assert(avoid.all(func(_coords): return len(_coords) == 2))
+
+	var room_choices = all_room_coords.filter(func(_coords): return _coords not in avoid)
 	var chosen_rooms = Dictionary()
 	for i in range(num):
+		if room_choices.is_empty():
+			print("Ran out of room space")
+			break
+
 		var coords
-		while true:
-			coords = [randi_range(0, floor_rows-1), randi_range(0, floor_cols-1)]
 
-			if (coords not in avoid) and (coords not in chosen_rooms or len(chosen_rooms) >= (floor_rows * floor_cols - len(avoid))):
-				break
+		if len(chosen_rooms) >= len(room_choices):
+			coords = room_choices.pick_random()
+		else:
+			coords = room_choices.filter(func(_coords): return _coords not in chosen_rooms).pick_random()
 
-		chosen_rooms[coords] = true
+		if coords in chosen_rooms:
+			chosen_rooms[coords] += 1
+			if chosen_rooms[coords] >= (room_size * room_size) / 2:
+				room_choices.remove_at(room_choices.find(coords))
+		else:
+			chosen_rooms[coords] = 1
 
 	return chosen_rooms
 
-func pick_empty_spot_in_room(room_row, room_col):
+func pick_empty_spot_in_room(room_row: int, room_col: int):
 	var topleft_coords = get_door_tile_row_col(room_row, room_col, "topleft")
 
 	var coords
@@ -220,18 +242,20 @@ func populate_mobs():
 	var chosen_rooms = pick_random_distinct_rooms(n_mobs, [start_coords])
 
 	for room_coords in chosen_rooms:
-		var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
-		map[map_coords[0]][map_coords[1]] = "&"
+		for i in range(chosen_rooms[room_coords]):
+			var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
+			map[map_coords[0]][map_coords[1]] = "&"
 
 func populate_loot():
 	var chosen_rooms = pick_random_distinct_rooms(n_loot, [start_coords])
 
 	for room_coords in chosen_rooms:
-		var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
-		map[map_coords[0]][map_coords[1]] = "*"
+		for i in range(chosen_rooms[room_coords]):
+			var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
+			map[map_coords[0]][map_coords[1]] = "*"
 
-func generate_floor_map(level=0):
-	randomize_settings(level)
+func generate_floor_map():
+	randomize_settings()
 	initialize_map()
 	initialize_connections()
 
@@ -264,12 +288,14 @@ func generate_floor_map(level=0):
 	populate_loot()
 
 func _ready():
-	generate_floor_map(0)
+	add_child(Main.player)
+
+	generate_floor_map()
 
 	var tilescale = 100.0
 	var start_tile_coords = get_door_tile_row_col(start_coords[0], start_coords[1], "center")
-	var offset_x = -start_tile_coords[0] * tilescale - tilescale/2
-	var offset_y = -start_tile_coords[1] * tilescale - tilescale/2
+	var offset_x = -start_tile_coords[1] * tilescale
+	var offset_y = -start_tile_coords[0] * tilescale
 
 	for row_n in len(map):
 		for col_n in len(map[row_n]):
@@ -291,13 +317,17 @@ func _ready():
 					bg_obj = tile.instantiate()
 				"&":
 					bg_obj = tile.instantiate()
-					fg_obj = mob.instantiate()
+					fg_obj = [mob_orange, mob_banana].pick_random().instantiate()
 				"*":
 					bg_obj = tile.instantiate()
 					fg_obj = item.instantiate()
+				"S":
+					bg_obj = tile.instantiate()
+				"E":
+					bg_obj = tile.instantiate()
 				_:
 					bg_obj = tile.instantiate()
-			
+
 			var world_pos = Vector2(offset_x + col_n * tilescale, offset_y + row_n * tilescale)
 
 			if bg_obj:

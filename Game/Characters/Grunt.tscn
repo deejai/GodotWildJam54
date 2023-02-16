@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://73qd82ubajnj"]
+[gd_scene load_steps=12 format=3 uid="uid://73qd82ubajnj"]
 
 [ext_resource type="Script" path="res://Game/Characters/Enemy.gd" id="1_w0df4"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_108m4"]
 [ext_resource type="Texture2D" uid="uid://diurbx2n3otve" path="res://Assets/Sprites/Characters/spider.png" id="2_sb51s"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_3lt0w"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_26pie"]
+[ext_resource type="PackedScene" uid="uid://ya72jqcl2115" path="res://Game/Objects/Projectiles/Goo.tscn" id="5_ays6b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yke3u"]
 atlas = ExtResource("2_sb51s")
@@ -28,24 +29,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qhj5x"]
-radius = 38.6394
+[sub_resource type="CircleShape2D" id="CircleShape2D_gik3c"]
+radius = 36.7696
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_isxb8"]
 radius = 423.959
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 script = ExtResource("1_w0df4")
 alliance = 2
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_108m4"), ExtResource("3_3lt0w"), ExtResource("4_26pie")])
+char_sprite = NodePath("AnimatedSprite2D7")
+bullet = ExtResource("5_ays6b")
 
 [node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -9)
+position = Vector2(-1, -10)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7deg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_qhj5x")
+shape = SubResource("CircleShape2D_gik3c")
 
 [node name="AggroArea" type="Area2D" parent="."]
 
