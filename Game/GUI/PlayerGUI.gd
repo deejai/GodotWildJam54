@@ -19,7 +19,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if transition_layer.visible:
-		transition_layer_rect.modulate.a = max(0.0, transition_layer_rect.modulate.a - .67 * delta)
+		transition_layer_rect.modulate.a = max(0.0, transition_layer_rect.modulate.a - .5 * delta)
 		if transition_layer_rect.modulate.a == 0.0:
 			transition_layer.visible = false
 
@@ -31,12 +31,12 @@ func _process(delta):
 		stat_string += str("HP: ", Main.player.hp, " / ", 100, "\n")
 		stat_string += str("Total XP: ", Main.player.xp, "\n")
 		stat_string += str("XP to Next: ", Main.player.xp_to_next, "\n")
-		stat_string += str("bullet_spread: ", Main.player.stat_bullet_spread, "\n")
+		stat_string += str("bullet_spread: ", Main.player.calc_bullet_spread(), "\n")
 		stat_string += str("damage_received_mult: ", Main.player.stat_damage_received_mult, "\n")
 		stat_string += str("speed_mult: ", Main.player.stat_speed_mult, "\n")
 		stat_string += str("rof_mult: ", Main.player.stat_rof_mult, "\n")
-		stat_string += str("bullet_damage: ", Main.player.base_player_bullet_damage * Main.player.stat_bullet_damage_mult, "\n")
-		stat_string += str("lifesteal: ", Main.player.stat_lifesteal, "\n")
+		stat_string += str("bullet_damage: ", Main.player.calc_bullet_damage(), "\n")
+		stat_string += str("lifesteal: ", Main.player.calc_lifesteal(), "\n")
 		if Main.player.can_melee:
 			stat_string += str("melee_damage: ", Main.player.stat_melee_damage, "\n")
 			stat_string += str("melee_cd: ", Main.player.stat_melee_cd, "\n")

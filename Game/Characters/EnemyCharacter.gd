@@ -6,7 +6,7 @@ class_name EnemyCharacter
 
 var stat_xp_reward: float = 10.0
 
-var target: PlayerCharacter = null
+var target = null
 var speed: float = 50.0
 var nav_cd: float = 2.0
 var last_nav_pos: Vector2 = Vector2.ZERO

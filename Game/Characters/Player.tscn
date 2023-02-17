@@ -163,6 +163,7 @@ alliance = 1
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
+stat_bullet_spread = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)

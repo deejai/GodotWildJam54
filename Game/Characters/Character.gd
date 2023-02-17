@@ -15,7 +15,6 @@ var invulnerable = false
 
 var can_melee: bool = false
 
-@export var stat_bullet_spread: int = 1
 @export var stat_damage_received_mult: float = 1.0
 @export var stat_speed_mult: float = 1.0
 @export var stat_rof_mult: float = 1.0

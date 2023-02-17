@@ -2,6 +2,9 @@ extends AnimatedSprite2D
 
 class_name Bullet
 
+var shooter = null
+var lifesteal: float = 0.0
+
 @export var lifetime: float = .5
 @export var damage: float = 10.0
 @export var dangerous_to: Main.Alliance = Main.Alliance.ENEMY
@@ -29,6 +32,8 @@ func _on_area_2d_body_entered(body):
 		if body.receive_damage(damage):
 			body.ministun(position)
 			Main.play_random_sound(impact_sounds, global_position)
+			if shooter and lifesteal > 0.0:
+				shooter.hp = min(100.0, shooter.hp + lifesteal)
 			queue_free()
 	elif not body is Character:
 		queue_free()

@@ -15,3 +15,28 @@ var description: Dictionary = {
 	"lifesteal": "Life Steal",
 	"speed": "Move Speed",
 }
+
+func random_boon_value(key: String, level: int):
+	if randf() > 0.9:
+		level += randi_range(1, 2)
+
+	match(key):
+		"rate_of_fire":
+			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
+
+		"bullet_damage":
+			return randf_range(1.0 * level, 5.0 + 1.0 * level)
+
+		"bullet_spread":
+			return randi_range(1, 1 + level / 3)
+
+		"lifesteal":
+			return randf_range(1.0 + 0.3 * level, 4.0 + 1.0 * level)
+
+		"speed":
+			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
+
+		_:
+			assert(false)
+
+	return false
