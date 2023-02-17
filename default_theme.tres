@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://iyxlsgw4xv0r"]
+
+[ext_resource type="FontFile" uid="uid://bos5q177i8plk" path="res://Blusvery-6YlMY.otf" id="1_vll70"]
+
+[resource]
+default_font = ExtResource("1_vll70")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://fyg6mubeef52"]
+
+[ext_resource type="Script" path="res://Game/Objects/Item.gd" id="1_x21ci"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_vvi4y"]
+
+[sub_resource type="Gradient" id="Gradient_f3m1j"]
+colors = PackedColorArray(0.454902, 0.913725, 0.745098, 1, 1, 1, 0.0431373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f120t"]
+gradient = SubResource("Gradient_f3m1j")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7j07o"]
+size = Vector2(100, 100)
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_x21ci")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = SubResource("GradientTexture1D_f120t")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7j07o")
+
+[node name="Description" type="RichTextLabel" parent="."]
+offset_left = -49.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme = ExtResource("2_vvi4y")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "boon
+boon
+boon
+curse"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

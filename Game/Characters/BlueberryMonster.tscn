@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://73qd82ubajnj"]
+[gd_scene load_steps=17 format=3 uid="uid://8yksvgft2tjd"]
 
-[ext_resource type="Script" path="res://Game/Characters/Enemy.gd" id="1_tvufh"]
+[ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_anuk1"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_jsrdm"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_8rnm1"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_ngs0g"]
@@ -78,7 +78,7 @@ radius = 423.959
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
-script = ExtResource("1_tvufh")
+script = ExtResource("1_anuk1")
 alliance = 2
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_jsrdm"), ExtResource("3_8rnm1"), ExtResource("4_ngs0g")])
 char_sprite = NodePath("AnimatedSprite2D7")

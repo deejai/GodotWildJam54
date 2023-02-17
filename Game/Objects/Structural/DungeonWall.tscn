@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ufruuc8ob5t6"]
+
+[ext_resource type="Texture2D" uid="uid://d4a5bwiwwrlmm" path="res://Assets/Sprites/Tiles/brick_light.jpg" id="1_7rba2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhevh"]
+size = Vector2(100, 100)
+
+[node name="BasicWall" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_rhevh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_7rba2")
+expand_mode = 1

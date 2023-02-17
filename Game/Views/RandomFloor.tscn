@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tuw26pci1wmi"]
+
+[ext_resource type="Script" path="res://Game/Views/RandomFloor.gd" id="1_u8j08"]
+
+[node name="Demo" type="Node2D"]
+script = ExtResource("1_u8j08")

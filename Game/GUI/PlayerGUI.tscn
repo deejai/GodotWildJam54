@@ -1,0 +1,178 @@
+[gd_scene load_steps=18 format=3 uid="uid://bra6tpwpgfe7d"]
+
+[ext_resource type="Script" path="res://Game/GUI/PlayerGUI.gd" id="1_nf05u"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
+[ext_resource type="PackedScene" uid="uid://c7jsg6chsvpyk" path="res://Game/GUI/YouDied.tscn" id="3_qiq40"]
+
+[sub_resource type="Gradient" id="Gradient_mp8i4"]
+colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwmi0"]
+gradient = SubResource("Gradient_mp8i4")
+width = 256
+height = 20
+fill_from = Vector2(0.529126, 0.559223)
+fill_to = Vector2(0.567961, 0)
+
+[sub_resource type="Gradient" id="Gradient_3fm35"]
+colors = PackedColorArray(0.988235, 0, 0.360784, 1, 0.854902, 0.223529, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8138"]
+gradient = SubResource("Gradient_3fm35")
+width = 256
+height = 20
+fill_to = Vector2(0.951456, 0.713592)
+
+[sub_resource type="Gradient" id="Gradient_kc1d4"]
+colors = PackedColorArray(0.435294, 0.435294, 0.435294, 0.52549, 0.8, 0.8, 0.8, 0.486275)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enmob"]
+gradient = SubResource("Gradient_kc1d4")
+width = 256
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_eeddt"]
+colors = PackedColorArray(0.65098, 0.65098, 0, 0.603922, 0.960784, 0.960784, 0, 0.564706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t3q61"]
+gradient = SubResource("Gradient_eeddt")
+width = 256
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_76qkj"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_epe1n"]
+gradient = SubResource("Gradient_76qkj")
+
+[sub_resource type="Gradient" id="Gradient_12uy8"]
+colors = PackedColorArray(0.368627, 0.576471, 0.639216, 0.721569, 0.384314, 0.780392, 0.847059, 0.721569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b50k2"]
+gradient = SubResource("Gradient_12uy8")
+fill_from = Vector2(0.247826, 0.169565)
+fill_to = Vector2(0.86087, 0.856522)
+
+[sub_resource type="Gradient" id="Gradient_ljqfo"]
+colors = PackedColorArray(1.82897e-06, 0.624055, 0.661333, 0.54902, 0.0791196, 0.300063, 0.33149, 0.556863)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dysdm"]
+gradient = SubResource("Gradient_ljqfo")
+
+[node name="PlayerGUI" type="CanvasLayer"]
+script = ExtResource("1_nf05u")
+
+[node name="CursedBars" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 733.0
+offset_top = 252.0
+offset_right = 1158.0
+offset_bottom = 655.0
+theme = ExtResource("2_fbmb7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy."
+scroll_active = false
+
+[node name="YouDied" parent="." instance=ExtResource("3_qiq40")]
+visible = false
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.839216)
+offset_left = 888.0
+offset_top = 621.0
+offset_right = 1144.0
+offset_bottom = 643.0
+texture_under = SubResource("GradientTexture2D_kwmi0")
+texture_progress = SubResource("GradientTexture2D_k8138")
+
+[node name="XPBar" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.780392)
+offset_left = 888.0
+offset_top = 610.0
+offset_right = 1144.0
+offset_bottom = 622.0
+texture_under = SubResource("GradientTexture2D_enmob")
+texture_progress = SubResource("GradientTexture2D_t3q61")
+
+[node name="Stats" type="RichTextLabel" parent="."]
+offset_right = 322.0
+offset_bottom = 641.0
+theme = ExtResource("2_fbmb7")
+text = "stats
+stats
+stats
+stats
+stats
+stats
+stats
+stats
+stats
+stats
+stats
+stats"
+metadata/_edit_lock_ = true
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="TransitionLayer"]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 1241.0
+offset_bottom = 684.0
+texture = SubResource("GradientTexture1D_epe1n")
+
+[node name="Items" type="Node" parent="."]
+
+[node name="ItemsBG" type="TextureRect" parent="Items"]
+offset_left = 8.0
+offset_top = 552.0
+offset_right = 272.0
+offset_bottom = 640.0
+texture = SubResource("GradientTexture2D_b50k2")
+
+[node name="Slot1BG" type="TextureRect" parent="Items"]
+offset_left = 192.0
+offset_top = 560.0
+offset_right = 264.0
+offset_bottom = 632.0
+texture = SubResource("GradientTexture1D_dysdm")
+expand_mode = 1
+
+[node name="Slot2BG" type="TextureRect" parent="Items"]
+offset_left = 16.0
+offset_top = 560.0
+offset_right = 88.0
+offset_bottom = 632.0
+texture = SubResource("GradientTexture1D_dysdm")
+expand_mode = 1
+
+[node name="Slot3BG" type="TextureRect" parent="Items"]
+offset_left = 104.0
+offset_top = 560.0
+offset_right = 176.0
+offset_bottom = 632.0
+texture = SubResource("GradientTexture1D_dysdm")
+expand_mode = 1
+
+[node name="Center" type="Node2D" parent="."]
+position = Vector2(576, 320)

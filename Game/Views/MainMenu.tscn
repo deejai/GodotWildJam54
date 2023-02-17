@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2r7owc7pp5dk"]
+
+[ext_resource type="Script" path="res://Game/Views/MainMenu.gd" id="1_ayg28"]
+[ext_resource type="Texture2D" uid="uid://djrl5mknxabck" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-1.png" id="2_nlpah"]
+[ext_resource type="Texture2D" uid="uid://dbc8hber3316c" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-2.png" id="3_efi5e"]
+[ext_resource type="Texture2D" uid="uid://btl70wu67ek20" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-3.png" id="4_u7lwg"]
+[ext_resource type="Texture2D" uid="uid://b06v11c6l1yb2" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-4.png" id="5_x2mr3"]
+
+[sub_resource type="Gradient" id="Gradient_om0js"]
+colors = PackedColorArray(0.857301, 0.207366, 0.309637, 1, 0.438704, 1, 0.193537, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1rx4r"]
+gradient = SubResource("Gradient_om0js")
+width = 1152
+height = 648
+fill_to = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml81j"]
+atlas = ExtResource("2_nlpah")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vrw2"]
+atlas = ExtResource("3_efi5e")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twfrg"]
+atlas = ExtResource("4_u7lwg")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyd6h"]
+atlas = ExtResource("5_x2mr3")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6v5q0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml81j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vrw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twfrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyd6h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ayg28")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_1rx4r")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 454.0
+offset_right = 1093.0
+offset_bottom = 730.0
+theme_override_colors/font_color = Color(0.639216, 0.545098, 0, 0.12549)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.0941176)
+theme_override_font_sizes/font_size = 180
+text = "Appleteeth"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(560, 461)
+scale = Vector2(0.375926, 0.375926)
+sprite_frames = SubResource("SpriteFrames_6v5q0")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 0.529412, 0, 0.976471)
+offset_left = 700.0
+offset_top = 329.0
+offset_right = 895.0
+offset_bottom = 406.0
+theme_override_font_sizes/font_size = 50
+text = "Begin"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

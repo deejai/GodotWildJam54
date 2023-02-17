@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7k4ar3cu4r8u"]
+
+[ext_resource type="Texture2D" uid="uid://bsdtii8wahprb" path="res://Assets/Sprites/Tiles/brick_dark.png" id="1_qy1li"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_qy1li")
+expand_mode = 1

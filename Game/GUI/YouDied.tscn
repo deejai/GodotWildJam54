@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7jsg6chsvpyk"]
+
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="1_rrhoy"]
+[ext_resource type="Script" path="res://Game/GUI/YouDied.gd" id="1_wsl81"]
+
+[node name="YouDied" type="CanvasLayer"]
+script = ExtResource("1_wsl81")
+
+[node name="YouDied" type="RichTextLabel" parent="."]
+offset_left = 416.0
+offset_top = 253.0
+offset_right = 792.0
+offset_bottom = 366.0
+theme = ExtResource("1_rrhoy")
+theme_override_colors/default_color = Color(0.643137, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.631373)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/bold_font_size = 80
+theme_override_font_sizes/italics_font_size = 0
+theme_override_font_sizes/bold_italics_font_size = 0
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+text = "[b]You Died...[/b]"
+
+[node name="AcceptButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.487
+anchor_top = 0.57
+anchor_right = 0.487
+anchor_bottom = 0.57
+offset_left = -131.024
+offset_top = -15.36
+offset_right = 129.976
+offset_bottom = 15.64
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rrhoy")
+text = "The quote about death goes here."
+
+[connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]
