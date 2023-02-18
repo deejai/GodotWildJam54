@@ -20,3 +20,4 @@ static func setup_stats(enemy: EnemyCharacter):
 	match(enemy.type):
 		Type.BANANA_BAT:
 			enemy.stat_melee_damage *= 1.20
+			enemy.stat_speed_mult *= 2.0

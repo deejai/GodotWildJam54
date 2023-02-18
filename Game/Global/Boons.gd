@@ -10,9 +10,9 @@ var status: Dictionary = {
 }
 
 var description: Dictionary = {
-	"rate_of_fire": "Rate of Fire",
-	"bullet_damage": "Bullet Damage",
-	"bullet_spread": "Bullet Spread",
+	"rate_of_fire": "Fire Rate",
+	"bullet_damage": "Damage",
+	"bullet_spread": "Spread",
 	"lifesteal": "Life Steal",
 	"speed": "Move Speed",
 	"fireballs": "Fireballs",
@@ -45,3 +45,7 @@ func random_boon_value(key: String, level: int):
 			assert(false)
 
 	return false
+
+func reset():
+	for key in status:
+		status[key] = 0

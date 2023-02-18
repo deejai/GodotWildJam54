@@ -11,10 +11,25 @@ var level = 1
 
 var player
 var random_floor_scene: PackedScene = load("res://Game/Views/RandomFloor.tscn")
+var boss_floor_scene1: PackedScene = load("res://Game/Views/BossFloor1.tscn")
+var boss_floor_scene2: PackedScene = load("res://Game/Views/BossFloor2.tscn")
+var boss_floor_scene3: PackedScene = load("res://Game/Views/BossFloor3.tscn")
+var victory_scene: PackedScene = load("res://Game/Views/VictoryScene.tscn")
 
 var floor_instance: Node = null
 
 var music: Node = load("res://Game/Global/Music.tscn").instantiate()
+var main_scene = load("res://Game/Global/Main.tscn").instantiate()
+
+var paused: bool = false
+
+@onready var pause_menu: CanvasLayer = main_scene.get_node("PauseMenu")
+@onready var pause_sound: AudioStreamPlayer = main_scene.get_node("PauseSound")
+
+@onready var death_jingle: AudioStreamPlayer = main_scene.get_node("DeathJingle")
+@onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
+
+const boss_floor_cadence = 4
 
 func play_random_sound(array: Array[AudioStreamWAV], position):
 	var arr_len = len(array)
@@ -23,17 +38,32 @@ func play_random_sound(array: Array[AudioStreamWAV], position):
 		audio_player.position = position
 		audio_player.stream = array[randi() % arr_len]
 		audio_player.play(0.0)
-		
+
 		audio_player_index = (audio_player_index + 1) % num_audio_players
 
 func descend():
+		descend_sound.play()
 		floor_instance.remove_child(Main.player)
-		Main.level += 1
-		get_tree().change_scene_to_packed(random_floor_scene)
+		floor_instance.queue_free()
+		level += 1
+		if level == boss_floor_cadence * 1:
+			get_tree().change_scene_to_packed(boss_floor_scene1)
+		if level == boss_floor_cadence * 2:
+			get_tree().change_scene_to_packed(boss_floor_scene2)
+		if level == boss_floor_cadence * 3:
+			get_tree().change_scene_to_packed(boss_floor_scene3)
+		if level == 1 + boss_floor_cadence * 3:
+			get_tree().change_scene_to_packed(victory_scene)
+		else:
+			get_tree().change_scene_to_packed(random_floor_scene)
+
 		player.gui.fade_transition()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pause_menu.visible = false
+	add_child(main_scene)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	for key in Curses.status:
 		assert(key in Curses.description)
 
@@ -46,10 +76,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if floor_instance!= null and Input.is_action_just_pressed("Pause"):
+		set_pause(!paused)
 
 func xp_required_to_reach_level(target_level: int):
 	if target_level <= 1:
 		return 0
 
 	return 100.0 * (target_level-1) * pow(1.1, target_level-2)
+
+func set_pause(val: bool):
+	paused = val
+	get_tree().paused = val
+	pause_menu.visible = val
+	pause_sound.play()

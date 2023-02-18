@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rdlaiufsao16"
+path="res://.godot/imported/29. Positive cursed items loot.wav-0ed03c21217510654415c9089c1c104b.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/29. Positive cursed items loot.wav"
+dest_files=["res://.godot/imported/29. Positive cursed items loot.wav-0ed03c21217510654415c9089c1c104b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

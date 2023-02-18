@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://u8vp6m0ri7ix"
+path="res://.godot/imported/18. Begin Hover Button.wav-4805abd75e3e3eb06e653c12a0dcee14.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/18. Begin Hover Button.wav"
+dest_files=["res://.godot/imported/18. Begin Hover Button.wav-4805abd75e3e3eb06e653c12a0dcee14.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

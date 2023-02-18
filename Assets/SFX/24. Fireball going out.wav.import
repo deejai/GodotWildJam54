@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxvmqd2pmytao"
+path="res://.godot/imported/24. Fireball going out.wav-ebd848178ea718896115602cb4298b2a.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/24. Fireball going out.wav"
+dest_files=["res://.godot/imported/24. Fireball going out.wav-ebd848178ea718896115602cb4298b2a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

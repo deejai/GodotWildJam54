@@ -13,3 +13,7 @@ var description: Dictionary = {
 	"random_teleport": "You might become unstable",
 	"hp_drain": "You might find that it drains you",
 }
+
+func reset():
+	for key in status:
+		status[key] = 0

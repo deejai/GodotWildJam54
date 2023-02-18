@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://da183pjokvwcl"
+path="res://.godot/imported/13. Enemy movement.Blueberry.wav-f49401889a297a0496b70be7c033b2c8.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/13. Enemy movement.Blueberry.wav"
+dest_files=["res://.godot/imported/13. Enemy movement.Blueberry.wav-f49401889a297a0496b70be7c033b2c8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

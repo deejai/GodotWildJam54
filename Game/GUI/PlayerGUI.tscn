@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bra6tpwpgfe7d"]
+[gd_scene load_steps=19 format=3 uid="uid://bra6tpwpgfe7d"]
 
 [ext_resource type="Script" path="res://Game/GUI/PlayerGUI.gd" id="1_nf05u"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
 [ext_resource type="PackedScene" uid="uid://c7jsg6chsvpyk" path="res://Game/GUI/YouDied.tscn" id="3_qiq40"]
+[ext_resource type="Texture2D" uid="uid://d71ctfjwd73b" path="res://Assets/Sprites/heresjohnny.png" id="4_tn8hh"]
 
 [sub_resource type="Gradient" id="Gradient_mp8i4"]
 colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
@@ -206,6 +207,7 @@ offset_bottom = 509.0
 color = Color(0.160784, 0.160784, 0.160784, 0.776471)
 
 [node name="QLabel" type="Label" parent="QRect"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = -2.0
 offset_right = 29.0
@@ -222,6 +224,7 @@ offset_bottom = 509.0
 color = Color(0.160784, 0.160784, 0.160784, 0.776471)
 
 [node name="ELabel" type="Label" parent="ERect"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = -1.0
 offset_right = 29.0
@@ -229,3 +232,28 @@ offset_bottom = 41.0
 theme = ExtResource("2_fbmb7")
 theme_override_font_sizes/font_size = 24
 text = "E"
+
+[node name="CursedGUIImage" type="TextureRect" parent="."]
+offset_left = -74.0
+offset_top = -140.0
+offset_right = 1161.0
+offset_bottom = 888.0
+mouse_filter = 2
+texture = ExtResource("4_tn8hh")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="TimerLabel" type="RichTextLabel" parent="."]
+offset_left = 448.0
+offset_top = 16.0
+offset_right = 704.0
+offset_bottom = 72.0
+theme = ExtResource("2_fbmb7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[center][color=#AA2222]0:00[/color][/center]"

@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var hp_bar: TextureProgressBar = $HPBar
 @onready var xp_bar: TextureProgressBar = $XPBar
 @onready var cursed_text_gui: RichTextLabel = $CursedBars
+@onready var cursed_gui_image: TextureRect = $CursedGUIImage
 @onready var stats: RichTextLabel = $Stats
 @onready var show_stats: RichTextLabel = $ShowStats
 
@@ -65,6 +66,7 @@ func _process(delta):
 		hp_bar.visible = false
 		xp_bar.visible = false
 		cursed_text_gui.visible = true
+		cursed_gui_image.visible = true
 
 		cursed_text_gui.text = ""
 		var hp_string = get_progress_text(cursed_gui_string, "#AA4444", Main.player.hp / 100.0)
@@ -77,6 +79,7 @@ func _process(delta):
 		hp_bar.value = 100.0 * Main.player.hp / 100.0
 		xp_bar.value = 100.0 * Main.player.xp_progress
 		cursed_text_gui.visible = false
+		cursed_gui_image.visible = false
 		hp_bar.visible = true
 		xp_bar.visible = true
 

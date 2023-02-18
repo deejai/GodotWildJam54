@@ -79,10 +79,19 @@ height = 94.0
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_dmsgc")
+type = 0
+level = null
 alliance = 2
+damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_rvip2"), ExtResource("3_rwq2y"), ExtResource("4_6fvwd")])
 char_sprite = NodePath("AnimatedSprite2D")
-stat_bullet_spread = null
+stat_damage_received_mult = null
+stat_speed_mult = null
+stat_rof_mult = null
+stat_bullet_damage_mult = null
+stat_lifesteal = null
+stat_melee_damage = null
+stat_melee_cd = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)

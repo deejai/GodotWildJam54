@@ -33,6 +33,7 @@ offset_bottom = -58.0
 color = Color(0.160784, 0.160784, 0.160784, 0.776471)
 
 [node name="FLabel" type="Label" parent="FRect"]
+layout_mode = 0
 offset_left = 6.0
 offset_top = 1.0
 offset_right = 129.0

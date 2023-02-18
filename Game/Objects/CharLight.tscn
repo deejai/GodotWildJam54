@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://h5lp7urytiv3"]
+
+[ext_resource type="Texture2D" uid="uid://dtsdt1d6i0kad" path="res://Assets/Sprites/light.png" id="1_h2tqa"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Light" type="PointLight2D" parent="."]
+z_index = -6
+energy = 0.5
+range_z_min = -10
+range_z_max = -4
+texture = ExtResource("1_h2tqa")
+texture_scale = 0.3

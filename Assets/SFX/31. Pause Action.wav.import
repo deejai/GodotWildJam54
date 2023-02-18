@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dyapxrix5bx8i"
+path="res://.godot/imported/31. Pause Action.wav-7663c91e869def2ce34e051e5325c112.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/31. Pause Action.wav"
+dest_files=["res://.godot/imported/31. Pause Action.wav-7663c91e869def2ce34e051e5325c112.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

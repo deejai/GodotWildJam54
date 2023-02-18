@@ -23,6 +23,8 @@ var can_melee: bool = false
 @export var stat_melee_damage: float = 30.0
 @export var stat_melee_cd: float = 1.5
 
+@onready var light: Node2D = load("res://Game/Objects/CharLight.tscn").instantiate()
+
 var timers: Dictionary = {
 	"flinch": {"value": 0.0,
 		"activate": func():
@@ -56,6 +58,9 @@ func engage_timer(key: String, time: float):
 
 	return false
 
+func char_ready():
+	add_child(light)
+
 func char_process(delta):
 	for key in timers:
 		var timer = timers[key]
@@ -69,6 +74,10 @@ func char_process(delta):
 			self.dead = true
 			self.visible = false
 			self.get_node("PlayerGUI/YouDied").visible = true
+			Boons.reset()
+			Curses.reset()
+			Main.music.stop()
+			Main.death_jingle.play()
 		else:
 			if self is EnemyCharacter:
 				Main.player.gain_xp(self.stat_xp_reward)

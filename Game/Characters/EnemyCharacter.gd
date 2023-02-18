@@ -16,6 +16,7 @@ var last_nav_pos: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	char_ready()
 	char_sprite.play()
 	engage_timer("shoot", 2.0)
 	timers["melee_cd"] = {"value": 0.0}
@@ -46,7 +47,7 @@ func _process(delta):
 func _physics_process(delta):
 	if is_target_valid():
 		var next_pos = nav_agent.get_next_path_position()
-		velocity = (target.position - position).normalized() * speed
+		velocity = (target.position - position).normalized() * speed * stat_speed_mult
 		char_sprite.flip_h = target.position.x < position.x
 
 	if can_melee and timers["melee_cd"].value == 0.0:

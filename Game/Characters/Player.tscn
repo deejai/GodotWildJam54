@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cednq3isq20uq"]
+[gd_scene load_steps=43 format=3 uid="uid://cednq3isq20uq"]
 
 [ext_resource type="Script" path="res://Game/Characters/PlayerCharacter.gd" id="1_vqyv2"]
 [ext_resource type="AudioStream" uid="uid://cxr3v80lemb3w" path="res://Assets/SFX/05._Hurt_2_variation_1.wav" id="2_12cxk"]
@@ -22,7 +22,9 @@
 [ext_resource type="AudioStream" uid="uid://d4dur13ie051v" path="res://Assets/SFX/02._Gun_Shoot.wav" id="18_rqjiw"]
 [ext_resource type="AudioStream" uid="uid://b6y0kc8c3e381" path="res://Assets/SFX/01._Wind-Up_Gun.wav" id="19_j7kyp"]
 [ext_resource type="PackedScene" uid="uid://bra6tpwpgfe7d" path="res://Game/GUI/PlayerGUI.tscn" id="22_it00h"]
-[ext_resource type="AudioStream" uid="uid://bfivymeml4308" path="res://Assets/SFX/puff.wav" id="23_3oybj"]
+[ext_resource type="AudioStream" uid="uid://lfmi078m85p" path="res://Assets/SFX/20._Teleport.wav" id="23_jef64"]
+[ext_resource type="AudioStream" uid="uid://ctt5gd2j7gtwq" path="res://Assets/SFX/23. Fireballs Spinning (Loop).wav" id="24_33j2m"]
+[ext_resource type="AudioStream" uid="uid://4w8gs3o8r6j4" path="res://Assets/SFX/22. Fireballs Appear.wav" id="25_ipkok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hthkk"]
 atlas = ExtResource("6_3m1gp")
@@ -160,10 +162,19 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_vqyv2")
+level = null
 alliance = 1
+damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
+stat_damage_received_mult = null
+stat_speed_mult = null
+stat_rof_mult = null
+stat_bullet_damage_mult = null
+stat_lifesteal = null
+stat_melee_damage = null
+stat_melee_cd = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)
@@ -200,6 +211,15 @@ z_index = 3
 [node name="Items" type="Node" parent="."]
 
 [node name="TeleportSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("23_3oybj")
+stream = ExtResource("23_jef64")
+
+[node name="FireballLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_33j2m")
+volume_db = 4.0
+
+[node name="FireballEngage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_ipkok")
+
+[node name="FireballDisengage" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="animation_looped" from="GunSprite" to="." method="_on_gun_sprite_animation_looped"]

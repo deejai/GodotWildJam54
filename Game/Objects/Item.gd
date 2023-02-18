@@ -93,7 +93,7 @@ func _on_area_2d_body_exited(body):
 
 func randomize(level: int):
 	curse_key = Curses.status.keys().pick_random()
-	var num_boons = min(3, randi_range(1, 1 + Main.level / 3))
+	var num_boons = min(3, randi_range(1, 2 + Main.level / 3))
  
 	var boon_choices = Boons.status.keys().duplicate()
 	boon_choices.shuffle()
@@ -101,3 +101,7 @@ func randomize(level: int):
 	for i in range(num_boons):
 		var key = boon_choices.pop_front()
 		boons.append({"key": key, "value": Boons.random_boon_value(key, level)})
+
+
+func _on_area_2d_mouse_entered():
+	pass

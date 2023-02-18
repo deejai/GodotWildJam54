@@ -52,6 +52,7 @@ offset_bottom = -58.0
 color = Color(0.160784, 0.160784, 0.160784, 0.776471)
 
 [node name="QELabel" type="Label" parent="QERect"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = -1.0
 offset_right = 128.0
@@ -62,3 +63,4 @@ text = "Q/E to Equip"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

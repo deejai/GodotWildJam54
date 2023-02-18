@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://demqrc6w662k"
+path="res://.godot/imported/11. Main character getting hurt 2 (improved).wav-11ca4de8811cb8b19f9ee5fa327e2074.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/11. Main character getting hurt 2 (improved).wav"
+dest_files=["res://.godot/imported/11. Main character getting hurt 2 (improved).wav-11ca4de8811cb8b19f9ee5fa327e2074.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

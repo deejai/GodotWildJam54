@@ -1,19 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://s7tfk4kl1coq"]
+[gd_scene load_steps=8 format=3 uid="uid://s7tfk4kl1coq"]
 
 [ext_resource type="Script" path="res://Game/Global/Music.gd" id="1_sbsg8"]
-[ext_resource type="AudioStream" uid="uid://c82usjh8ghu6d" path="res://Assets/Music/GameJam2Theme2.0.wav" id="2_e80df"]
-[ext_resource type="AudioStream" uid="uid://dk3ecupu6ri42" path="res://Assets/Music/WJ54Game_DrumFill1.wav" id="3_v8335"]
+[ext_resource type="AudioStream" uid="uid://du10c0oxww4bu" path="res://Assets/Music/StemsLVL1/Level1Musicwav.wav" id="2_ly14o"]
+[ext_resource type="AudioStream" uid="uid://p15wl736hyhr" path="res://Assets/Music/StemsLVL2/Level2_Music.wav" id="3_iq1ur"]
+[ext_resource type="AudioStream" uid="uid://dj0rtxxnw0877" path="res://Assets/Music/Boss_Music/Stems_Boss1/Boss1Theme.wav" id="3_s3lsq"]
+[ext_resource type="AudioStream" uid="uid://de3kuq2q3xvy6" path="res://Assets/Music/Boss_Music/Stems_Boss2/Boss2_Theme.wav" id="4_7r37h"]
+[ext_resource type="AudioStream" uid="uid://ctodgt4ktybxh" path="res://Assets/SFX/26. Level Up.wav" id="5_jt3vl"]
+[ext_resource type="AudioStream" uid="uid://1acqh2jquyv8" path="res://Assets/Music/Menu Loop/WJ#54_Menu_Music.wav" id="7_ppf5b"]
 
-[node name="Main" type="Node2D"]
+[node name="Music" type="Node2D"]
 script = ExtResource("1_sbsg8")
 
-[node name="MainLoopPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_e80df")
+[node name="DungeonMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ly14o")
 volume_db = -12.0
-autoplay = true
+
+[node name="DungeonMusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_iq1ur")
+volume_db = -12.0
+
+[node name="BossMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s3lsq")
+volume_db = -12.0
+
+[node name="BossMusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7r37h")
+volume_db = -12.0
+
+[node name="BossMusic3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7r37h")
+volume_db = -12.0
 
 [node name="LevelUpPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_v8335")
-volume_db = -12.18
+stream = ExtResource("5_jt3vl")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ppf5b")
+volume_db = -12.0
 
 [connection signal="finished" from="LevelUpPlayer" to="." method="_on_level_up_player_finished"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc81yncdgskub"]
+
+[ext_resource type="Script" path="res://Game/Global/PauseMenu.gd" id="1_h15uw"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="1_xm6ia"]
+[ext_resource type="AudioStream" uid="uid://b2u384mt4ck7o" path="res://Assets/SFX/18._Begin_Hover_Button.wav" id="3_e7h4n"]
+[ext_resource type="AudioStream" uid="uid://cc2q55g14q46y" path="res://Assets/SFX/19._Begin_Click_Button.wav" id="4_mvbgj"]
+[ext_resource type="AudioStream" uid="uid://3b66xy6lu2fs" path="res://Assets/SFX/32._Confirm_quit_game.wav" id="4_qmqe7"]
+[ext_resource type="AudioStream" uid="uid://cey6mnx0l2vpu" path="res://Assets/SFX/31._Pause_Action.wav" id="5_t1n1v"]
+[ext_resource type="AudioStream" uid="uid://be55onlv8gwih" path="res://Assets/SFX/25._You_Died_Main_character_death.wav" id="7_ncdrl"]
+[ext_resource type="AudioStream" uid="uid://clndmaolhrjym" path="res://Assets/SFX/20. Teleport.wav" id="8_xnucc"]
+
+[node name="Main" type="Node2D"]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("1_h15uw")
+
+[node name="PausedLabel" type="RichTextLabel" parent="PauseMenu"]
+offset_left = 440.0
+offset_top = 280.0
+offset_right = 712.0
+offset_bottom = 360.0
+theme = ExtResource("1_xm6ia")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+bbcode_enabled = true
+text = "[center]Paused[/center]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="PauseMenu"]
+offset_left = 536.0
+offset_top = 344.0
+offset_right = 616.0
+offset_bottom = 375.0
+text = "Resume"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="PauseMenu"]
+offset_left = 536.0
+offset_top = 384.0
+offset_right = 616.0
+offset_bottom = 416.0
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="ConfirmQuitModal" type="ReferenceRect" parent="PauseMenu"]
+offset_left = 368.0
+offset_top = 440.0
+offset_right = 856.0
+offset_bottom = 552.0
+
+[node name="ConfirmQuitLabel" type="RichTextLabel" parent="PauseMenu/ConfirmQuitModal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0542763
+anchor_top = 0.0194005
+anchor_right = 0.179276
+anchor_bottom = 0.0194005
+offset_left = 31.25
+offset_top = -4.93827
+offset_right = 303.25
+offset_bottom = 75.0617
+theme = ExtResource("1_xm6ia")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[center]Quit and lose all progress?[/center]"
+metadata/_edit_use_anchors_ = true
+
+[node name="DontQuit" type="Button" parent="PauseMenu/ConfirmQuitModal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.459016
+anchor_top = 0.428571
+anchor_right = 0.459016
+anchor_bottom = 0.428571
+offset_right = 80.0
+offset_bottom = 32.0
+text = "Cancel
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ConfirmQuit" type="Button" parent="PauseMenu/ConfirmQuitModal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229508
+anchor_top = 0.428571
+anchor_right = 0.229508
+anchor_bottom = 0.428571
+offset_right = 80.0
+offset_bottom = 32.0
+text = "Confirm"
+metadata/_edit_use_anchors_ = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("4_mvbgj")
+volume_db = -6.0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("3_e7h4n")
+volume_db = -12.0
+
+[node name="QuitSound" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("4_qmqe7")
+
+[node name="PauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t1n1v")
+volume_db = -8.0
+
+[node name="DeathJingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ncdrl")
+
+[node name="DescendSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xnucc")
+
+[connection signal="mouse_entered" from="PauseMenu/Resume" to="PauseMenu" method="ui_hover"]
+[connection signal="pressed" from="PauseMenu/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="PauseMenu/Quit" to="PauseMenu" method="ui_hover"]
+[connection signal="pressed" from="PauseMenu/Quit" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="PauseMenu/ConfirmQuitModal/DontQuit" to="PauseMenu" method="ui_hover"]
+[connection signal="pressed" from="PauseMenu/ConfirmQuitModal/DontQuit" to="PauseMenu" method="_on_dont_quit_pressed"]
+[connection signal="mouse_entered" from="PauseMenu/ConfirmQuitModal/ConfirmQuit" to="PauseMenu" method="ui_hover"]
+[connection signal="pressed" from="PauseMenu/ConfirmQuitModal/ConfirmQuit" to="PauseMenu" method="_on_confirm_quit_pressed"]

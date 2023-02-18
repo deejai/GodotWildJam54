@@ -25,6 +25,8 @@ var all_room_coords: Array[Array] = []
 var start_coords
 var end_coords
 
+var timer: float = 120
+
 func initialize_map():
 	map = []
 
@@ -372,6 +374,7 @@ func _ready():
 	create()
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
+	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= 5 else MusicServer.Track.DUNGEON2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

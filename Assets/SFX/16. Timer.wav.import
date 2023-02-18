@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cps7fmhbsea66"
+path="res://.godot/imported/16. Timer.wav-50c05d466c3936b1343759b5e8fcc25e.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/16. Timer.wav"
+dest_files=["res://.godot/imported/16. Timer.wav-50c05d466c3936b1343759b5e8fcc25e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

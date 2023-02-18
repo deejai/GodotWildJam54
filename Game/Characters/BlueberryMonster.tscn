@@ -79,11 +79,20 @@ radius = 423.959
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_anuk1")
+type = 1
+level = null
 alliance = 2
+damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_jsrdm"), ExtResource("3_8rnm1"), ExtResource("4_ngs0g")])
 char_sprite = NodePath("AnimatedSprite2D7")
 bullet = ExtResource("5_ba12a")
-stat_bullet_spread = null
+stat_damage_received_mult = null
+stat_speed_mult = null
+stat_rof_mult = null
+stat_bullet_damage_mult = null
+stat_lifesteal = null
+stat_melee_damage = null
+stat_melee_cd = null
 
 [node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

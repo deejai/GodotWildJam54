@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfk23w0ooplik"
+path="res://.godot/imported/17. Alarm Time Out.wav-520508fc2201bd1ee179c3d611e63868.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/17. Alarm Time Out.wav"
+dest_files=["res://.godot/imported/17. Alarm Time Out.wav-520508fc2201bd1ee179c3d611e63868.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

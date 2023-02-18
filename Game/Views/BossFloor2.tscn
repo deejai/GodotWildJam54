@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ynfl7hsrk16"]
+
+[ext_resource type="Script" path="res://Game/Views/BossFloor.gd" id="1_q6tsc"]
+[ext_resource type="PackedScene" uid="uid://dkum4jkxfu5hn" path="res://Game/Objects/Structural/CheckeredTile.tscn" id="2_qamsr"]
+[ext_resource type="PackedScene" uid="uid://chvu4q4g1rkd5" path="res://Game/Objects/Structural/CheckeredWall.tscn" id="3_5i2is"]
+[ext_resource type="PackedScene" uid="uid://b5obchbho4ltg" path="res://Game/Objects/Structural/CheckeredWallBottom.tscn" id="4_v7ccx"]
+[ext_resource type="PackedScene" uid="uid://t4af43apqgn8" path="res://Game/Objects/Structural/CheckeredWallTop.tscn" id="5_7mwdx"]
+
+[node name="BossFloor2" type="Node2D"]
+script = ExtResource("1_q6tsc")
+
+[node name="Node2D" parent="." instance=ExtResource("2_qamsr")]
+
+[node name="BasicWall" parent="." instance=ExtResource("3_5i2is")]
+position = Vector2(168, -118)
+
+[node name="BasicWall2" parent="." instance=ExtResource("4_v7ccx")]
+position = Vector2(0, 99)
+
+[node name="Node2D2" parent="." instance=ExtResource("2_qamsr")]
+position = Vector2(-96, 0)
+
+[node name="BasicWall4" parent="." instance=ExtResource("4_v7ccx")]
+position = Vector2(-96, 99)
+
+[node name="BasicWall3" parent="." instance=ExtResource("5_7mwdx")]
+position = Vector2(-96, -99)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b72yeto2yt3ei"
+path="res://.godot/imported/12. Char Movement (One Step Only).wav-8f9057ee214e345f8d4df58b41be4784.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/12. Char Movement (One Step Only).wav"
+dest_files=["res://.godot/imported/12. Char Movement (One Step Only).wav-8f9057ee214e345f8d4df58b41be4784.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

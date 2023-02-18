@@ -14,6 +14,9 @@ var fireball_scene: PackedScene = load("res://Game/Objects/Projectiles/Fireball.
 @onready var gunshot_sound = $GunshotSound
 @onready var gun_windup_sound = $GunWindupSound
 @onready var teleport_sound = $TeleportSound
+@onready var fireball_engage = $FireballEngage
+@onready var fireball_disengage = $FireballDisengage
+@onready var fireball_loop = $FireballLoop
 
 @onready var camera: Camera2D = $Camera2D
 
@@ -41,6 +44,7 @@ var slot_q: Item = null
 var slot_e: Item = null
 
 func _ready():
+	char_ready()
 	char_sprite.play()
 
 func _process(delta):
@@ -78,12 +82,12 @@ func _process(delta):
 	if Curses.status["reverse_controls"] > 0:
 		move_dir *= -1
 
-	if Curses.status["random_teleport"] and randf() > 1.0 - (.33 * delta):
+	if Curses.status["random_teleport"] and randf() > 1.0 - (.35 * delta):
 		position += Vector2([-1.0, 1.0].pick_random(), [-1.0, 1.0].pick_random()) * randf_range(10.0, 30.0)
 		teleport_sound.play()
 
-	if Curses.status["hp_drain"] and randf() > 1.0 - (.33 * delta):
-		receive_damage(1.0)
+	if Curses.status["hp_drain"] and randf() > 1.0 - (.35 * delta):
+		receive_damage(randf_range(1.0, 3.0))
 
 	if timers["flinch"].value == 0.0:
 		if move_dir == Vector2.ZERO:
@@ -106,6 +110,13 @@ func _process(delta):
 	var n_fireballs = calc_fireballs()
 	var fireball_diff = n_fireballs - len(fireballs)
 	if fireball_diff != 0:
+		if fireball_diff > 0:
+			fireball_loop.play()
+			fireball_engage.play()
+		else:
+			fireball_loop.stop()
+			fireball_disengage.play()
+			
 		for i in range(fireball_diff):
 			var new_fireball = fireball_scene.instantiate()
 			fireball_platter.add_child(new_fireball)
