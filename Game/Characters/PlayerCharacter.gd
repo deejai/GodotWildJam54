@@ -7,18 +7,19 @@ var xp_to_next: float = Main.xp_required_to_reach_level(2)
 var xp_progress: float = 0.0
 
 var move_dir = Vector2.ZERO
-const JUMP_VELOCITY = -400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var fireball_scene: PackedScene = load("res://Game/Objects/Projectiles/Fireball.tscn")
 
 @onready var gun_sprite = $GunSprite
 @onready var gunshot_sound = $GunshotSound
 @onready var gun_windup_sound = $GunWindupSound
+@onready var teleport_sound = $TeleportSound
 
 @onready var camera: Camera2D = $Camera2D
 
 @onready var gui: CanvasLayer = $PlayerGUI
+
+@onready var fireball_platter: Node2D = $FireballPlatter
 
 var state: Main.CharState = Main.CharState.IDLE
 
@@ -32,6 +33,12 @@ const base_speed: float = 3.0
 const base_rof: float = 1.0
 
 const gundist: float = 40.0
+
+var fireballs: Array = []
+
+@onready var items_node: Node = $Items
+var slot_q: Item = null
+var slot_e: Item = null
 
 func _ready():
 	char_sprite.play()
@@ -65,8 +72,18 @@ func _process(delta):
 		dir_x -= 1.0
 	if Input.is_action_pressed("move_right"):
 		dir_x += 1.0
-	
+
 	move_dir = Vector2(dir_x, dir_y).normalized()
+
+	if Curses.status["reverse_controls"] > 0:
+		move_dir *= -1
+
+	if Curses.status["random_teleport"] and randf() > 1.0 - (.33 * delta):
+		position += Vector2([-1.0, 1.0].pick_random(), [-1.0, 1.0].pick_random()) * randf_range(10.0, 30.0)
+		teleport_sound.play()
+
+	if Curses.status["hp_drain"] and randf() > 1.0 - (.33 * delta):
+		receive_damage(1.0)
 
 	if timers["flinch"].value == 0.0:
 		if move_dir == Vector2.ZERO:
@@ -83,7 +100,22 @@ func _process(delta):
 			gun_sprite.animation = "shoot"
 			gun_sprite.play()
 			gun_windup_sound.play()
-			
+
+	fireball_platter.rotation += delta * PI * .6
+
+	var n_fireballs = calc_fireballs()
+	var fireball_diff = n_fireballs - len(fireballs)
+	if fireball_diff != 0:
+		for i in range(fireball_diff):
+			var new_fireball = fireball_scene.instantiate()
+			fireball_platter.add_child(new_fireball)
+			fireballs.append(new_fireball)
+		for i in range(-fireball_diff):
+			fireballs.pop_back().queue_free()
+
+		for i in range(n_fireballs):
+			fireballs[i].position = Vector2.ONE.rotated(i * 2.0 * PI / n_fireballs) * 85.0
+
 	if xp >= xp_to_next:
 		level += 1
 		level_up()
@@ -110,8 +142,10 @@ func _on_gun_sprite_animation_looped():
 func level_up():
 	gui.show_level_up()
 	Main.music.play_level_up_sound()
-	stat_bullet_damage_mult = 1.0 + 0.15 * (level-1)
+	stat_bullet_damage_mult = 1.0 + 0.05 * (level-1)
 	stat_damage_received_mult = 1.0 * pow(0.95,  (level-1))
+	stat_rof_mult = 1.0 + 0.05 * (level-1)
+	stat_speed_mult = 1.0 + 0.05 * (level-1)
 	xp_to_next = Main.xp_required_to_reach_level(level + 1)
 	hp = min(100.0, hp + 10.0)
 	gain_xp(0.0)
@@ -121,10 +155,10 @@ func gain_xp(xp_gain: float):
 	xp_progress = (xp - Main.xp_required_to_reach_level(level)) / (Main.xp_required_to_reach_level(level+1) - Main.xp_required_to_reach_level(level))
 
 func calc_rate_of_fire():
-	return base_rof * (stat_rof_mult + Boons.status["rate_of_fire"])
+	return (base_rof + Boons.status["rate_of_fire"]) * stat_rof_mult
 
 func calc_bullet_damage():
-	return base_bullet_damage * (stat_bullet_damage_mult + Boons.status["bullet_damage"])
+	return (base_bullet_damage + Boons.status["bullet_damage"]) * stat_bullet_damage_mult
 
 func calc_bullet_spread():
 	return Boons.status["bullet_spread"]
@@ -133,4 +167,7 @@ func calc_lifesteal():
 	return Boons.status["lifesteal"]
 
 func calc_speed():
-	return base_speed * (stat_speed_mult + Boons.status["speed"])
+	return (base_speed + Boons.status["speed"]) * stat_speed_mult
+
+func calc_fireballs():
+	return Boons.status["fireballs"]

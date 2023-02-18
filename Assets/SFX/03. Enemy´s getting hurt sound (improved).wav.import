@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dri274ntjcwro"
+path="res://.godot/imported/03. Enemy´s getting hurt sound (improved).wav-7755f3c3b7a237d78b5c95dfcc938f8c.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/03. Enemy´s getting hurt sound (improved).wav"
+dest_files=["res://.godot/imported/03. Enemy´s getting hurt sound (improved).wav-7755f3c3b7a237d78b5c95dfcc938f8c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

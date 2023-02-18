@@ -362,7 +362,7 @@ func create():
 
 				if fg_obj is Character:
 					fg_obj.z_index = 10
-				elif glyph == "S":
+				elif glyph in ["S", "E", "+", "*"]:
 					fg_obj.z_index = -5
 
 				add_child(fg_obj)

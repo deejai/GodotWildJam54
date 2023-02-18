@@ -6,6 +6,7 @@ var status: Dictionary = {
 	"bullet_spread": 0,
 	"lifesteal": 0,
 	"speed": 0,
+	"fireballs": 0,
 }
 
 var description: Dictionary = {
@@ -14,6 +15,7 @@ var description: Dictionary = {
 	"bullet_spread": "Bullet Spread",
 	"lifesteal": "Life Steal",
 	"speed": "Move Speed",
+	"fireballs": "Fireballs",
 }
 
 func random_boon_value(key: String, level: int):
@@ -25,16 +27,19 @@ func random_boon_value(key: String, level: int):
 			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
 
 		"bullet_damage":
-			return randf_range(1.0 * level, 5.0 + 1.0 * level)
+			return randf_range(1.0 * level, 5.0 + 2.0 * level)
 
 		"bullet_spread":
 			return randi_range(1, 1 + level / 3)
 
 		"lifesteal":
-			return randf_range(1.0 + 0.3 * level, 4.0 + 1.0 * level)
+			return randf_range(1.0 + 0.3 * level, 1.8 + 0.6 * level)
 
 		"speed":
 			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
+
+		"fireballs":
+			return randi_range(1, 1 + level / 3)
 
 		_:
 			assert(false)

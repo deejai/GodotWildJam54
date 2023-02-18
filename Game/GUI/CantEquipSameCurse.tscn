@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg8t1u7nm1q4r"]
+
+[ext_resource type="Script" path="res://Game/GUI/CantEquipSameCurse.gd" id="1_8u6sg"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_o8oo8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_8u6sg")
+
+[node name="CantEquip" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -20.0
+offset_right = 187.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_o8oo8")
+theme_override_colors/default_color = Color(1, 0.203922, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/normal_font_size = 32
+text = "Can't Equip Duplicate Curse"

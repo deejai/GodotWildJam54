@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba7mj5vgytxjr"]
+[gd_scene load_steps=4 format=3 uid="uid://ba7mj5vgytxjr"]
 
 [ext_resource type="Script" path="res://Game/Objects/Heal.gd" id="1_nwg8i"]
+[ext_resource type="AudioStream" uid="uid://c2pbqbhlpdt5c" path="res://Assets/SFX/08. Special loot pickup.wav" id="2_iuk0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh4wm"]
 size = Vector2(100, 100)
 
 [node name="Heal" type="Node2D"]
 script = ExtResource("1_nwg8i")
+pickup_sound = ExtResource("2_iuk0a")
 
 [node name="Area2D" type="Area2D" parent="."]
 

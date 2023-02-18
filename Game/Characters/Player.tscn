@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cednq3isq20uq"]
+[gd_scene load_steps=41 format=3 uid="uid://cednq3isq20uq"]
 
 [ext_resource type="Script" path="res://Game/Characters/PlayerCharacter.gd" id="1_vqyv2"]
 [ext_resource type="AudioStream" uid="uid://cxr3v80lemb3w" path="res://Assets/SFX/05._Hurt_2_variation_1.wav" id="2_12cxk"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://d4dur13ie051v" path="res://Assets/SFX/02._Gun_Shoot.wav" id="18_rqjiw"]
 [ext_resource type="AudioStream" uid="uid://b6y0kc8c3e381" path="res://Assets/SFX/01._Wind-Up_Gun.wav" id="19_j7kyp"]
 [ext_resource type="PackedScene" uid="uid://bra6tpwpgfe7d" path="res://Game/GUI/PlayerGUI.tscn" id="22_it00h"]
+[ext_resource type="AudioStream" uid="uid://bfivymeml4308" path="res://Assets/SFX/puff.wav" id="23_3oybj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hthkk"]
 atlas = ExtResource("6_3m1gp")
@@ -163,7 +164,6 @@ alliance = 1
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
-stat_bullet_spread = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)
@@ -193,5 +193,13 @@ position_smoothing_enabled = true
 [node name="Player" type="Node2D" parent="."]
 
 [node name="PlayerGUI" parent="." instance=ExtResource("22_it00h")]
+
+[node name="FireballPlatter" type="Node2D" parent="."]
+z_index = 3
+
+[node name="Items" type="Node" parent="."]
+
+[node name="TeleportSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_3oybj")
 
 [connection signal="animation_looped" from="GunSprite" to="." method="_on_gun_sprite_animation_looped"]

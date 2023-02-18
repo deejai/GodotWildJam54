@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://fyg6mubeef52"]
+[gd_scene load_steps=7 format=3 uid="uid://fyg6mubeef52"]
 
 [ext_resource type="Script" path="res://Game/Objects/Item.gd" id="1_x21ci"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_vvi4y"]
+[ext_resource type="AudioStream" uid="uid://cuib4y2h33uv5" path="res://Assets/SFX/07. Loot pickup.wav" id="3_3vkag"]
 
 [sub_resource type="Gradient" id="Gradient_f3m1j"]
 colors = PackedColorArray(0.454902, 0.913725, 0.745098, 1, 1, 1, 0.0431373, 1)
@@ -14,6 +15,7 @@ size = Vector2(100, 100)
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_x21ci")
+pickup_sound = ExtResource("3_3vkag")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -50.0
@@ -34,12 +36,29 @@ offset_top = -48.0
 offset_right = 48.0
 offset_bottom = 48.0
 theme = ExtResource("2_vvi4y")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "boon
 boon
 boon
 curse"
+
+[node name="QERect" type="ColorRect" parent="."]
+offset_left = -62.0
+offset_top = -86.0
+offset_right = 65.0
+offset_bottom = -58.0
+color = Color(0.160784, 0.160784, 0.160784, 0.776471)
+
+[node name="QELabel" type="Label" parent="QERect"]
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 128.0
+offset_bottom = 41.0
+theme = ExtResource("2_vvi4y")
+theme_override_font_sizes/font_size = 22
+text = "Q/E to Equip"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
