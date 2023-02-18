@@ -60,7 +60,7 @@ func _process(delta):
 		char_sprite.flip_h = true
 	else:
 		gun_sprite.flip_v = false
-#		char_sprite.flip_h = false
+		char_sprite.flip_h = false
 
 	var dir_x: float = 0.0
 	var dir_y: float = 0.0

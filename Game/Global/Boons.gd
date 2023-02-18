@@ -39,7 +39,7 @@ func random_boon_value(key: String, level: int):
 			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
 
 		"fireballs":
-			return randi_range(1, 1 + level / 3)
+			return randi_range(1, 1 + level / 2)
 
 		_:
 			assert(false)

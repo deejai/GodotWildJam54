@@ -198,7 +198,7 @@ func randomize_settings():
 	floor_cols = randi_range(3 + (level-1) / 3, 4 + (level-1) / 2)
 	floor_rows = randi_range(3 + (level-1) / 4, 4 + (level-1) / 3)
 	n_loot = randi_range(2 + (level-1) / 4, 2 + (1 if level > 1 else 0) + (level-1) / 2)
-	n_mobs = randi_range(8 + (level-1) / 2, 10 + 1 * (level-1))
+	n_mobs = randi_range(8 + (level-1) / 2, 10 + 3 * (level-1))
 
 func pick_random_distinct_rooms(num: int, avoid=[]):
 	assert(avoid.all(func(_coords): return len(_coords) == 2))
