@@ -75,7 +75,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gik3c"]
-radius = 343.431
+radius = 601.403
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsxnc"]
 radius = 24.0
@@ -95,6 +95,7 @@ walk_sounds = Array[AudioStreamWAV]([ExtResource("7_g6xu4")])
 char_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 0.243137, 1)
 position = Vector2(-1, -10)
 scale = Vector2(-0.405155, 0.405155)
 sprite_frames = SubResource("SpriteFrames_7deg7")
@@ -145,7 +146,7 @@ theme = ExtResource("11_14uvl")
 theme_override_font_sizes/normal_font_size = 26
 theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
-text = "[center][color=Yellow]Banana Split[/color][/center]"
+text = "[center][color=Yellow]Nana[/color][/center]"
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]

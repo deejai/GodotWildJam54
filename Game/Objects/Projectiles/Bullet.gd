@@ -10,7 +10,7 @@ var lifesteal: float = 0.0
 @export var dangerous_to: Main.Alliance = Main.Alliance.ENEMY
 @export var impact_sounds: Array[AudioStreamWAV] = []
 @export var ministun: bool = true
-@export var speed: float = 500.0
+@export var speed: float = 425.0
 var direction: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.

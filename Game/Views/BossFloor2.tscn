@@ -1,28 +1,429 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6ynfl7hsrk16"]
+[gd_scene load_steps=8 format=3 uid="uid://ovlygac8h0bt"]
 
 [ext_resource type="Script" path="res://Game/Views/BossFloor.gd" id="1_q6tsc"]
+[ext_resource type="PackedScene" uid="uid://bdgll5jnw8hhv" path="res://Game/Characters/Unique/Boss2.tscn" id="2_7vgj3"]
 [ext_resource type="PackedScene" uid="uid://dkum4jkxfu5hn" path="res://Game/Objects/Structural/CheckeredTile.tscn" id="2_qamsr"]
 [ext_resource type="PackedScene" uid="uid://chvu4q4g1rkd5" path="res://Game/Objects/Structural/CheckeredWall.tscn" id="3_5i2is"]
 [ext_resource type="PackedScene" uid="uid://b5obchbho4ltg" path="res://Game/Objects/Structural/CheckeredWallBottom.tscn" id="4_v7ccx"]
 [ext_resource type="PackedScene" uid="uid://t4af43apqgn8" path="res://Game/Objects/Structural/CheckeredWallTop.tscn" id="5_7mwdx"]
+[ext_resource type="PackedScene" uid="uid://b238jwe3b4ic3" path="res://Game/Objects/Structural/DungeonRubble.tscn" id="7_pgquv"]
 
 [node name="BossFloor2" type="Node2D"]
 script = ExtResource("1_q6tsc")
 track = 3
+boss_scene = ExtResource("2_7vgj3")
 
-[node name="Node2D" parent="." instance=ExtResource("2_qamsr")]
+[node name="Structural" type="Node" parent="."]
 
-[node name="BasicWall" parent="." instance=ExtResource("3_5i2is")]
-position = Vector2(168, -118)
+[node name="BasicWall26" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 291)
 
-[node name="BasicWall2" parent="." instance=ExtResource("4_v7ccx")]
-position = Vector2(0, 99)
+[node name="BasicWall49" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 192)
 
-[node name="Node2D2" parent="." instance=ExtResource("2_qamsr")]
-position = Vector2(-96, 0)
+[node name="BasicWall38" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 390)
 
-[node name="BasicWall4" parent="." instance=ExtResource("4_v7ccx")]
-position = Vector2(-96, 99)
+[node name="BasicWall39" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 490)
 
-[node name="BasicWall3" parent="." instance=ExtResource("5_7mwdx")]
-position = Vector2(-96, -99)
+[node name="BasicWall29" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 590)
+
+[node name="BasicWall40" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 689)
+
+[node name="BasicWall41" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 789)
+
+[node name="BasicWall42" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 390)
+
+[node name="BasicWall50" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 291)
+
+[node name="BasicWall51" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 192)
+
+[node name="BasicWall52" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-126, 93)
+
+[node name="BasicWall53" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(166, 94)
+
+[node name="BasicWall54" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(166, -7)
+
+[node name="BasicWall55" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-126, -7)
+
+[node name="BasicWall58" parent="Structural" instance=ExtResource("3_5i2is")]
+z_index = -9
+position = Vector2(-126, -106)
+
+[node name="BasicWall57" parent="Structural" instance=ExtResource("3_5i2is")]
+z_index = -9
+position = Vector2(166, -106)
+
+[node name="BasicWall43" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 490)
+
+[node name="BasicWall30" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 590)
+
+[node name="BasicWall44" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 689)
+
+[node name="BasicWall45" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 789)
+
+[node name="BasicWall25" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(-422, 990)
+
+[node name="BasicWall28" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(-322, 990)
+
+[node name="BasicWall31" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(-226, 990)
+
+[node name="BasicWall32" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(-126, 990)
+
+[node name="BasicWall33" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(-30, 990)
+
+[node name="BasicWall34" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(70, 990)
+
+[node name="BasicWall35" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(166, 990)
+
+[node name="BasicWall36" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(266, 990)
+
+[node name="BasicWall37" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(362, 990)
+
+[node name="BasicWall46" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(462, 990)
+
+[node name="BasicWall27" parent="Structural" instance=ExtResource("4_v7ccx")]
+position = Vector2(558, 990)
+
+[node name="Node2D5" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 291)
+
+[node name="Node2D6" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 291)
+
+[node name="BasicWall14" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(-322, 192)
+
+[node name="BasicWall15" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(-226, 192)
+
+[node name="Node2D7" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 291)
+
+[node name="Node2D68" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(-29, 192)
+
+[node name="Node2D69" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(-29, -6)
+
+[node name="Node2D70" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(-29, 93)
+
+[node name="Node2D71" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(70, 192)
+
+[node name="Node2D72" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(70, -6)
+
+[node name="Node2D73" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -11
+position = Vector2(70, 93)
+
+[node name="Node2D9" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 291)
+
+[node name="Node2D10" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 291)
+
+[node name="Node2D11" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 291)
+
+[node name="Node2D12" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 291)
+
+[node name="Node2D13" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 291)
+
+[node name="Node2D8" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 291)
+
+[node name="Node2D14" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 390)
+
+[node name="Node2D15" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 390)
+
+[node name="Node2D16" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 390)
+
+[node name="Node2D17" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 390)
+
+[node name="Node2D18" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 390)
+
+[node name="Node2D19" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 390)
+
+[node name="Node2D20" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 390)
+
+[node name="Node2D21" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 390)
+
+[node name="Node2D22" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 390)
+
+[node name="Node2D23" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 490)
+
+[node name="Node2D24" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 490)
+
+[node name="Node2D25" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 490)
+
+[node name="Node2D26" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 490)
+
+[node name="Node2D27" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 490)
+
+[node name="Node2D28" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 490)
+
+[node name="Node2D29" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 490)
+
+[node name="Node2D30" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 490)
+
+[node name="Node2D31" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 490)
+
+[node name="Node2D32" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 590)
+
+[node name="Node2D33" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 590)
+
+[node name="Node2D34" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 590)
+
+[node name="Node2D35" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 590)
+
+[node name="Node2D36" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 590)
+
+[node name="Node2D37" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 590)
+
+[node name="Node2D38" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 590)
+
+[node name="Node2D39" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 590)
+
+[node name="Node2D40" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 590)
+
+[node name="Node2D41" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 689)
+
+[node name="Node2D42" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 689)
+
+[node name="Node2D43" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 689)
+
+[node name="Node2D44" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 689)
+
+[node name="Node2D45" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 689)
+
+[node name="Node2D46" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 689)
+
+[node name="Node2D47" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 689)
+
+[node name="Node2D48" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 689)
+
+[node name="Node2D49" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 689)
+
+[node name="Node2D50" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 789)
+
+[node name="Node2D51" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 789)
+
+[node name="Node2D52" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 789)
+
+[node name="Node2D53" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 789)
+
+[node name="Node2D54" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 789)
+
+[node name="Node2D55" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 789)
+
+[node name="Node2D56" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 789)
+
+[node name="Node2D57" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 789)
+
+[node name="Node2D58" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 789)
+
+[node name="Node2D59" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-226, 889)
+
+[node name="Node2D60" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-322, 889)
+
+[node name="Node2D61" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-29, 889)
+
+[node name="Node2D62" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(70, 889)
+
+[node name="Node2D63" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(166, 889)
+
+[node name="Node2D64" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(266, 889)
+
+[node name="Node2D65" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(362, 889)
+
+[node name="Node2D66" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(462, 889)
+
+[node name="Node2D67" parent="Structural" instance=ExtResource("2_qamsr")]
+z_index = -10
+position = Vector2(-126, 889)
+
+[node name="BasicWall18" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(-126, 192)
+
+[node name="BasicWall" parent="Structural" instance=ExtResource("7_pgquv")]
+position = Vector2(-26, -17)
+
+[node name="BasicWall20" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(166, 192)
+
+[node name="BasicWall21" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(266, 192)
+
+[node name="BasicWall22" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(362, 192)
+
+[node name="BasicWall23" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(462, 192)
+
+[node name="BasicWall24" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(-30, -106)
+
+[node name="BasicWall60" parent="Structural" instance=ExtResource("5_7mwdx")]
+position = Vector2(70, -106)
+
+[node name="BasicWall47" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(558, 889)
+
+[node name="BasicWall48" parent="Structural" instance=ExtResource("3_5i2is")]
+position = Vector2(-422, 889)
+
+[node name="BossSpawnPoint" type="Node2D" parent="."]
+position = Vector2(70, 739)
+
+[node name="ExitPoint" type="Node2D" parent="."]
+position = Vector2(20, 839)

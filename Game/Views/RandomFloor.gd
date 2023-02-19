@@ -31,6 +31,8 @@ var end_coords
 
 var timer: float = 120
 
+var exit_instance: Node2D
+
 func initialize_map():
 	map = []
 
@@ -372,7 +374,8 @@ func create():
 					fg_objs.append(rubble.instantiate())
 				"E":
 					bg_obj = selected_tile.instantiate()
-					fg_objs.append(exit.instantiate())
+					exit_instance = exit.instantiate()
+					fg_objs.append(exit_instance)
 				"d":
 					bg_obj = selected_tile.instantiate()
 					fg_objs.append(deal.instantiate())
@@ -409,7 +412,7 @@ func _ready():
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
 	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= Main.boss_floor_cadence else MusicServer.Track.DUNGEON2)
-	Main.floor_timer_begin(60.0 + 3.0 * (level-1))
+	Main.floor_timer_begin(65.0 + 5.0 * (level-1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

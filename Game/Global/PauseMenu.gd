@@ -12,8 +12,6 @@ var main_menu_scene: PackedScene = load("res://Game/Views/MainMenu.tscn")
 @onready var click_sound: AudioStreamPlayer = $ClickSound
 @onready var quit_sound: AudioStreamPlayer = $QuitSound
 
-@onready var vistory_sound: AudioStreamPlayer = $VictorySound
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	confirm_quit_modal.visible = false

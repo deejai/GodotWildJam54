@@ -15,13 +15,15 @@ var boss
 var boss_defeated: bool = false
 var next_unlocked: bool = false
 
+var exit_instance: Node2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Main.floor_instance = self
 	add_child(Main.player)
 	Main.player.position = Vector2.ZERO
 	Main.music.set_track(track)
-	Main.floor_timer_begin(60.0)
+	Main.floor_timer_begin(90.0)
 	boss = boss_scene.instantiate()
 	boss.position = boss_spawn_position
 	add_child(boss)
@@ -32,7 +34,7 @@ func _process(delta):
 		Main.floor_timer_enabled = false
 		Main.music.stop()
 		Main.victory_sound.play()
-		var exit = exit_scene.instantiate()
-		exit.position = exit_position
-		Main.floor_instance.add_child(exit)
+		exit_instance = exit_scene.instantiate()
+		exit_instance.position = exit_position
+		Main.floor_instance.add_child(exit_instance)
 		next_unlocked = true

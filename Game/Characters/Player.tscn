@@ -165,11 +165,9 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_vqyv2")
-level = null
 alliance = 1
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 death_sounds = Array[AudioStreamWAV]([ExtResource("5_gtbof")])
-aggro_sounds = null
 walk_sounds = Array[AudioStreamWAV]([ExtResource("6_4e11b")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")

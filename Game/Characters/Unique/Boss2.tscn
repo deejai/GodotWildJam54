@@ -1,0 +1,143 @@
+[gd_scene load_steps=23 format=3 uid="uid://bdgll5jnw8hhv"]
+
+[ext_resource type="Script" path="res://Game/Characters/Unique/Boss2.gd" id="1_6s7ao"]
+[ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_renfm"]
+[ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_b6ve4"]
+[ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_dn5ix"]
+[ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_kyx8o"]
+[ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_h53gs"]
+[ext_resource type="AudioStream" uid="uid://c0j21bhtixaej" path="res://Assets/SFX/21._Enemys_Aggro_Alert.wav" id="6_6l2e2"]
+[ext_resource type="AudioStream" uid="uid://d31hccxmc23wi" path="res://Assets/SFX/13. Enemy movement.Banana1.wav" id="7_475hb"]
+[ext_resource type="Texture2D" uid="uid://b104cfbw1dphb" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-1.png" id="8_kp8xu"]
+[ext_resource type="Texture2D" uid="uid://dwcxqaeax57cr" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-2.png" id="9_5k45l"]
+[ext_resource type="Texture2D" uid="uid://crosxicdyjmtw" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-3.png" id="10_h5pyi"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="11_enyc8"]
+[ext_resource type="Texture2D" uid="uid://cq3y5cnlc4v3a" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-4.png" id="11_jkffo"]
+[ext_resource type="Texture2D" uid="uid://ddgps8d2k6e6s" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-5.png" id="12_six5y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udmyc"]
+atlas = ExtResource("8_kp8xu")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ws34"]
+atlas = ExtResource("9_5k45l")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8pk6"]
+atlas = ExtResource("10_h5pyi")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6qwl"]
+atlas = ExtResource("11_jkffo")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3k8t"]
+atlas = ExtResource("12_six5y")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j11hb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udmyc")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ws34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8pk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6qwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3k8t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gik3c"]
+radius = 619.081
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsxnc"]
+radius = 61.9756
+height = 138.299
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_renfm")
+type = 9
+is_the_boss = true
+alliance = 2
+hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_b6ve4"), ExtResource("3_dn5ix"), ExtResource("4_kyx8o")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_h53gs")])
+aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_6l2e2")])
+walk_sounds = Array[AudioStreamWAV]([ExtResource("7_475hb")])
+char_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.952941, 0, 0.956863, 1)
+position = Vector2(181.016, -180.939)
+scale = Vector2(-0.501884, 0.501884)
+sprite_frames = SubResource("SpriteFrames_j11hb")
+animation = &"idle"
+speed_scale = 2.0
+centered = false
+
+[node name="AggroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_gik3c")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 0, 0.0627451, 1)
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -42.0
+value = 100.0
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+rotation = -0.00347635
+scale = Vector2(1.25788, 1.25788)
+shape = SubResource("CapsuleShape2D_wsxnc")
+
+[node name="Boss2" type="Node" parent="."]
+script = ExtResource("1_6s7ao")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Boss2"]
+
+[node name="HPBar" type="ProgressBar" parent="Boss2/CanvasLayer"]
+modulate = Color(0.698039, 0, 1, 1)
+offset_left = 287.0
+offset_top = 607.0
+offset_right = 856.0
+offset_bottom = 634.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Boss2/CanvasLayer"]
+offset_left = 332.0
+offset_top = 576.0
+offset_right = 810.0
+offset_bottom = 613.0
+theme = ExtResource("11_enyc8")
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+bbcode_enabled = true
+text = "[center][color=Purple]Barry[/color][/center]"
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

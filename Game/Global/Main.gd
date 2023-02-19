@@ -31,7 +31,7 @@ var paused: bool = false
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
 @onready var victory_sound: AudioStreamPlayer = main_scene.get_node("VictorySound")
 
-const boss_floor_cadence = 2
+const boss_floor_cadence = 4
 
 var floor_timer: float
 var floor_timer_enabled: bool = false
@@ -96,7 +96,7 @@ func xp_required_to_reach_level(target_level: int):
 	if target_level <= 1:
 		return 0
 
-	return 100.0 * (target_level-1) * pow(1.1, target_level-2)
+	return 100.0 * (target_level-1) * pow(1.3, target_level-2)
 
 func set_pause(val: bool):
 	paused = val

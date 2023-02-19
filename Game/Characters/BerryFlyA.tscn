@@ -35,7 +35,7 @@ region = Rect2(0, 0, 724, 557)
 atlas = ExtResource("12_ach88")
 region = Rect2(0, 0, 724, 557)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7deg7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tadyi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -87,7 +87,7 @@ bullet = ExtResource("7_uriby")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -10)
 scale = Vector2(0.157989, 0.157989)
-sprite_frames = SubResource("SpriteFrames_7deg7")
+sprite_frames = SubResource("SpriteFrames_tadyi")
 animation = &"idle"
 speed_scale = 3.0
 

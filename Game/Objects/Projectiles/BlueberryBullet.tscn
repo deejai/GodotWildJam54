@@ -29,6 +29,7 @@ script = ExtResource("2_eci0q")
 impact_sounds = Array[AudioStreamWAV]([ExtResource("3_q7b4r")])
 
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(4.40203, 2.56803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_eug3h")

@@ -14,16 +14,16 @@ func _process(delta):
 static func setup_stats(enemy: EnemyCharacter):
 	enemy.stat_bullet_damage_mult = 1.0 + 0.05 * (enemy.level-1)
 	enemy.stat_damage_received_mult = 1.0 * pow(0.97,  (enemy.level-1))
-	enemy.stat_melee_damage = 15.0 + 3.0 * (enemy.level-1)
+	enemy.stat_melee_damage = 10.0 + 3.0 * (enemy.level-1)
 	enemy.stat_xp_reward = 20.0 + 8.0 * (enemy.level-1)
-	enemy.stat_speed_mult = 1.0 + .04 * (enemy.level-1)
+	enemy.stat_speed_mult = 0.8 + .04 * (enemy.level-1)
 
 	match(enemy.type):
 		Type.BANANA_BAT:
 			enemy.stat_melee_damage *= 1.20
 			enemy.stat_speed_mult *= 1.4
 		Type.BLUEBERRY:
-			enemy.stat_damage_received_mult *= 1.3
+			enemy.stat_damage_received_mult *= 1.4
 		Type.BLUEBERRY_FLY_A:
 			enemy.stat_melee_damage *= 0.3
 			enemy.stat_speed_mult *= 3.0
@@ -54,7 +54,7 @@ static func setup_stats(enemy: EnemyCharacter):
 			enemy.stat_speed_mult = 1.1
 		Type.BOSS3:
 			enemy.stat_bullet_damage_mult
-			enemy.stat_damage_received_mult = 0.07
+			enemy.stat_damage_received_mult = 0.05
 			enemy.stat_melee_damage = 40
 			enemy.stat_xp_reward = 1000
-			enemy.stat_speed_mult = 1.2
+			enemy.stat_speed_mult = 0.9

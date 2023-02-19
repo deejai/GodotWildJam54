@@ -14,6 +14,8 @@ var last_nav_pos: Vector2 = Vector2.ZERO
 var has_aggroed: bool = false
 
 var is_summon: bool = false
+var expires: bool = false
+var time_remaining: float = 0.0
 
 @export var is_the_boss: bool = false
 
@@ -37,6 +39,11 @@ func _process(delta):
 	if Main.floor_instance is BossFloor and Main.floor_instance.boss_defeated:
 		hp = 0
 
+	if expires:
+		time_remaining -= delta
+		if time_remaining <= 0.0:
+			hp = 0
+
 	char_process(delta)
 
 	hp_bar.value = hp
@@ -57,7 +64,7 @@ func _process(delta):
 		Main.play_random_sound(shoot_sounds, global_position, -8.0 if type in [EnemyStats.Type.BLUEBERRY_FLY_A, EnemyStats.Type.BLUEBERRY_FLY_B] else -6.0)
 		get_parent().add_child(new_bullet)
 
-	if type == EnemyStats.Type.TOMATO:
+	if type in [EnemyStats.Type.TOMATO, EnemyStats.Type.BOSS3]:
 		if is_target_valid() and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0:
 			char_sprite.animation = "attack"
 		else:
@@ -68,7 +75,7 @@ func _process(delta):
 func _physics_process(delta):
 	if is_target_valid():
 		var next_pos = nav_agent.get_next_path_position()
-		var bonus_mult = 3.5 if (type == EnemyStats.Type.TOMATO and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0) else 1.0
+		var bonus_mult = 3.5 if (type in [EnemyStats.Type.TOMATO, EnemyStats.Type.BOSS3] and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0) else 1.0
 		velocity = (target.position - position).normalized() * speed * stat_speed_mult * 2.0 * bonus_mult
 		char_sprite.flip_h = target.position.x < position.x
 

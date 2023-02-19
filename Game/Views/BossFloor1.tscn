@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ovlygac8h0bt"]
+[gd_scene load_steps=8 format=3 uid="uid://c6ynfl7hsrk16"]
 
 [ext_resource type="Script" path="res://Game/Views/BossFloor.gd" id="1_cwhvr"]
 [ext_resource type="PackedScene" uid="uid://dkum4jkxfu5hn" path="res://Game/Objects/Structural/CheckeredTile.tscn" id="2_wwnnq"]
@@ -40,6 +40,7 @@ position = Vector2(1176, 398)
 position = Vector2(1176, 498)
 
 [node name="BasicWall42" parent="Structural" instance=ExtResource("3_a7tl4")]
+z_index = -9
 position = Vector2(196, 99)
 
 [node name="BasicWall43" parent="Structural" instance=ExtResource("3_a7tl4")]
@@ -418,7 +419,7 @@ position = Vector2(1176, 598)
 position = Vector2(196, 598)
 
 [node name="BossSpawnPoint" type="Node2D" parent="."]
-position = Vector2(703, 398)
+position = Vector2(784, 348)
 
 [node name="ExitPoint" type="Node2D" parent="."]
-position = Vector2(688, 573)
+position = Vector2(688, 548)

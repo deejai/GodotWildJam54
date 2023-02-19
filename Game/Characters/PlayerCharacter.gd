@@ -148,6 +148,7 @@ func _on_gun_sprite_animation_looped():
 		new_bullet.position = position + gunpos
 		const ind_spred = PI/12.0
 		new_bullet.direction = gundir.rotated(-(num_bullets / 2) * ind_spred + i * ind_spred)
+		new_bullet.rotation = new_bullet.direction.angle()
 		new_bullet.damage = calc_bullet_damage()
 		new_bullet.shooter = self
 		new_bullet.lifesteal = calc_lifesteal()
@@ -159,9 +160,9 @@ func _on_gun_sprite_animation_looped():
 func level_up():
 	gui.show_level_up()
 	Main.music.play_level_up_sound()
-	stat_bullet_damage_mult = 1.0 + 0.05 * (level-1)
-	stat_damage_received_mult = 1.0 * pow(0.95,  (level-1))
-	stat_rof_mult = 1.0 + 0.05 * (level-1)
+	stat_bullet_damage_mult = 1.0 + 0.07 * (level-1)
+	stat_damage_received_mult = 1.0 * pow(0.97,  (level-1))
+	stat_rof_mult = 1.0 + 0.07 * (level-1)
 	stat_speed_mult = 1.0 + 0.05 * (level-1)
 	xp_to_next = Main.xp_required_to_reach_level(level + 1)
 	hp = min(100.0, hp + 10.0)

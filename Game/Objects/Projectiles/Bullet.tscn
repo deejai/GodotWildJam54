@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://boihhkdc0o55y"]
 
-[ext_resource type="Texture2D" uid="uid://chg33utfvipp2" path="res://Assets/Sprites/slot_strange_box.png" id="1_gasd3"]
+[ext_resource type="Texture2D" uid="uid://c50d63ld8h0lx" path="res://Assets/Sprites/Bullets/player bullet.png" id="1_7n80c"]
 [ext_resource type="Script" path="res://Game/Objects/Projectiles/Bullet.gd" id="2_kl183"]
 [ext_resource type="AudioStream" uid="uid://dbxn2tw0d3g5c" path="res://Assets/SFX/03._Bullet_Impact.wav" id="3_ehuow"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_to3o7"]
-atlas = ExtResource("1_gasd3")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2prv5"]
+atlas = ExtResource("1_7n80c")
+region = Rect2(0, 0, 193, 131)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a6bi4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_to3o7")
+"texture": SubResource("AtlasTexture_2prv5")
 }],
 "loop": true,
 "name": &"default",
@@ -24,12 +24,15 @@ radius = 14.3329
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 modulate = Color(0.894118, 0.270588, 0.184314, 1)
-scale = Vector2(0.5625, 0.5625)
+position = Vector2(-1, -1)
+scale = Vector2(0.115004, 0.115004)
 sprite_frames = SubResource("SpriteFrames_a6bi4")
 script = ExtResource("2_kl183")
 impact_sounds = Array[AudioStreamWAV]([ExtResource("3_ehuow")])
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(8.69536, 8.69536)
+scale = Vector2(5.14122, 2.29466)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_eug3h")

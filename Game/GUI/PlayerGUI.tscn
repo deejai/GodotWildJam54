@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bra6tpwpgfe7d"]
+[gd_scene load_steps=30 format=3 uid="uid://bra6tpwpgfe7d"]
 
 [ext_resource type="Script" path="res://Game/GUI/PlayerGUI.gd" id="1_nf05u"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://x5ntkimk11u5" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-4.png" id="7_2auna"]
 [ext_resource type="Texture2D" uid="uid://cn546q66gde80" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-5.png" id="8_fjhtt"]
 [ext_resource type="Texture2D" uid="uid://clojj7vi0cfk6" path="res://Assets/Sprites/Characters/player_face.png" id="9_b5wru"]
+[ext_resource type="Script" path="res://Game/GUI/ExitArrow.gd" id="10_jknat"]
+[ext_resource type="Texture2D" uid="uid://dtsdt1d6i0kad" path="res://Assets/Sprites/light.png" id="11_w1c02"]
 
 [sub_resource type="Gradient" id="Gradient_mp8i4"]
 colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
@@ -89,7 +91,7 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_12uy8"]
-colors = PackedColorArray(0, 0, 0, 0, 0.560784, 0, 0, 0.643137)
+colors = PackedColorArray(0, 0, 0, 0, 0.560784, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b50k2"]
 gradient = SubResource("Gradient_12uy8")
@@ -167,6 +169,7 @@ offset_left = 8.0
 offset_right = 330.0
 offset_bottom = 641.0
 theme = ExtResource("2_fbmb7")
+bbcode_enabled = true
 text = "stats
 stats
 stats
@@ -275,6 +278,7 @@ theme_override_font_sizes/font_size = 24
 text = "E"
 
 [node name="CursedGUIImage" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.14902)
 offset_left = -237.0
 offset_top = -157.0
@@ -323,5 +327,25 @@ offset_bottom = 668.0
 theme = ExtResource("2_fbmb7")
 theme_override_font_sizes/font_size = 16
 text = "Ctrl+Q/E or Right Click to Drop"
+
+[node name="ExitArrow" type="Node2D" parent="."]
+position = Vector2(576, 608)
+script = ExtResource("10_jknat")
+
+[node name="Polygon2D" type="Polygon2D" parent="ExitArrow"]
+position = Vector2(-32, 0)
+rotation = 1.57079
+color = Color(0.694118, 0, 0, 0.513726)
+polygon = PackedVector2Array(-8, 0, -8, -40, -24, -40, 0, -72, 24, -40, 8, -40, 8, 0)
+
+[node name="Polygon2D2" type="TextureRect" parent="ExitArrow"]
+modulate = Color(0.490196, 0.552941, 0.529412, 1)
+z_index = -1
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("11_w1c02")
+expand_mode = 1
 
 [connection signal="animation_looped" from="TransitionLayer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
