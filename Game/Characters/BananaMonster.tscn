@@ -1,17 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1mvk3bujap1p"]
+[gd_scene load_steps=20 format=3 uid="uid://d1mvk3bujap1p"]
 
 [ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_dmsgc"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_rvip2"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_rwq2y"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_6fvwd"]
 [ext_resource type="Texture2D" uid="uid://c3s5glycjj7a" path="res://Assets/Sprites/Characters/banana_monster.png" id="5_17qnx"]
-[ext_resource type="Texture2D" uid="uid://b5334d2in4p07" path="res://Assets/Sprites/Characters/banana_monster_hit.png" id="5_tl4fp"]
 [ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_ymo15"]
 [ext_resource type="AudioStream" uid="uid://c0j21bhtixaej" path="res://Assets/SFX/21._Enemys_Aggro_Alert.wav" id="6_70307"]
+[ext_resource type="Texture2D" uid="uid://clp6kgo7h00g2" path="res://Assets/Sprites/Characters/Banana 1 enemy/Untitled_Artwork.png" id="7_b4qc5"]
+[ext_resource type="AudioStream" uid="uid://d31hccxmc23wi" path="res://Assets/SFX/13. Enemy movement.Banana1.wav" id="7_xc6rg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jo02"]
-atlas = ExtResource("5_tl4fp")
-region = Rect2(0, 0, 785, 348)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbiy4"]
+atlas = ExtResource("7_b4qc5")
+region = Rect2(0, 0, 724, 338)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sece"]
 atlas = ExtResource("5_17qnx")
@@ -41,7 +42,7 @@ region = Rect2(3925, 0, 785, 348)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2jo02")
+"texture": SubResource("AtlasTexture_hbiy4")
 }],
 "loop": true,
 "name": &"hit",
@@ -80,22 +81,15 @@ height = 94.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_dmsgc")
 type = 0
-level = null
 alliance = 2
-damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_rvip2"), ExtResource("3_rwq2y"), ExtResource("4_6fvwd")])
 death_sounds = Array[AudioStreamWAV]([ExtResource("5_ymo15")])
 aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_70307")])
+walk_sounds = Array[AudioStreamWAV]([ExtResource("7_xc6rg")])
 char_sprite = NodePath("AnimatedSprite2D")
-stat_damage_received_mult = null
-stat_speed_mult = null
-stat_rof_mult = null
-stat_bullet_damage_mult = null
-stat_lifesteal = null
-stat_melee_damage = null
-stat_melee_cd = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)
@@ -125,5 +119,6 @@ position = Vector2(0, -7)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_wsxnc")
 
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
 [connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

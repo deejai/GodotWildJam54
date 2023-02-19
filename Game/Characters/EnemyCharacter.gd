@@ -11,8 +11,12 @@ var speed: float = 50.0
 var nav_cd: float = 2.0
 var last_nav_pos: Vector2 = Vector2.ZERO
 
+var has_aggroed: bool = false
+
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var hp_bar: ProgressBar = $ProgressBar
+
+@export var shoot_sounds: Array[AudioStreamWAV]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,15 +43,26 @@ func _process(delta):
 
 	if bullet and is_target_valid() and engage_timer("shoot", 1.0 / stat_rof_mult):
 		var new_bullet: Bullet = bullet.instantiate()
+		new_bullet.damage = new_bullet.damage * stat_bullet_damage_mult
 		new_bullet.position = position
 		new_bullet.dangerous_to = Main.Alliance.PLAYER
 		new_bullet.direction = position.direction_to(target.position)
+		Main.play_random_sound(shoot_sounds, global_position, -8.0 if type in [EnemyStats.Type.BLUEBERRY_FLY_A, EnemyStats.Type.BLUEBERRY_FLY_B] else -6.0)
 		get_parent().add_child(new_bullet)
+
+	if type == EnemyStats.Type.TOMATO:
+		if is_target_valid() and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0:
+			char_sprite.animation = "attack"
+		else:
+			char_sprite.animation = "idle"
+			
+		char_sprite.offset.x = 40 * -1.0 if char_sprite.flip_h else 1.0
 
 func _physics_process(delta):
 	if is_target_valid():
 		var next_pos = nav_agent.get_next_path_position()
-		velocity = (target.position - position).normalized() * speed * stat_speed_mult
+		var bonus_mult = 3.5 if (type == EnemyStats.Type.TOMATO and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0) else 1.0
+		velocity = (target.position - position).normalized() * speed * stat_speed_mult * 2.0 * bonus_mult
 		char_sprite.flip_h = target.position.x < position.x
 
 	if can_melee and timers["melee_cd"].value == 0.0:
@@ -68,6 +83,9 @@ func _physics_process(delta):
 func _on_aggro_area_body_entered(body):
 	if body is PlayerCharacter and body.dead == false:
 		target = body
+		if not has_aggroed:
+			Main.play_random_sound(aggro_sounds, global_position)
+			has_aggroed = true
 
 func _on_aggro_area_body_exited(body):
 	if body is PlayerCharacter:
@@ -83,3 +101,8 @@ func is_target_valid():
 			return true
 			
 	return false
+
+
+func _on_animated_sprite_2d_animation_looped():
+	if char_sprite.animation == "idle":
+		Main.play_random_sound(walk_sounds, global_position, -8.0)

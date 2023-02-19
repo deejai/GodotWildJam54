@@ -1,0 +1,116 @@
+[gd_scene load_steps=23 format=3 uid="uid://dahdmxv7yhghq"]
+
+[ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_t1fqi"]
+[ext_resource type="AudioStream" uid="uid://cn5ihq7jj82qh" path="res://Assets/SFX/split.wav" id="2_q0q0e"]
+[ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_qb1kg"]
+[ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_3wgmn"]
+[ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_3dtb0"]
+[ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_7v82k"]
+[ext_resource type="AudioStream" uid="uid://c607ioovdcdog" path="res://Assets/SFX/21. Enemys Aggro Alert.wav" id="6_83jgr"]
+[ext_resource type="AudioStream" uid="uid://da183pjokvwcl" path="res://Assets/SFX/13. Enemy movement.Blueberry.wav" id="7_mu5d5"]
+[ext_resource type="PackedScene" uid="uid://d4ae0owflnjl8" path="res://Game/Objects/Projectiles/BlueberryBullet.tscn" id="7_uriby"]
+[ext_resource type="Texture2D" uid="uid://b104cfbw1dphb" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-1.png" id="8_52dim"]
+[ext_resource type="Texture2D" uid="uid://dwcxqaeax57cr" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-2.png" id="9_8hfx8"]
+[ext_resource type="Texture2D" uid="uid://crosxicdyjmtw" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-3.png" id="10_pgt6p"]
+[ext_resource type="Texture2D" uid="uid://cq3y5cnlc4v3a" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-4.png" id="11_xj76n"]
+[ext_resource type="Texture2D" uid="uid://ddgps8d2k6e6s" path="res://Assets/Sprites/Characters/Berry swarm 1/Untitled_Artwork-5.png" id="12_ach88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udmyc"]
+atlas = ExtResource("8_52dim")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ws34"]
+atlas = ExtResource("9_8hfx8")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8pk6"]
+atlas = ExtResource("10_pgt6p")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6qwl"]
+atlas = ExtResource("11_xj76n")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3k8t"]
+atlas = ExtResource("12_ach88")
+region = Rect2(0, 0, 724, 557)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7deg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udmyc")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ws34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8pk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6qwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3k8t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2871s"]
+radius = 24.0
+height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isxb8"]
+radius = 259.85
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_t1fqi")
+type = 2
+shoot_sounds = Array[AudioStreamWAV]([ExtResource("2_q0q0e")])
+alliance = 2
+hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_qb1kg"), ExtResource("3_3wgmn"), ExtResource("4_3dtb0")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_7v82k")])
+aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_83jgr")])
+walk_sounds = Array[AudioStreamWAV]([ExtResource("7_mu5d5")])
+char_sprite = NodePath("AnimatedSprite2D")
+bullet = ExtResource("7_uriby")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -10)
+scale = Vector2(0.157989, 0.157989)
+sprite_frames = SubResource("SpriteFrames_7deg7")
+animation = &"idle"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_2871s")
+
+[node name="AggroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_isxb8")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0.0627451, 1)
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -42.0
+value = 100.0
+show_percentage = false
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

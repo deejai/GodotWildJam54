@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr7x6a2uo7qbk"]
+
+[ext_resource type="Script" path="res://Game/Objects/BloodSplatter.gd" id="1_ijba6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ccxa5"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 37.89
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 65.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 4.0
+color = Color(0.698039, 0, 0, 0.870588)
+
+[node name="BloodSplatter" type="Node2D"]
+script = ExtResource("1_ijba6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+scale = Vector2(1.5, 1.5)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_ccxa5")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.82
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0

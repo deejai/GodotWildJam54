@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://8yksvgft2tjd"]
+[gd_scene load_steps=20 format=3 uid="uid://8yksvgft2tjd"]
 
 [ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_anuk1"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_jsrdm"]
+[ext_resource type="AudioStream" uid="uid://mgn03ntgx2fs" path="res://Assets/SFX/04. Enemy´s shooting.wav" id="2_yr4uy"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_8rnm1"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_ngs0g"]
-[ext_resource type="PackedScene" uid="uid://ya72jqcl2115" path="res://Game/Objects/Projectiles/Goo.tscn" id="5_ba12a"]
 [ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_xhnj2"]
 [ext_resource type="AudioStream" uid="uid://c607ioovdcdog" path="res://Assets/SFX/21. Enemys Aggro Alert.wav" id="6_c2ibq"]
 [ext_resource type="Texture2D" uid="uid://d38gehf14068l" path="res://Assets/Sprites/Characters/blueberry_monster.png" id="6_g0ba3"]
+[ext_resource type="PackedScene" uid="uid://d4ae0owflnjl8" path="res://Game/Objects/Projectiles/BlueberryBullet.tscn" id="7_ifm5t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41hei"]
 atlas = ExtResource("6_g0ba3")
@@ -80,25 +81,18 @@ radius = 423.959
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_anuk1")
 type = 1
-level = null
+shoot_sounds = Array[AudioStreamWAV]([ExtResource("2_yr4uy")])
 alliance = 2
-damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_jsrdm"), ExtResource("3_8rnm1"), ExtResource("4_ngs0g")])
 death_sounds = Array[AudioStreamWAV]([ExtResource("5_xhnj2")])
 aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_c2ibq")])
-char_sprite = NodePath("AnimatedSprite2D7")
-bullet = ExtResource("5_ba12a")
-stat_damage_received_mult = null
-stat_speed_mult = null
-stat_rof_mult = null
-stat_bullet_damage_mult = null
-stat_lifesteal = null
-stat_melee_damage = null
-stat_melee_cd = null
+char_sprite = NodePath("AnimatedSprite2D")
+bullet = ExtResource("7_ifm5t")
 
-[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_7deg7")
 animation = &"idle"
@@ -124,5 +118,6 @@ offset_bottom = -42.0
 value = 100.0
 show_percentage = false
 
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
 [connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

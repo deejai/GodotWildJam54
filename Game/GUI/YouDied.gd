@@ -6,6 +6,8 @@ extends CanvasLayer
 const show_button_delay: float = 1.5
 var show_button_timer: float = show_button_delay
 
+var button_enable_timer: float = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	accept_button.text = [
@@ -19,6 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	button_enable_timer = max(0.0, button_enable_timer - delta)
 	if not visible:
 		accept_button.modulate = Color(.8,.8,.8,0)
 		show_button_timer = show_button_delay
@@ -32,4 +35,5 @@ func _process(delta):
 		accept_button.modulate.a = min(1.0, accept_button.modulate.a * 1.0 + (.45 * delta / 1.0))
 
 func _on_accept_button_pressed():
-	get_tree().change_scene_to_packed(mainmenu)
+	if button_enable_timer == 0.0:
+		get_tree().change_scene_to_packed(mainmenu)

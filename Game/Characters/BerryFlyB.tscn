@@ -1,0 +1,124 @@
+[gd_scene load_steps=25 format=3 uid="uid://b0m5x5es0ohmn"]
+
+[ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_o1snp"]
+[ext_resource type="AudioStream" uid="uid://cn5ihq7jj82qh" path="res://Assets/SFX/split.wav" id="2_g4ym3"]
+[ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_op0fs"]
+[ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_62tao"]
+[ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_ochdp"]
+[ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_sgv6w"]
+[ext_resource type="AudioStream" uid="uid://c607ioovdcdog" path="res://Assets/SFX/21. Enemys Aggro Alert.wav" id="6_uhkab"]
+[ext_resource type="AudioStream" uid="uid://da183pjokvwcl" path="res://Assets/SFX/13. Enemy movement.Blueberry.wav" id="7_1mvvo"]
+[ext_resource type="PackedScene" uid="uid://d4ae0owflnjl8" path="res://Game/Objects/Projectiles/BlueberryBullet.tscn" id="8_8tfr1"]
+[ext_resource type="Texture2D" uid="uid://dyhios71quqp3" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-1.png" id="9_mytjk"]
+[ext_resource type="Texture2D" uid="uid://c0hkt5fqs2i7t" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-2.png" id="10_afwta"]
+[ext_resource type="Texture2D" uid="uid://b51pgkinrugox" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-3.png" id="11_yqfj7"]
+[ext_resource type="Texture2D" uid="uid://btmoj8gparty6" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-4.png" id="12_kulcw"]
+[ext_resource type="Texture2D" uid="uid://63cfk2khkw0x" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-5.png" id="13_fyx4w"]
+[ext_resource type="Texture2D" uid="uid://b2e12hr7am1f" path="res://Assets/Sprites/Characters/Berryswarm2/Untitled_Artwork-6.png" id="14_i5gqg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bipfo"]
+atlas = ExtResource("9_mytjk")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71te3"]
+atlas = ExtResource("10_afwta")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7pp5"]
+atlas = ExtResource("11_yqfj7")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m48en"]
+atlas = ExtResource("12_kulcw")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u5d5"]
+atlas = ExtResource("13_fyx4w")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bpmb"]
+atlas = ExtResource("14_i5gqg")
+region = Rect2(0, 0, 714, 725)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7deg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bipfo")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71te3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7pp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m48en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u5d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bpmb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2871s"]
+radius = 24.0
+height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isxb8"]
+radius = 259.85
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_o1snp")
+type = 3
+shoot_sounds = Array[AudioStreamWAV]([ExtResource("2_g4ym3")])
+alliance = 2
+hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_op0fs"), ExtResource("3_62tao"), ExtResource("4_ochdp")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_sgv6w")])
+aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_uhkab")])
+walk_sounds = Array[AudioStreamWAV]([ExtResource("7_1mvvo")])
+char_sprite = NodePath("AnimatedSprite2D")
+bullet = ExtResource("8_8tfr1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -13)
+scale = Vector2(0.157989, 0.157989)
+sprite_frames = SubResource("SpriteFrames_7deg7")
+animation = &"idle"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_2871s")
+
+[node name="AggroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_isxb8")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0.0627451, 1)
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -42.0
+value = 100.0
+show_percentage = false
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

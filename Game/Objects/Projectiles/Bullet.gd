@@ -20,6 +20,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += delta * direction * speed
+	rotation = direction.angle()
 	lifetime -= delta
 	if lifetime <= 0.0:
 		queue_free()

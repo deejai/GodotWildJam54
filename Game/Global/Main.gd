@@ -30,15 +30,16 @@ var paused: bool = false
 @onready var death_jingle: AudioStreamPlayer = main_scene.get_node("DeathJingle")
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
 
-const boss_floor_cadence = 4
+const boss_floor_cadence = 2
 
 var floor_timer: float
 var floor_timer_enabled: bool = false
 
-func play_random_sound(array: Array[AudioStreamWAV], position):
+func play_random_sound(array: Array[AudioStreamWAV], position, volume_db=0.0):
 	var arr_len = len(array)
 	var audio_player = audio_players[audio_player_index]
 	if arr_len > 0:
+		audio_player.volume_db = volume_db
 		audio_player.position = position
 		audio_player.stream = array[randi() % arr_len]
 		audio_player.play(0.0)
@@ -53,11 +54,11 @@ func descend():
 		level += 1
 		if level == boss_floor_cadence * 1:
 			get_tree().change_scene_to_packed(boss_floor_scene1)
-		if level == boss_floor_cadence * 2:
+		elif level == boss_floor_cadence * 2:
 			get_tree().change_scene_to_packed(boss_floor_scene2)
-		if level == boss_floor_cadence * 3:
+		elif level == boss_floor_cadence * 3:
 			get_tree().change_scene_to_packed(boss_floor_scene3)
-		if level == 1 + boss_floor_cadence * 3:
+		elif level == 1 + boss_floor_cadence * 3:
 			get_tree().change_scene_to_packed(victory_scene)
 		else:
 			get_tree().change_scene_to_packed(random_floor_scene)

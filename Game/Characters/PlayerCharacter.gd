@@ -188,3 +188,7 @@ func calc_speed():
 
 func calc_fireballs():
 	return Boons.status["fireballs"] + 4 * Curses.deals_with_the_devil
+
+func _on_character_sprite_animation_looped():
+	if char_sprite.animation == "walk":
+		Main.play_random_sound(walk_sounds, global_position)

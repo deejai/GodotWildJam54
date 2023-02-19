@@ -10,6 +10,9 @@ var tile_mossy = load("res://Game/Objects/Structural/DungeonTileMossy.tscn")
 var rubble = load("res://Game/Objects/Structural/DungeonRubble.tscn")
 var mob_orange = load("res://Game/Characters/BlueberryMonster.tscn")
 var mob_banana = load("res://Game/Characters/BananaMonster.tscn")
+var mob_blueberryfly_a = load("res://Game/Characters/BerryFlyA.tscn")
+var mob_blueberryfly_b = load("res://Game/Characters/BerryFlyB.tscn")
+var mob_tomato = load("res://Game/Characters/TomatoMonster.tscn")
 var item = load("res://Game/Objects/Item.tscn")
 var heal = load("res://Game/Objects/Heal.tscn")
 var exit = load("res://Game/Objects/DungeonExit.tscn")
@@ -201,7 +204,7 @@ func randomize_settings():
 	floor_cols = randi_range(3 + (level-1) / 3, 4 + (level-1) / 2)
 	floor_rows = randi_range(3 + (level-1) / 4, 4 + (level-1) / 3)
 	n_loot = randi_range(2 + (level-1) / 4, 2 + (1 if level > 1 else 0) + (level-1) / 2)
-	n_mobs = randi_range(8 + (level-1) / 2, 10 + 3 * (level-1))
+	n_mobs = randi_range(6 + (level-1) / 2, 8 + 3 * (level-1))
 
 func pick_random_distinct_rooms(num: int, avoid=[]):
 	assert(avoid.all(func(_coords): return len(_coords) == 2))
@@ -322,7 +325,7 @@ func create():
 	for row_n in len(map):
 		for col_n in len(map[row_n]):
 			var bg_obj = null
-			var fg_obj = null
+			var fg_objs = []
 			var glyph = map[row_n][col_n]
 			var selected_tile = tile if randf() < .95 else tile_mossy
 			match(glyph):
@@ -340,23 +343,37 @@ func create():
 					bg_obj = selected_tile.instantiate()
 				"&":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = [mob_orange, mob_banana].pick_random().instantiate()
+					if level < Main.boss_floor_cadence * 1:
+						fg_objs.append([mob_orange, mob_banana].pick_random().instantiate())
+					elif level < Main.boss_floor_cadence * 2:
+						if randf() > .34:
+							fg_objs.append([mob_orange, mob_banana].pick_random().instantiate())
+						else:
+							fg_objs.append(mob_blueberryfly_a.instantiate())
+							fg_objs.append(mob_blueberryfly_b.instantiate())
+							fg_objs.append([mob_blueberryfly_a, mob_blueberryfly_b].pick_random().instantiate())
+					else:
+						if randf() > .34:
+							fg_objs.append([mob_orange, mob_banana, mob_tomato].pick_random().instantiate())
+						else:
+							for i in range(3):
+								fg_objs.append([mob_blueberryfly_a, mob_blueberryfly_b].pick_random().instantiate())
 				"*":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = item.instantiate()
-					fg_obj.randomize(level)
+					fg_objs.append(item.instantiate())
+					fg_objs[0].randomize(level)
 				"+":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = heal.instantiate()
+					fg_objs.append(heal.instantiate())
 				"S":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = rubble.instantiate()
+					fg_objs.append(rubble.instantiate())
 				"E":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = exit.instantiate()
+					fg_objs.append(exit.instantiate())
 				"d":
 					bg_obj = selected_tile.instantiate()
-					fg_obj = deal.instantiate()
+					fg_objs.append(deal.instantiate())
 				_:
 					bg_obj = selected_tile.instantiate()
 
@@ -370,8 +387,9 @@ func create():
 
 				add_child(bg_obj)
 
-			if fg_obj:
-				fg_obj.position = world_pos
+			for i in range(len(fg_objs)):
+				var fg_obj = fg_objs[i]
+				fg_obj.position = world_pos + Vector2.ONE.rotated(randf() * 2 * PI) * i * 5.0
 
 				if fg_obj is Character:
 					fg_obj.z_index = 10

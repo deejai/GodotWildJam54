@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var transition_layer = $TransitionLayer
 @onready var transition_layer_sprite = $TransitionLayer/AnimatedSprite2D
 
+@onready var youdied = $YouDied
+
 @onready var qrect: ColorRect = $QRect
 @onready var erect: ColorRect = $ERect
 
@@ -22,7 +24,7 @@ extends CanvasLayer
 var level_up_scene: PackedScene = load("res://Game/GUI/LevelUp.tscn")
 var cant_equip_scene: PackedScene = load("res://Game/GUI/CantEquipSameCurse.tscn")
 
-const cursed_gui_string: String = "All work and no play makes Jack a dull boy."
+const cursed_gui_string: String = "All work and no play makes Appleteeth a sour fruit."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

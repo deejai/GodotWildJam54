@@ -8,6 +8,7 @@ class_name Character
 @export var hurt_sounds: Array[AudioStreamWAV] = []
 @export var death_sounds: Array[AudioStreamWAV] = []
 @export var aggro_sounds: Array[AudioStreamWAV] = []
+@export var walk_sounds: Array[AudioStreamWAV] = []
 @export var char_sprite: AnimatedSprite2D
 @export var bullet: PackedScene
 var hp: float = 100.0
@@ -26,6 +27,7 @@ var can_melee: bool = false
 
 @onready var light: Node2D = load("res://Game/Objects/CharLight.tscn").instantiate()
 
+var blood_splatter: PackedScene = load("res://Game/Objects/BloodSplatter.tscn")
 var hit_marker: PackedScene = load("res://Game/Objects/HitMarker.tscn")
 
 var timers: Dictionary = {
@@ -74,6 +76,8 @@ func char_process(delta):
 
 	if hp <= 0.0:
 		if self is PlayerCharacter and not self.dead:
+			Main.floor_timer_enabled = false
+			self.gui.youdied.button_enable_timer = 2.0
 			self.dead = true
 			self.visible = false
 			self.get_node("PlayerGUI/YouDied").visible = true
@@ -82,10 +86,16 @@ func char_process(delta):
 			Main.music.stop()
 			Main.death_jingle.play()
 			Main.play_random_sound(death_sounds, global_position)
+			var new_blood_splatter = blood_splatter.instantiate()
+			new_blood_splatter.position = global_position
+			Main.floor_instance.add_child(new_blood_splatter)
 		else:
 			if self is EnemyCharacter:
 				Main.player.gain_xp(self.stat_xp_reward)
 			Main.play_random_sound(death_sounds, global_position)
+			var new_blood_splatter = blood_splatter.instantiate()
+			new_blood_splatter.position = global_position
+			Main.floor_instance.add_child(new_blood_splatter)
 			queue_free()
 
 func receive_damage(amount: float):

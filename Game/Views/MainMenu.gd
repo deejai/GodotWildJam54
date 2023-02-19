@@ -9,6 +9,7 @@ var player_scene: PackedScene = load("res://Game/Characters/Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Main.level = 1
 	background.play()
 	start_button.pivot_offset = start_button.size/2
 	Main.music.set_track(MusicServer.Track.MENU)

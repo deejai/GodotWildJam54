@@ -4,11 +4,11 @@
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
 [ext_resource type="PackedScene" uid="uid://c7jsg6chsvpyk" path="res://Game/GUI/YouDied.tscn" id="3_qiq40"]
 [ext_resource type="Texture2D" uid="uid://b1fled748s1u6" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-1.png" id="4_rmtu6"]
-[ext_resource type="Texture2D" uid="uid://d71ctfjwd73b" path="res://Assets/Sprites/heresjohnny.png" id="4_tn8hh"]
 [ext_resource type="Texture2D" uid="uid://csg5x6fxnh8i3" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-2.png" id="5_n8hvv"]
 [ext_resource type="Texture2D" uid="uid://dy4g42e6do1ya" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-3.png" id="6_7w3b1"]
 [ext_resource type="Texture2D" uid="uid://x5ntkimk11u5" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-4.png" id="7_2auna"]
 [ext_resource type="Texture2D" uid="uid://cn546q66gde80" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-5.png" id="8_fjhtt"]
+[ext_resource type="Texture2D" uid="uid://clojj7vi0cfk6" path="res://Assets/Sprites/Characters/player_face.png" id="9_b5wru"]
 
 [sub_resource type="Gradient" id="Gradient_mp8i4"]
 colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
@@ -108,9 +108,8 @@ fill_to = Vector2(0.559633, 1)
 script = ExtResource("1_nf05u")
 
 [node name="CursedBars" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 736.0
-offset_right = 1158.0
+offset_left = 658.0
+offset_right = 1165.0
 offset_bottom = 655.0
 theme = ExtResource("2_fbmb7")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -120,26 +119,26 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
-text = "All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy.
-All work and no play makes Jack a dull boy."
+text = "All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit.
+All work and no play makes Appleteeth a sour fruit."
 scroll_active = false
 
 [node name="YouDied" parent="." instance=ExtResource("3_qiq40")]
@@ -276,14 +275,14 @@ theme_override_font_sizes/font_size = 24
 text = "E"
 
 [node name="CursedGUIImage" type="TextureRect" parent="."]
-offset_left = -74.0
-offset_top = -140.0
-offset_right = 1161.0
-offset_bottom = 888.0
+modulate = Color(1, 1, 1, 0.14902)
+offset_left = -237.0
+offset_top = -157.0
+offset_right = 998.0
+offset_bottom = 871.0
 mouse_filter = 2
-texture = ExtResource("4_tn8hh")
+texture = ExtResource("9_b5wru")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="TimerLabel" type="RichTextLabel" parent="."]
 offset_left = 500.0

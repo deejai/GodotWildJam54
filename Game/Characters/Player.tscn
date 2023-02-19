@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cednq3isq20uq"]
+[gd_scene load_steps=46 format=3 uid="uid://cednq3isq20uq"]
 
 [ext_resource type="Script" path="res://Game/Characters/PlayerCharacter.gd" id="1_vqyv2"]
 [ext_resource type="AudioStream" uid="uid://cxr3v80lemb3w" path="res://Assets/SFX/05._Hurt_2_variation_1.wav" id="2_12cxk"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://njlmwbcatati" path="res://Assets/SFX/25. You Died (Main character death).wav" id="5_gtbof"]
 [ext_resource type="PackedScene" uid="uid://boihhkdc0o55y" path="res://Game/Objects/Projectiles/Bullet.tscn" id="5_y5p60"]
 [ext_resource type="Texture2D" uid="uid://d3ac0m2741leh" path="res://Assets/Sprites/Characters/player_hit.png" id="6_3m1gp"]
+[ext_resource type="AudioStream" uid="uid://b72yeto2yt3ei" path="res://Assets/SFX/12. Char Movement (One Step Only).wav" id="6_4e11b"]
 [ext_resource type="Texture2D" uid="uid://b6qluhshkj03j" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-1.png" id="6_h1u13"]
 [ext_resource type="Texture2D" uid="uid://b2hgouhogl1e4" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-2.png" id="7_picld"]
 [ext_resource type="Texture2D" uid="uid://b4sh0phyyme7k" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-3.png" id="8_530kk"]
@@ -26,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://lfmi078m85p" path="res://Assets/SFX/20._Teleport.wav" id="23_jef64"]
 [ext_resource type="AudioStream" uid="uid://ctt5gd2j7gtwq" path="res://Assets/SFX/23. Fireballs Spinning (Loop).wav" id="24_33j2m"]
 [ext_resource type="AudioStream" uid="uid://4w8gs3o8r6j4" path="res://Assets/SFX/22. Fireballs Appear.wav" id="25_ipkok"]
+[ext_resource type="AudioStream" uid="uid://bxvmqd2pmytao" path="res://Assets/SFX/24. Fireball going out.wav" id="27_q3wm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hthkk"]
 atlas = ExtResource("6_3m1gp")
@@ -163,11 +165,21 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_vqyv2")
+level = null
 alliance = 1
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
 death_sounds = Array[AudioStreamWAV]([ExtResource("5_gtbof")])
+aggro_sounds = null
+walk_sounds = Array[AudioStreamWAV]([ExtResource("6_4e11b")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
+stat_damage_received_mult = null
+stat_speed_mult = null
+stat_rof_mult = null
+stat_bullet_damage_mult = null
+stat_lifesteal = null
+stat_melee_damage = null
+stat_melee_cd = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)
@@ -214,5 +226,7 @@ volume_db = 4.0
 stream = ExtResource("25_ipkok")
 
 [node name="FireballDisengage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_q3wm4")
 
+[connection signal="animation_looped" from="CharacterSprite" to="." method="_on_character_sprite_animation_looped"]
 [connection signal="animation_looped" from="GunSprite" to="." method="_on_gun_sprite_animation_looped"]
