@@ -76,7 +76,7 @@ func _physics_process(delta):
 	if is_target_valid():
 		var next_pos = nav_agent.get_next_path_position()
 		var bonus_mult = 3.5 if (type in [EnemyStats.Type.TOMATO, EnemyStats.Type.BOSS3] and timers["ministun_cd"].value == 0.0 and target.position.distance_to(position) < 200.0) else 1.0
-		velocity = (target.position - position).normalized() * speed * stat_speed_mult * 2.0 * bonus_mult
+		velocity = (target.position - position).normalized() * speed * stat_speed_mult * 2.0 * bonus_mult * delta * 75
 		char_sprite.flip_h = target.position.x < position.x
 
 	if can_melee and timers["melee_cd"].value == 0.0:

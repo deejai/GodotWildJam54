@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-@onready var hp_bar: TextureProgressBar = $HPBar
+@onready var health_hud: Node = $Health
+@onready var health_indicators: Array[Node] = health_hud.get_children()
 @onready var xp_bar: TextureProgressBar = $XPBar
 @onready var cursed_text_gui: RichTextLabel = $CursedBars
 @onready var cursed_gui_image: TextureRect = $CursedGUIImage
@@ -39,7 +40,6 @@ func _process(delta):
 		var seconds: int = floori(Main.floor_timer) % 60
 		var decimal: int = ceili(Main.floor_timer * 100) % 100
 		timer_label.text = "[color=#AA2222]%02d:%02d.%02d[/color]" % [minutes, seconds, decimal]
-
 #	if transition_layer.visible:
 #		transition_layer_sprite.modulate.a = max(0.0, transition_layer_sprite.modulate.a - .5 * delta)
 #		if transition_layer_sprite.modulate.a == 0.0:
@@ -76,7 +76,7 @@ func _process(delta):
 		stats.text = stat_string
 
 	if Curses.status["cursed_gui"] > 0:
-		hp_bar.visible = false
+		health_hud.visible = false
 		xp_bar.visible = false
 		cursed_text_gui.visible = true
 		cursed_gui_image.visible = true
@@ -89,11 +89,22 @@ func _process(delta):
 		for i in range(14):
 			cursed_text_gui.text += str(hp_string, "\n")
 	else:
-		hp_bar.value = 100.0 * Main.player.hp / 100.0
+		var n_whole_fruits = floori(Main.player.hp) / 10
+		var remainder = Main.player.hp - (n_whole_fruits * 10)
+		for indicator in health_indicators:
+			var index = indicator.name.to_int()
+			indicator.modulate.g = 1.0 - 0.3 * (1.0 - Main.player.hp/100.0)
+			indicator.modulate.b = 1.0 - 0.3 * (1.0 - Main.player.hp/100.0)
+			if index < n_whole_fruits:
+				indicator.modulate.a = 1.0
+			elif index > n_whole_fruits:
+				indicator.modulate.a = 0.0
+			else:
+				indicator.modulate.a = remainder / 10.0
 		xp_bar.value = 100.0 * Main.player.xp_progress
 		cursed_text_gui.visible = false
 		cursed_gui_image.visible = false
-		hp_bar.visible = true
+		health_hud.visible = true
 		xp_bar.visible = true
 
 func get_progress_text(string, color_string, progress):

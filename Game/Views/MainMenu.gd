@@ -17,6 +17,7 @@ func _ready():
 	charsprite.play()
 	Boons.reset()
 	Curses.reset()
+	Main.has_warned = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

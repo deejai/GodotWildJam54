@@ -102,8 +102,8 @@ func _process(delta):
 			char_sprite.animation = "walk"
 
 	var speed = calc_speed()
-	position += move_dir * speed
-	velocity = move_dir * speed
+	position += move_dir * speed * delta * 70
+	velocity = move_dir * speed * delta * 70
 
 	if Input.is_action_pressed("shoot"):
 		if engage_timer("shoot", 1.0/calc_rate_of_fire()):

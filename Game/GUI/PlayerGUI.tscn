@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bra6tpwpgfe7d"]
+[gd_scene load_steps=27 format=3 uid="uid://bra6tpwpgfe7d"]
 
 [ext_resource type="Script" path="res://Game/GUI/PlayerGUI.gd" id="1_nf05u"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
@@ -11,25 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://clojj7vi0cfk6" path="res://Assets/Sprites/Characters/player_face.png" id="9_b5wru"]
 [ext_resource type="Script" path="res://Game/GUI/ExitArrow.gd" id="10_jknat"]
 [ext_resource type="Texture2D" uid="uid://dtsdt1d6i0kad" path="res://Assets/Sprites/light.png" id="11_w1c02"]
-
-[sub_resource type="Gradient" id="Gradient_mp8i4"]
-colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwmi0"]
-gradient = SubResource("Gradient_mp8i4")
-width = 256
-height = 20
-fill_from = Vector2(0.529126, 0.559223)
-fill_to = Vector2(0.567961, 0)
-
-[sub_resource type="Gradient" id="Gradient_3fm35"]
-colors = PackedColorArray(0.988235, 0, 0.360784, 1, 0.854902, 0.223529, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8138"]
-gradient = SubResource("Gradient_3fm35")
-width = 256
-height = 20
-fill_to = Vector2(0.951456, 0.713592)
+[ext_resource type="Texture2D" uid="uid://ckjrl8saqbtv3" path="res://Assets/Sprites/ui/health/Untitled_Artwork-1(2).png" id="12_46rv4"]
 
 [sub_resource type="Gradient" id="Gradient_kc1d4"]
 colors = PackedColorArray(0.435294, 0.435294, 0.435294, 0.52549, 0.8, 0.8, 0.8, 0.486275)
@@ -40,7 +22,7 @@ width = 256
 height = 8
 
 [sub_resource type="Gradient" id="Gradient_eeddt"]
-colors = PackedColorArray(0.65098, 0.65098, 0, 0.603922, 0.960784, 0.960784, 0, 0.564706)
+colors = PackedColorArray(0.0601377, 0.690047, 0.841925, 0.603922, 0.655269, 0.999132, 0.933351, 0.564706)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t3q61"]
 gradient = SubResource("Gradient_eeddt")
@@ -110,6 +92,7 @@ fill_to = Vector2(0.559633, 1)
 script = ExtResource("1_nf05u")
 
 [node name="CursedBars" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 658.0
 offset_right = 1165.0
 offset_bottom = 655.0
@@ -146,21 +129,13 @@ scroll_active = false
 [node name="YouDied" parent="." instance=ExtResource("3_qiq40")]
 visible = false
 
-[node name="HPBar" type="TextureProgressBar" parent="."]
-modulate = Color(1, 1, 1, 0.839216)
-offset_left = 888.0
-offset_top = 621.0
-offset_right = 1144.0
-offset_bottom = 643.0
-texture_under = SubResource("GradientTexture2D_kwmi0")
-texture_progress = SubResource("GradientTexture2D_k8138")
-
 [node name="XPBar" type="TextureProgressBar" parent="."]
 modulate = Color(1, 1, 1, 0.780392)
-offset_left = 888.0
-offset_top = 610.0
-offset_right = 1144.0
-offset_bottom = 622.0
+offset_left = 884.0
+offset_top = 642.0
+offset_right = 1140.0
+offset_bottom = 650.0
+scale = Vector2(1, 0.320758)
 texture_under = SubResource("GradientTexture2D_enmob")
 texture_progress = SubResource("GradientTexture2D_t3q61")
 
@@ -339,13 +314,105 @@ color = Color(0.694118, 0, 0, 0.513726)
 polygon = PackedVector2Array(-8, 0, -8, -40, -24, -40, 0, -72, 24, -40, 8, -40, 8, 0)
 
 [node name="Polygon2D2" type="TextureRect" parent="ExitArrow"]
-modulate = Color(0.490196, 0.552941, 0.529412, 1)
+modulate = Color(0.490196, 0.552941, 0.529412, 0.658824)
 z_index = -1
 offset_left = -48.0
 offset_top = -48.0
 offset_right = 48.0
 offset_bottom = 48.0
 texture = ExtResource("11_w1c02")
+expand_mode = 1
+
+[node name="Health" type="Node2D" parent="."]
+
+[node name="0" type="TextureRect" parent="Health"]
+offset_left = 880.0
+offset_top = 615.0
+offset_right = 927.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="1" type="TextureRect" parent="Health"]
+offset_left = 904.0
+offset_top = 615.0
+offset_right = 951.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="2" type="TextureRect" parent="Health"]
+offset_left = 928.0
+offset_top = 615.0
+offset_right = 975.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="3" type="TextureRect" parent="Health"]
+offset_left = 952.0
+offset_top = 615.0
+offset_right = 999.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="4" type="TextureRect" parent="Health"]
+offset_left = 976.0
+offset_top = 615.0
+offset_right = 1023.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="5" type="TextureRect" parent="Health"]
+offset_left = 1000.0
+offset_top = 615.0
+offset_right = 1047.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="6" type="TextureRect" parent="Health"]
+offset_left = 1024.0
+offset_top = 615.0
+offset_right = 1071.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="7" type="TextureRect" parent="Health"]
+offset_left = 1048.0
+offset_top = 615.0
+offset_right = 1095.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="8" type="TextureRect" parent="Health"]
+offset_left = 1072.0
+offset_top = 615.0
+offset_right = 1119.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
+expand_mode = 1
+
+[node name="9" type="TextureRect" parent="Health"]
+offset_left = 1096.0
+offset_top = 615.0
+offset_right = 1143.0
+offset_bottom = 645.0
+rotation = -0.565512
+texture = ExtResource("12_46rv4")
 expand_mode = 1
 
 [connection signal="animation_looped" from="TransitionLayer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

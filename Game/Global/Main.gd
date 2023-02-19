@@ -31,10 +31,14 @@ var paused: bool = false
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
 @onready var victory_sound: AudioStreamPlayer = main_scene.get_node("VictorySound")
 
+@onready var timer_warning: AudioStreamPlayer = main_scene.get_node("TimerWarning")
+
 const boss_floor_cadence = 4
 
 var floor_timer: float
 var floor_timer_enabled: bool = false
+
+var has_warned = false
 
 func play_random_sound(array: Array[AudioStreamWAV], position, volume_db=0.0):
 	var arr_len = len(array)
@@ -53,6 +57,7 @@ func descend():
 		floor_instance.remove_child(Main.player)
 		floor_instance.queue_free()
 		level += 1
+		has_warned = false
 		if level == boss_floor_cadence * 1:
 			get_tree().change_scene_to_packed(boss_floor_scene1)
 		elif level == boss_floor_cadence * 2:
@@ -90,7 +95,13 @@ func _process(delta):
 		floor_timer = max(0.0, floor_timer - delta)
 		if floor_timer == 0.0:
 			floor_timer_enabled = false
+			get_tree().paused = true
 			get_tree().change_scene_to_packed(collapsed_ending_scene)
+			get_tree().paused = false
+			
+		elif !has_warned and floor_timer <= 30.0:
+			timer_warning.play()
+			has_warned = true
 
 func xp_required_to_reach_level(target_level: int):
 	if target_level <= 1:

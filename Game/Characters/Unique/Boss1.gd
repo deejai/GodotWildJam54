@@ -20,4 +20,6 @@ func _process(delta):
 		new_monster.position = Main.floor_instance.boss.position + Vector2.ONE.rotated(randf() * 2 * PI) * randf_range(50.0, 60.0)
 		new_monster.level = Main.level
 		new_monster.is_summon = true
+		new_monster.expires = true
+		new_monster.time_remaining = 50.0
 		Main.floor_instance.add_child(new_monster)
