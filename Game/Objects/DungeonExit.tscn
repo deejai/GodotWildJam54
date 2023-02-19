@@ -8,6 +8,7 @@
 size = Vector2(100, 100)
 
 [node name="Node2D" type="Node2D"]
+z_index = -5
 script = ExtResource("1_v8pt3")
 
 [node name="TextureRect" type="TextureRect" parent="."]

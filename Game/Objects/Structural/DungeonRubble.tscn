@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bq8wyvbni5iwe" path="res://Assets/Sprites/Tiles/rubble.png" id="1_516d6"]
 
 [node name="BasicWall" type="Node2D"]
+z_index = -5
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -50.0

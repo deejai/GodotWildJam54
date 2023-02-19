@@ -13,6 +13,10 @@ var last_nav_pos: Vector2 = Vector2.ZERO
 
 var has_aggroed: bool = false
 
+var is_summon: bool = false
+
+@export var is_the_boss: bool = false
+
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var hp_bar: ProgressBar = $ProgressBar
 
@@ -30,6 +34,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Main.floor_instance is BossFloor and Main.floor_instance.boss_defeated:
+		hp = 0
+
 	char_process(delta)
 
 	hp_bar.value = hp

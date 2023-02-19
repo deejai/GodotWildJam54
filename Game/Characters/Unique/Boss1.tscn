@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=3 uid="uid://bbr14ds4ifcvi"]
+
+[ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_bnltm"]
+[ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_36qux"]
+[ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_2qike"]
+[ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_21u6m"]
+[ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_0pwn0"]
+[ext_resource type="AudioStream" uid="uid://c0j21bhtixaej" path="res://Assets/SFX/21._Enemys_Aggro_Alert.wav" id="6_f0rtr"]
+[ext_resource type="AudioStream" uid="uid://d31hccxmc23wi" path="res://Assets/SFX/13. Enemy movement.Banana1.wav" id="7_g6xu4"]
+[ext_resource type="Texture2D" uid="uid://clp6kgo7h00g2" path="res://Assets/Sprites/Characters/Banana 1 enemy/Untitled_Artwork.png" id="8_t8atx"]
+[ext_resource type="Texture2D" uid="uid://c3s5glycjj7a" path="res://Assets/Sprites/Characters/banana_monster.png" id="9_u13iv"]
+[ext_resource type="Script" path="res://Game/Characters/Unique/Boss1.gd" id="10_o11dt"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="11_14uvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbiy4"]
+atlas = ExtResource("8_t8atx")
+region = Rect2(0, 0, 724, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sece"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(0, 0, 785, 348)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpra6"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(785, 0, 785, 348)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4spb"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(1570, 0, 785, 348)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2qfi"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(2355, 0, 785, 348)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojk85"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(3140, 0, 785, 348)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh2n7"]
+atlas = ExtResource("9_u13iv")
+region = Rect2(3925, 0, 785, 348)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7deg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbiy4")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sece")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpra6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4spb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2qfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojk85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh2n7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gik3c"]
+radius = 343.431
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsxnc"]
+radius = 24.0
+height = 94.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_bnltm")
+type = 8
+is_the_boss = true
+alliance = 2
+hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_36qux"), ExtResource("3_2qike"), ExtResource("4_21u6m")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_0pwn0")])
+aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_f0rtr")])
+walk_sounds = Array[AudioStreamWAV]([ExtResource("7_g6xu4")])
+char_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -10)
+scale = Vector2(-0.405155, 0.405155)
+sprite_frames = SubResource("SpriteFrames_7deg7")
+animation = &"idle"
+speed_scale = 2.0
+
+[node name="AggroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_gik3c")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 0, 0.0627451, 1)
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -42.0
+value = 100.0
+show_percentage = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+rotation = -1.57079
+scale = Vector2(1.25788, 1.25788)
+shape = SubResource("CapsuleShape2D_wsxnc")
+
+[node name="Boss1" type="Node" parent="."]
+script = ExtResource("10_o11dt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Boss1"]
+
+[node name="HPBar" type="ProgressBar" parent="Boss1/CanvasLayer"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 287.0
+offset_top = 607.0
+offset_right = 856.0
+offset_bottom = 634.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Boss1/CanvasLayer"]
+offset_left = 332.0
+offset_top = 576.0
+offset_right = 810.0
+offset_bottom = 613.0
+theme = ExtResource("11_14uvl")
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+bbcode_enabled = true
+text = "[center][color=Yellow]Banana Split[/color][/center]"
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_aggro_area_body_exited"]

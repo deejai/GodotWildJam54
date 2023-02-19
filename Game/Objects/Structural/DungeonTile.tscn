@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d4a5bwiwwrlmm" path="res://Assets/Sprites/Tiles/brick_light.jpg" id="1_pk4c2"]
 
 [node name="Node2D" type="Node2D"]
+z_index = -10
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -50.0

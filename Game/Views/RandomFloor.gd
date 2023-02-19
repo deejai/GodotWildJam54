@@ -200,7 +200,7 @@ func floodfill_connected_rooms(current_coords, connected_rooms = null):
 	return connected_rooms
 
 func randomize_settings():
-	room_size = randi_range(4, 4 + (level-1) / 2)
+	room_size = randi_range(4, 4 + (level-1) / Main.boss_floor_cadence)
 	floor_cols = randi_range(3 + (level-1) / 3, 4 + (level-1) / 2)
 	floor_rows = randi_range(3 + (level-1) / 4, 4 + (level-1) / 3)
 	n_loot = randi_range(2 + (level-1) / 4, 2 + (1 if level > 1 else 0) + (level-1) / 2)
@@ -311,8 +311,6 @@ func generate_floor_map():
 		populate_deal()
 
 func create():
-	add_child(Main.player)
-
 	generate_floor_map()
 
 	var tilescale = 100.0
@@ -320,7 +318,11 @@ func create():
 	var offset_x = -start_tile_coords[1] * tilescale
 	var offset_y = -start_tile_coords[0] * tilescale
 
-	var colormod = Color(.8 + randf() * .2, .8 + randf() * .2, .8 + randf() * .2, 1)
+	var colormod = Color(
+		.8 + randf() * .2,
+		.8 + randf() * .2 + (.4 if level > Main.boss_floor_cadence * 1 else 0.0),
+		.8 + randf() * .2 + (.4 if level > Main.boss_floor_cadence * 2 else 0.0),
+		1)
 
 	for row_n in len(map):
 		for col_n in len(map[row_n]):
@@ -393,6 +395,9 @@ func create():
 
 				if fg_obj is Character:
 					fg_obj.z_index = 10
+					if fg_obj is EnemyCharacter:
+						fg_obj.level = level
+
 				elif glyph in ["S", "E", "+", "*", "d"]:
 					fg_obj.z_index = -5
 
@@ -400,6 +405,7 @@ func create():
 
 func _ready():
 	create()
+	add_child(Main.player)
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
 	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= Main.boss_floor_cadence else MusicServer.Track.DUNGEON2)

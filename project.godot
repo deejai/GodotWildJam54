@@ -26,6 +26,7 @@ Boons="*res://Game/Global/Boons.gd"
 
 mouse_cursor/custom_image="res://Assets/Sprites/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+window/stretch/mode="viewport"
 
 [input]
 

@@ -173,13 +173,6 @@ aggro_sounds = null
 walk_sounds = Array[AudioStreamWAV]([ExtResource("6_4e11b")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
-stat_damage_received_mult = null
-stat_speed_mult = null
-stat_rof_mult = null
-stat_bullet_damage_mult = null
-stat_lifesteal = null
-stat_melee_damage = null
-stat_melee_cd = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)

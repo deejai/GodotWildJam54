@@ -6,6 +6,7 @@
 size = Vector2(100, 100)
 
 [node name="BasicWall" type="Node2D"]
+z_index = -10
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

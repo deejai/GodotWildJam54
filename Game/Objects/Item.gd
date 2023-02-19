@@ -78,6 +78,7 @@ func _process(delta):
 				if Main.player.slot_q != null:
 					Main.player.slot_q.drop()
 				pickup()
+				_on_area_2d_mouse_exited()
 				Main.player.slot_q = self
 				get_parent().remove_child(self)
 				Main.player.gui.qslot_bg.add_child(self)
@@ -95,6 +96,7 @@ func _process(delta):
 				if Main.player.slot_e != null:
 					Main.player.slot_e.drop()
 				pickup()
+				_on_area_2d_mouse_exited()
 				Main.player.slot_e = self
 				get_parent().remove_child(self)
 				Main.player.gui.eslot_bg.add_child(self)

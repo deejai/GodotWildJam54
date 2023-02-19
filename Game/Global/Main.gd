@@ -29,6 +29,7 @@ var paused: bool = false
 
 @onready var death_jingle: AudioStreamPlayer = main_scene.get_node("DeathJingle")
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
+@onready var victory_sound: AudioStreamPlayer = main_scene.get_node("VictorySound")
 
 const boss_floor_cadence = 2
 

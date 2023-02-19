@@ -17,13 +17,13 @@ var invulnerable = false
 
 var can_melee: bool = false
 
-@export var stat_damage_received_mult: float = 1.0
-@export var stat_speed_mult: float = 1.0
-@export var stat_rof_mult: float = 1.0
-@export var stat_bullet_damage_mult: float = 1.0
-@export var stat_lifesteal: float = 0.0
-@export var stat_melee_damage: float = 30.0
-@export var stat_melee_cd: float = 1.5
+var stat_damage_received_mult: float = 1.0
+var stat_speed_mult: float = 1.0
+var stat_rof_mult: float = 1.0
+var stat_bullet_damage_mult: float = 1.0
+var stat_lifesteal: float = 0.0
+var stat_melee_damage: float = 30.0
+var stat_melee_cd: float = 1.5
 
 @onready var light: Node2D = load("res://Game/Objects/CharLight.tscn").instantiate()
 
@@ -91,7 +91,10 @@ func char_process(delta):
 			Main.floor_instance.add_child(new_blood_splatter)
 		else:
 			if self is EnemyCharacter:
-				Main.player.gain_xp(self.stat_xp_reward)
+				if not self.is_summon:
+					Main.player.gain_xp(self.stat_xp_reward)
+				if self.is_the_boss and Main.floor_instance is BossFloor:
+					Main.floor_instance.boss_defeated = true
 			Main.play_random_sound(death_sounds, global_position)
 			var new_blood_splatter = blood_splatter.instantiate()
 			new_blood_splatter.position = global_position
