@@ -20,6 +20,7 @@ var floor_instance: Node = null
 
 var music: Node = load("res://Game/Global/Music.tscn").instantiate()
 var main_scene = load("res://Game/Global/Main.tscn").instantiate()
+var collapsed_ending_scene = load("res://Game/Views/CollapsedEnding.tscn")
 
 var paused: bool = false
 
@@ -29,7 +30,10 @@ var paused: bool = false
 @onready var death_jingle: AudioStreamPlayer = main_scene.get_node("DeathJingle")
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
 
-const boss_floor_cadence = 4
+const boss_floor_cadence = 2
+
+var floor_timer: float
+var floor_timer_enabled: bool = false
 
 func play_random_sound(array: Array[AudioStreamWAV], position):
 	var arr_len = len(array)
@@ -42,6 +46,7 @@ func play_random_sound(array: Array[AudioStreamWAV], position):
 		audio_player_index = (audio_player_index + 1) % num_audio_players
 
 func descend():
+		floor_timer_enabled = false
 		descend_sound.play()
 		floor_instance.remove_child(Main.player)
 		floor_instance.queue_free()
@@ -79,6 +84,12 @@ func _process(delta):
 	if floor_instance!= null and Input.is_action_just_pressed("Pause"):
 		set_pause(!paused)
 
+	if floor_timer_enabled and !paused:
+		floor_timer = max(0.0, floor_timer - delta)
+		if floor_timer == 0.0:
+			floor_timer_enabled = false
+			get_tree().change_scene_to_packed(collapsed_ending_scene)
+
 func xp_required_to_reach_level(target_level: int):
 	if target_level <= 1:
 		return 0
@@ -90,3 +101,7 @@ func set_pause(val: bool):
 	get_tree().paused = val
 	pause_menu.visible = val
 	pause_sound.play()
+
+func floor_timer_begin(time_limit: float):
+	floor_timer_enabled = true
+	floor_timer = time_limit

@@ -1,19 +1,52 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2r7owc7pp5dk"]
+[gd_scene load_steps=22 format=3 uid="uid://d2r7owc7pp5dk"]
 
 [ext_resource type="Script" path="res://Game/Views/MainMenu.gd" id="1_ayg28"]
+[ext_resource type="Texture2D" uid="uid://blx5sml21m5ws" path="res://Assets/Sprites/ui/menu background/Untitled_Artwork-1.png" id="2_gibdt"]
 [ext_resource type="Texture2D" uid="uid://djrl5mknxabck" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-1.png" id="2_nlpah"]
+[ext_resource type="Texture2D" uid="uid://dahim4w114j3a" path="res://Assets/Sprites/ui/menu background/Untitled_Artwork-2.png" id="3_as7he"]
 [ext_resource type="Texture2D" uid="uid://dbc8hber3316c" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-2.png" id="3_efi5e"]
+[ext_resource type="Texture2D" uid="uid://crx1feg1060ie" path="res://Assets/Sprites/ui/menu background/Untitled_Artwork-3.png" id="4_qx13h"]
 [ext_resource type="Texture2D" uid="uid://btl70wu67ek20" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-3.png" id="4_u7lwg"]
+[ext_resource type="Texture2D" uid="uid://ppwudmgnco70" path="res://Assets/Sprites/ui/menu background/Untitled_Artwork-4.png" id="5_s8l8q"]
 [ext_resource type="Texture2D" uid="uid://b06v11c6l1yb2" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-4.png" id="5_x2mr3"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="6_8m18f"]
+[ext_resource type="Texture2D" uid="uid://esaa7y4ykoyt" path="res://Assets/Sprites/ui/start1.png" id="11_hpa17"]
 
-[sub_resource type="Gradient" id="Gradient_om0js"]
-colors = PackedColorArray(0.857301, 0.207366, 0.309637, 1, 0.438704, 1, 0.193537, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oabnu"]
+atlas = ExtResource("2_gibdt")
+region = Rect2(0, 0, 1920, 1080)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1rx4r"]
-gradient = SubResource("Gradient_om0js")
-width = 1152
-height = 648
-fill_to = Vector2(1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs2pd"]
+atlas = ExtResource("3_as7he")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmr8t"]
+atlas = ExtResource("4_qx13h")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgxdj"]
+atlas = ExtResource("5_s8l8q")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6p5aj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oabnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs2pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmr8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgxdj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml81j"]
 atlas = ExtResource("2_nlpah")
@@ -54,35 +87,48 @@ animations = [{
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ayg28")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = SubResource("GradientTexture2D_1rx4r")
-stretch_mode = 1
-metadata/_edit_lock_ = true
+[node name="Background" type="AnimatedSprite2D" parent="."]
+position = Vector2(575, 326)
+scale = Vector2(0.581481, 0.581481)
+sprite_frames = SubResource("SpriteFrames_6p5aj")
+frame = 1
+frame_progress = 0.214384
 
 [node name="Label" type="Label" parent="."]
-offset_left = 25.0
-offset_top = 454.0
-offset_right = 1093.0
-offset_bottom = 730.0
+offset_left = 328.0
+offset_top = 190.0
+offset_right = 814.0
+offset_bottom = 355.0
+theme = ExtResource("6_8m18f")
 theme_override_colors/font_color = Color(0.639216, 0.545098, 0, 0.12549)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.0941176)
-theme_override_font_sizes/font_size = 180
+theme_override_font_sizes/font_size = 120
 text = "Appleteeth"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(560, 461)
-scale = Vector2(0.375926, 0.375926)
+position = Vector2(984, 323)
+rotation = -0.0610652
+scale = Vector2(0.316006, 0.316006)
 sprite_frames = SubResource("SpriteFrames_6v5q0")
+flip_h = true
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="TextureButton" parent="."]
 modulate = Color(1, 0.529412, 0, 0.976471)
-offset_left = 700.0
-offset_top = 329.0
-offset_right = 895.0
-offset_bottom = 406.0
-theme_override_font_sizes/font_size = 50
-text = "Begin"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 442.0
+offset_top = 355.0
+offset_right = 714.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_hpa17")
+ignore_texture_size = true
+stretch_mode = 0
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

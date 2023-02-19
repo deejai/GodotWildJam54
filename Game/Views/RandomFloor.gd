@@ -13,6 +13,7 @@ var mob_banana = load("res://Game/Characters/BananaMonster.tscn")
 var item = load("res://Game/Objects/Item.tscn")
 var heal = load("res://Game/Objects/Heal.tscn")
 var exit = load("res://Game/Objects/DungeonExit.tscn")
+var deal = load("res://Game/Objects/DealWithTheDevil.tscn")
 
 var n_loot: int = 3
 var n_mobs: int = 8
@@ -265,6 +266,11 @@ func populate_heal():
 	var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
 	map[map_coords[0]][map_coords[1]] = "+"
 
+func populate_deal():
+	var room_coords = pick_random_distinct_rooms(1, [start_coords, end_coords]).keys()[0]
+	var map_coords = pick_empty_spot_in_room(room_coords[0], room_coords[1])
+	map[map_coords[0]][map_coords[1]] = "d"
+
 func generate_floor_map():
 	randomize_settings()
 	initialize_map()
@@ -298,6 +304,8 @@ func generate_floor_map():
 	populate_mobs()
 	populate_loot()
 	populate_heal()
+	if level % Main.boss_floor_cadence == Main.boss_floor_cadence - 1:
+		populate_deal()
 
 func create():
 	add_child(Main.player)
@@ -346,6 +354,9 @@ func create():
 				"E":
 					bg_obj = selected_tile.instantiate()
 					fg_obj = exit.instantiate()
+				"d":
+					bg_obj = selected_tile.instantiate()
+					fg_obj = deal.instantiate()
 				_:
 					bg_obj = selected_tile.instantiate()
 
@@ -364,17 +375,17 @@ func create():
 
 				if fg_obj is Character:
 					fg_obj.z_index = 10
-				elif glyph in ["S", "E", "+", "*"]:
+				elif glyph in ["S", "E", "+", "*", "d"]:
 					fg_obj.z_index = -5
 
 				add_child(fg_obj)
 
 func _ready():
-	print("NEXT")
 	create()
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
-	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= 5 else MusicServer.Track.DUNGEON2)
+	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= Main.boss_floor_cadence else MusicServer.Track.DUNGEON2)
+	Main.floor_timer_begin(55.0 + 3.0 * (level-1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://d7hf232g6h01"]
+
+[ext_resource type="Script" path="res://Game/Objects/DealWithTheDevil.gd" id="1_mrv53"]
+[ext_resource type="Texture2D" uid="uid://dr6tqg0v2eb07" path="res://Assets/Sprites/parchment.png" id="1_ru43t"]
+[ext_resource type="Texture2D" uid="uid://dfjve0r7o4xju" path="res://Assets/Sprites/devil.png" id="2_6fb8q"]
+[ext_resource type="AudioStream" uid="uid://njlmwbcatati" path="res://Assets/SFX/25. You Died (Main character death).wav" id="2_gscu4"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="3_2ho8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ix7j"]
+size = Vector2(100, 100)
+
+[node name="DealWithTheDevil" type="Node2D"]
+script = ExtResource("1_mrv53")
+sign_sound = ExtResource("2_gscu4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_ru43t")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.458824, 0.458824, 0.458824, 0.690196)
+offset_left = -41.0
+offset_top = 20.0
+offset_right = 47.0
+offset_bottom = 50.0
+theme_override_colors/default_color = Color(0.709804, 0, 0, 1)
+text = "Sign here..."
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.509804, 0.509804, 0.509804, 0.635294)
+offset_left = -35.0
+offset_top = -44.0
+offset_right = 31.0
+offset_bottom = 22.0
+texture = ExtResource("2_6fb8q")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7ix7j")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="FRect" type="ColorRect" parent="."]
+offset_left = -46.0
+offset_top = -86.0
+offset_right = 49.0
+offset_bottom = -58.0
+color = Color(0.160784, 0.160784, 0.160784, 0.776471)
+
+[node name="FLabel" type="Label" parent="FRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -1.0
+offset_right = 131.0
+offset_bottom = 41.0
+theme = ExtResource("3_2ho8x")
+theme_override_font_sizes/font_size = 22
+text = "F to Sign"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

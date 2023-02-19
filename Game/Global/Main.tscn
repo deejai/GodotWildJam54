@@ -6,12 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://cc2q55g14q46y" path="res://Assets/SFX/19._Begin_Click_Button.wav" id="4_mvbgj"]
 [ext_resource type="AudioStream" uid="uid://3b66xy6lu2fs" path="res://Assets/SFX/32._Confirm_quit_game.wav" id="4_qmqe7"]
 [ext_resource type="AudioStream" uid="uid://cey6mnx0l2vpu" path="res://Assets/SFX/31._Pause_Action.wav" id="5_t1n1v"]
-[ext_resource type="AudioStream" uid="uid://be55onlv8gwih" path="res://Assets/SFX/25._You_Died_Main_character_death.wav" id="7_ncdrl"]
+[ext_resource type="AudioStream" uid="uid://pywum3hhrorx" path="res://Assets/Music/Loss_Fanfarre/LJ#54Loss.wav" id="7_qkxx3"]
 [ext_resource type="AudioStream" uid="uid://clndmaolhrjym" path="res://Assets/SFX/20. Teleport.wav" id="8_xnucc"]
 
 [node name="Main" type="Node2D"]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 10
 script = ExtResource("1_h15uw")
 
 [node name="PausedLabel" type="RichTextLabel" parent="PauseMenu"]
@@ -115,7 +116,8 @@ stream = ExtResource("5_t1n1v")
 volume_db = -8.0
 
 [node name="DeathJingle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ncdrl")
+stream = ExtResource("7_qkxx3")
+volume_db = -16.0
 
 [node name="DescendSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_xnucc")

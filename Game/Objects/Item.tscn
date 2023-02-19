@@ -1,40 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://fyg6mubeef52"]
+[gd_scene load_steps=12 format=3 uid="uid://fyg6mubeef52"]
 
 [ext_resource type="Script" path="res://Game/Objects/Item.gd" id="1_x21ci"]
+[ext_resource type="AudioStream" uid="uid://btahmkx7lnecn" path="res://Assets/SFX/28. Negative cursed items loot.wav" id="2_1ugpv"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_vvi4y"]
 [ext_resource type="AudioStream" uid="uid://cuib4y2h33uv5" path="res://Assets/SFX/07. Loot pickup.wav" id="3_3vkag"]
+[ext_resource type="Texture2D" uid="uid://co8utdfbuwos2" path="res://Assets/Sprites/Items/controls.png" id="4_guvlj"]
+[ext_resource type="Texture2D" uid="uid://c33qvi8fcs2yf" path="res://Assets/Sprites/Items/pocketwatch.png" id="5_s8df7"]
+[ext_resource type="Texture2D" uid="uid://ci4qkqhh3d3oq" path="res://Assets/Sprites/Items/heart.png" id="6_gajyj"]
+[ext_resource type="Texture2D" uid="uid://be187u4s3cuud" path="res://Assets/Sprites/Items/keys.png" id="7_bwumt"]
 
-[sub_resource type="Gradient" id="Gradient_f3m1j"]
-colors = PackedColorArray(0.454902, 0.913725, 0.745098, 1, 1, 1, 0.0431373, 1)
+[sub_resource type="Gradient" id="Gradient_t570x"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.879443, 0.783453, 0.617691, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_f120t"]
-gradient = SubResource("Gradient_f3m1j")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k1jgy"]
+gradient = SubResource("Gradient_t570x")
+fill_from = Vector2(0.0229358, 1)
+fill_to = Vector2(0.00917431, 0.0321101)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j07o"]
 size = Vector2(100, 100)
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_x21ci")
-pickup_sound = ExtResource("3_3vkag")
+pickup_sound = ExtResource("2_1ugpv")
+drop_sound = ExtResource("3_3vkag")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -50.0
+[node name="DescriptionBG" type="TextureRect" parent="."]
+offset_left = -49.0
 offset_top = -50.0
-offset_right = 50.0
+offset_right = 51.0
 offset_bottom = 50.0
-texture = SubResource("GradientTexture1D_f120t")
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_k1jgy")
 expand_mode = 1
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_7j07o")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Description" type="RichTextLabel" parent="."]
-offset_left = -49.0
+offset_left = -47.0
 offset_top = -48.0
-offset_right = 48.0
+offset_right = 50.0
 offset_bottom = 48.0
+mouse_filter = 2
 theme = ExtResource("2_vvi4y")
 theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 15
@@ -61,6 +74,48 @@ theme = ExtResource("2_vvi4y")
 theme_override_font_sizes/font_size = 22
 text = "Q/E to Equip"
 
+[node name="CrazyCurseImage" type="TextureRect" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("4_guvlj")
+expand_mode = 1
+
+[node name="UnstableCurseImage" type="TextureRect" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("5_s8df7")
+expand_mode = 1
+
+[node name="DrainCurseImage" type="TextureRect" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("6_gajyj")
+expand_mode = 1
+
+[node name="DisorientCurseImage" type="TextureRect" parent="."]
+visible = false
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("7_bwumt")
+expand_mode = 1
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

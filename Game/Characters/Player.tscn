@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cednq3isq20uq"]
+[gd_scene load_steps=44 format=3 uid="uid://cednq3isq20uq"]
 
 [ext_resource type="Script" path="res://Game/Characters/PlayerCharacter.gd" id="1_vqyv2"]
 [ext_resource type="AudioStream" uid="uid://cxr3v80lemb3w" path="res://Assets/SFX/05._Hurt_2_variation_1.wav" id="2_12cxk"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bgh0ea58131aw" path="res://Assets/SFX/05._Hurt_2_variation_3.wav" id="4_737ro"]
 [ext_resource type="Texture2D" uid="uid://btl70wu67ek20" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-3.png" id="4_kewjc"]
 [ext_resource type="Texture2D" uid="uid://b06v11c6l1yb2" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-4.png" id="5_ewmua"]
+[ext_resource type="AudioStream" uid="uid://njlmwbcatati" path="res://Assets/SFX/25. You Died (Main character death).wav" id="5_gtbof"]
 [ext_resource type="PackedScene" uid="uid://boihhkdc0o55y" path="res://Game/Objects/Projectiles/Bullet.tscn" id="5_y5p60"]
 [ext_resource type="Texture2D" uid="uid://d3ac0m2741leh" path="res://Assets/Sprites/Characters/player_hit.png" id="6_3m1gp"]
 [ext_resource type="Texture2D" uid="uid://b6qluhshkj03j" path="res://Assets/Sprites/Characters/Player walk/Untitled_Artwork-1.png" id="6_h1u13"]
@@ -162,19 +163,11 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("char_sprite")]
 motion_mode = 1
 script = ExtResource("1_vqyv2")
-level = null
 alliance = 1
-damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_12cxk"), ExtResource("3_j4a18"), ExtResource("4_737ro")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_gtbof")])
 char_sprite = NodePath("CharacterSprite")
 bullet = ExtResource("5_y5p60")
-stat_damage_received_mult = null
-stat_speed_mult = null
-stat_rof_mult = null
-stat_bullet_damage_mult = null
-stat_lifesteal = null
-stat_melee_damage = null
-stat_melee_cd = null
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -23)

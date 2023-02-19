@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cohp6gy5hpmxe"]
+
+[ext_resource type="Texture2D" uid="uid://y43i0e1sq387" path="res://Assets/Sprites/Bullets/damage particle.png" id="1_7upe0"]
+[ext_resource type="Script" path="res://Game/Objects/HitMarker.gd" id="1_g84f8"]
+[ext_resource type="Texture2D" uid="uid://dtsdt1d6i0kad" path="res://Assets/Sprites/light.png" id="3_0umpt"]
+
+[node name="HitMarker" type="Node2D"]
+script = ExtResource("1_g84f8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 16.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7upe0")
+expand_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0, 1)
+energy = 5.0
+texture = ExtResource("3_0umpt")
+texture_scale = 0.03

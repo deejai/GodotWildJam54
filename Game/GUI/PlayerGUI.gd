@@ -6,12 +6,15 @@ extends CanvasLayer
 @onready var cursed_gui_image: TextureRect = $CursedGUIImage
 @onready var stats: RichTextLabel = $Stats
 @onready var show_stats: RichTextLabel = $ShowStats
+@onready var timer_label: RichTextLabel = $TimerLabel
 
 @onready var transition_layer = $TransitionLayer
 @onready var transition_layer_rect = $TransitionLayer/TextureRect
 
 @onready var qrect: ColorRect = $QRect
 @onready var erect: ColorRect = $ERect
+
+@onready var howtodrop: Label = $HowToDrop
 
 @onready var qslot_bg: TextureRect = $Items/QSlotBG
 @onready var eslot_bg: TextureRect = $Items/ESlotBG
@@ -29,6 +32,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Main.floor_timer_enabled:
+		var minutes: int = floori(Main.floor_timer / 60.0)
+		var seconds: int = floori(Main.floor_timer) % 60
+		var decimal: int = ceili(Main.floor_timer * 100) % 100
+		timer_label.text = "[color=#AA2222]%02d:%02d.%02d[/color]" % [minutes, seconds, decimal]
+
 	if transition_layer.visible:
 		transition_layer_rect.modulate.a = max(0.0, transition_layer_rect.modulate.a - .5 * delta)
 		if transition_layer_rect.modulate.a == 0.0:
@@ -45,12 +54,13 @@ func _process(delta):
 		stat_string += str("Total XP: ", Main.player.xp, "\n")
 		stat_string += str("XP to Next: ", Main.player.xp_to_next, "\n")
 		stat_string += str("bullet_spread: ", Main.player.calc_bullet_spread(), "\n")
-		stat_string += str("damage_received_mult: ", "%.2f" % Main.player.stat_damage_received_mult, "\n")
+		stat_string += str("damage_received_mult: ", "%.2f" % (Main.player.stat_damage_received_mult + .3 * Curses.deals_with_the_devil), "\n")
 		stat_string += str("speed_mult: ", "%.2f" % Main.player.stat_speed_mult, "\n")
 		stat_string += str("rof_mult: ", "%.2f" % Main.player.stat_rof_mult, "\n")
 		stat_string += str("bullet_damage: ", "%.2f" % Main.player.calc_bullet_damage(), "\n")
 		stat_string += str("lifesteal: ", "%.2f" % Main.player.calc_lifesteal(), "\n")
 		stat_string += str("fireballs: ", Main.player.calc_fireballs(), "\n")
+		stat_string += str("deals with the devil: ", Curses.deals_with_the_devil, "\n")
 		if Main.player.can_melee:
 			stat_string += str("melee_damage: ", Main.player.stat_melee_damage, "\n")
 			stat_string += str("melee_cd: ", Main.player.stat_melee_cd, "\n")

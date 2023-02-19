@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://8yksvgft2tjd"]
+[gd_scene load_steps=19 format=3 uid="uid://8yksvgft2tjd"]
 
 [ext_resource type="Script" path="res://Game/Characters/EnemyCharacter.gd" id="1_anuk1"]
 [ext_resource type="AudioStream" uid="uid://bkqpfolr6dcin" path="res://Assets/SFX/04._Hurt_1_variation_1.wav" id="2_jsrdm"]
 [ext_resource type="AudioStream" uid="uid://v3sa34hchggo" path="res://Assets/SFX/04._Hurt_1_variation_2.wav" id="3_8rnm1"]
 [ext_resource type="AudioStream" uid="uid://bl72q6775lh3x" path="res://Assets/SFX/04._Hurt_1_variation_3.wav" id="4_ngs0g"]
 [ext_resource type="PackedScene" uid="uid://ya72jqcl2115" path="res://Game/Objects/Projectiles/Goo.tscn" id="5_ba12a"]
+[ext_resource type="AudioStream" uid="uid://cgkxytm3clg3n" path="res://Assets/SFX/27. Enemy´s Death.wav" id="5_xhnj2"]
+[ext_resource type="AudioStream" uid="uid://c607ioovdcdog" path="res://Assets/SFX/21. Enemys Aggro Alert.wav" id="6_c2ibq"]
 [ext_resource type="Texture2D" uid="uid://d38gehf14068l" path="res://Assets/Sprites/Characters/blueberry_monster.png" id="6_g0ba3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41hei"]
@@ -84,6 +86,8 @@ level = null
 alliance = 2
 damage_received_mult = null
 hurt_sounds = Array[AudioStreamWAV]([ExtResource("2_jsrdm"), ExtResource("3_8rnm1"), ExtResource("4_ngs0g")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_xhnj2")])
+aggro_sounds = Array[AudioStreamWAV]([ExtResource("6_c2ibq")])
 char_sprite = NodePath("AnimatedSprite2D7")
 bullet = ExtResource("5_ba12a")
 stat_damage_received_mult = null

@@ -27,7 +27,7 @@ func random_boon_value(key: String, level: int):
 			return randf_range(0.05 + 0.03 * level, 0.2 + 0.05 * level)
 
 		"bullet_damage":
-			return randf_range(1.0 * level, 5.0 + 2.0 * level)
+			return randf_range(2.0 + 1.0 * level, 5.0 + 2.0 * level)
 
 		"bullet_spread":
 			return randi_range(1, 1 + level / 3)

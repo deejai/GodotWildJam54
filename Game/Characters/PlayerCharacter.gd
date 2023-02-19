@@ -66,6 +66,12 @@ func _process(delta):
 		gun_sprite.flip_v = false
 		char_sprite.flip_h = false
 
+	if slot_e != null and Input.is_action_just_pressed("Drop E"):
+		slot_e.drop()
+
+	if slot_q != null and Input.is_action_just_pressed("Drop Q"):
+		slot_q.drop()
+
 	var dir_x: float = 0.0
 	var dir_y: float = 0.0
 	if Input.is_action_pressed("move_up"):
@@ -83,11 +89,11 @@ func _process(delta):
 		move_dir *= -1
 
 	if Curses.status["random_teleport"] and randf() > 1.0 - (.35 * delta):
-		position += Vector2([-1.0, 1.0].pick_random(), [-1.0, 1.0].pick_random()) * randf_range(10.0, 30.0)
+		position += Vector2([-1.0, 1.0].pick_random(), [-1.0, 1.0].pick_random()) * randf_range(20.0, 50.0)
 		teleport_sound.play()
 
 	if Curses.status["hp_drain"] and randf() > 1.0 - (.35 * delta):
-		receive_damage(randf_range(1.0, 3.0))
+		receive_damage(randf_range(1.5, 3.5) / (stat_damage_received_mult + .3 * Curses.deals_with_the_devil))
 
 	if timers["flinch"].value == 0.0:
 		if move_dir == Vector2.ZERO:
@@ -181,4 +187,4 @@ func calc_speed():
 	return (base_speed + Boons.status["speed"]) * stat_speed_mult
 
 func calc_fireballs():
-	return Boons.status["fireballs"]
+	return Boons.status["fireballs"] + 4 * Curses.deals_with_the_devil

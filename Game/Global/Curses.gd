@@ -14,6 +14,10 @@ var description: Dictionary = {
 	"hp_drain": "You might find that it drains you",
 }
 
+var deals_with_the_devil: int = 0
+
 func reset():
 	for key in status:
 		status[key] = 0
+
+	deals_with_the_devil = 0

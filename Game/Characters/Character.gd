@@ -5,8 +5,9 @@ class_name Character
 @export var level: int = 1
 
 @export var alliance: Main.Alliance = Main.Alliance.NEUTRAL
-@export var damage_received_mult: float = 1.0
 @export var hurt_sounds: Array[AudioStreamWAV] = []
+@export var death_sounds: Array[AudioStreamWAV] = []
+@export var aggro_sounds: Array[AudioStreamWAV] = []
 @export var char_sprite: AnimatedSprite2D
 @export var bullet: PackedScene
 var hp: float = 100.0
@@ -24,6 +25,8 @@ var can_melee: bool = false
 @export var stat_melee_cd: float = 1.5
 
 @onready var light: Node2D = load("res://Game/Objects/CharLight.tscn").instantiate()
+
+var hit_marker: PackedScene = load("res://Game/Objects/HitMarker.tscn")
 
 var timers: Dictionary = {
 	"flinch": {"value": 0.0,
@@ -70,7 +73,7 @@ func char_process(delta):
 				timer.deactivate.call()
 
 	if hp <= 0.0:
-		if self is PlayerCharacter:
+		if self is PlayerCharacter and not self.dead:
 			self.dead = true
 			self.visible = false
 			self.get_node("PlayerGUI/YouDied").visible = true
@@ -78,9 +81,11 @@ func char_process(delta):
 			Curses.reset()
 			Main.music.stop()
 			Main.death_jingle.play()
+			Main.play_random_sound(death_sounds, global_position)
 		else:
 			if self is EnemyCharacter:
 				Main.player.gain_xp(self.stat_xp_reward)
+			Main.play_random_sound(death_sounds, global_position)
 			queue_free()
 
 func receive_damage(amount: float):
@@ -90,10 +95,17 @@ func receive_damage(amount: float):
 	if engage_timer("flinch", .3):
 		Main.play_random_sound(hurt_sounds, global_position)
 
-	hp = max(0.0, hp - amount * damage_received_mult)
+	var damage = amount * stat_damage_received_mult
+	if self is PlayerCharacter:
+		damage += amount * .3 * Curses.deals_with_the_devil
+
+	hp = max(0.0, hp - damage)
 
 	return true
 
 func ministun(collision_pos: Vector2):
+	var marker = hit_marker.instantiate()
+	marker.position = collision_pos - global_position
+	add_child(marker)
 	if engage_timer("ministun_cd", 0.5):
 		position += collision_pos.direction_to(position) * 10.0

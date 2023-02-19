@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtuxhc2sw7kvy"]
+
+[ext_resource type="Script" path="res://Game/Views/CollapsedEnding.gd" id="1_en1wf"]
+[ext_resource type="Texture2D" uid="uid://djrl5mknxabck" path="res://Assets/Sprites/Characters/Player idle/Untitled_Artwork-1.png" id="2_8eonl"]
+[ext_resource type="AudioStream" uid="uid://pywum3hhrorx" path="res://Assets/Music/Loss_Fanfarre/LJ#54Loss.wav" id="2_sr5id"]
+[ext_resource type="AudioStream" uid="uid://njlmwbcatati" path="res://Assets/SFX/25. You Died (Main character death).wav" id="3_eh3fk"]
+[ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="3_uxf65"]
+
+[node name="CollapsedEnding" type="Node2D"]
+script = ExtResource("1_en1wf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(534, 289)
+rotation = -1.15606
+scale = Vector2(0.184244, 0.184244)
+texture = ExtResource("2_8eonl")
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 300.0
+offset_top = 128.969
+offset_right = 895.0
+offset_bottom = 276.969
+theme = ExtResource("3_uxf65")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+text = "The dungeon collapsed on you..."
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 446.0
+offset_top = 481.0
+offset_right = 653.0
+offset_bottom = 518.0
+text = "Return to Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sr5id")
+volume_db = -16.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eh3fk")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
