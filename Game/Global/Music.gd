@@ -64,12 +64,14 @@ func set_track(track: Track):
 	current_track = track
 
 func play_random_stems():
-	stop()
-	mode = Mode.STEMS
-	var chosen_stems = stems.duplicate()
+	if mode == Mode.TRACK:
+		stop()
+		mode = Mode.STEMS
+
+	var chosen_stems = stems.duplicate(true)
 	chosen_stems.shuffle()
-	for i in range(randi_range(4,6)):
-		chosen_stems.pop_front()
+	for i in range(randi_range(4,5)):
+		chosen_stems.pop_front().stop()
 
 	for stem in chosen_stems:
 		stem.play()
