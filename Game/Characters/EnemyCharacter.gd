@@ -61,7 +61,7 @@ func _process(delta):
 		new_bullet.position = position
 		new_bullet.dangerous_to = Main.Alliance.PLAYER
 		new_bullet.direction = position.direction_to(target.position)
-		Main.play_random_sound(shoot_sounds, global_position, -8.0 if type in [EnemyStats.Type.BLUEBERRY_FLY_A, EnemyStats.Type.BLUEBERRY_FLY_B] else -6.0)
+		Main.play_random_sound(shoot_sounds, global_position, -7.0 if type in [EnemyStats.Type.BLUEBERRY_FLY_A, EnemyStats.Type.BLUEBERRY_FLY_B] else -5.0)
 		get_parent().add_child(new_bullet)
 
 	if type in [EnemyStats.Type.TOMATO, EnemyStats.Type.BOSS3]:
@@ -119,4 +119,4 @@ func is_target_valid():
 
 func _on_animated_sprite_2d_animation_looped():
 	if char_sprite.animation == "idle":
-		Main.play_random_sound(walk_sounds, global_position, -8.0)
+		Main.play_random_sound(walk_sounds, global_position, -6.0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s7tfk4kl1coq"]
+[gd_scene load_steps=19 format=3 uid="uid://s7tfk4kl1coq"]
 
 [ext_resource type="Script" path="res://Game/Global/Music.gd" id="1_sbsg8"]
 [ext_resource type="AudioStream" uid="uid://du10c0oxww4bu" path="res://Assets/Music/StemsLVL1/Level1Musicwav.wav" id="2_ly14o"]
@@ -7,6 +7,17 @@
 [ext_resource type="AudioStream" uid="uid://de3kuq2q3xvy6" path="res://Assets/Music/Boss_Music/Stems_Boss2/Boss2_Theme.wav" id="4_7r37h"]
 [ext_resource type="AudioStream" uid="uid://ctodgt4ktybxh" path="res://Assets/SFX/26. Level Up.wav" id="5_jt3vl"]
 [ext_resource type="AudioStream" uid="uid://1acqh2jquyv8" path="res://Assets/Music/Menu Loop/WJ#54_Menu_Music.wav" id="7_ppf5b"]
+[ext_resource type="AudioStream" uid="uid://1p7wjmaxlfw1" path="res://Assets/Music/StemsLVL2/Level2_Arp1.wav" id="8_eljoi"]
+[ext_resource type="AudioStream" uid="uid://4xb4mymurn0h" path="res://Assets/Music/StemsLVL2/Level2_Arp2.wav" id="9_5j3nd"]
+[ext_resource type="AudioStream" uid="uid://csb3yu8nes6jx" path="res://Assets/Music/StemsLVL2/Level2_Bass.wav" id="10_e8ano"]
+[ext_resource type="AudioStream" uid="uid://dfelfmbnpctlo" path="res://Assets/Music/StemsLVL2/Level2_Clave.wav" id="11_njqag"]
+[ext_resource type="AudioStream" uid="uid://badt0t4puvcii" path="res://Assets/Music/StemsLVL2/Level2_Conga.wav" id="12_is102"]
+[ext_resource type="AudioStream" uid="uid://h7tift1gqvvf" path="res://Assets/Music/StemsLVL2/Level2_HiHat.wav" id="13_1qb0v"]
+[ext_resource type="AudioStream" uid="uid://b8mhcqxatuup6" path="res://Assets/Music/StemsLVL2/Level2_Kick.wav" id="14_qwf1f"]
+[ext_resource type="AudioStream" uid="uid://t5dteb4r7i13" path="res://Assets/Music/StemsLVL2/Level2_Marimba.wav" id="15_5u82g"]
+[ext_resource type="AudioStream" uid="uid://bhdsgsciig6u2" path="res://Assets/Music/StemsLVL2/Level2_Perc.wav" id="16_487ch"]
+[ext_resource type="AudioStream" uid="uid://bgbjpul6otjq6" path="res://Assets/Music/StemsLVL2/Level2_Snare.wav" id="17_sfhud"]
+[ext_resource type="AudioStream" uid="uid://k1yva4hwwbnv" path="res://Assets/Music/StemsLVL2/Level2_Synth1.wav" id="18_vtwog"]
 
 [node name="Music" type="Node2D"]
 script = ExtResource("1_sbsg8")
@@ -37,5 +48,40 @@ stream = ExtResource("5_jt3vl")
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ppf5b")
 volume_db = -12.0
+
+[node name="Stems" type="Node" parent="."]
+
+[node name="Arp1" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("8_eljoi")
+
+[node name="Arp2" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("9_5j3nd")
+
+[node name="Bass" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("10_e8ano")
+
+[node name="Clave" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("11_njqag")
+
+[node name="Conga" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("12_is102")
+
+[node name="HiHat" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("13_1qb0v")
+
+[node name="Kick" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("14_qwf1f")
+
+[node name="Marimba" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("15_5u82g")
+
+[node name="Perc" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("16_487ch")
+
+[node name="Snare" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("17_sfhud")
+
+[node name="Synth" type="AudioStreamPlayer" parent="Stems"]
+stream = ExtResource("18_vtwog")
 
 [connection signal="finished" from="LevelUpPlayer" to="." method="_on_level_up_player_finished"]

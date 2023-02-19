@@ -411,7 +411,7 @@ func _ready():
 	add_child(Main.player)
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
-	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= Main.boss_floor_cadence else MusicServer.Track.DUNGEON2)
+	Main.music.play_random_stems()
 	Main.floor_timer_begin(65.0 + 5.0 * (level-1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
