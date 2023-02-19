@@ -175,7 +175,7 @@ func print_map():
 	for row in map:
 		var out = ""
 		for col in row:
-			out += str(col) 
+			out += str(col)
 		print(out)
 
 func floodfill_connected_rooms(current_coords, connected_rooms = null):
@@ -385,7 +385,7 @@ func _ready():
 	Main.floor_instance = self
 	Main.player.position = Vector2.ZERO
 	Main.music.set_track(MusicServer.Track.DUNGEON1 if level >= Main.boss_floor_cadence else MusicServer.Track.DUNGEON2)
-	Main.floor_timer_begin(55.0 + 3.0 * (level-1))
+	Main.floor_timer_begin(60.0 + 3.0 * (level-1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

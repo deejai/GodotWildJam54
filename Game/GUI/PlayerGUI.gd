@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var timer_label: RichTextLabel = $TimerLabel
 
 @onready var transition_layer = $TransitionLayer
-@onready var transition_layer_rect = $TransitionLayer/TextureRect
+@onready var transition_layer_sprite = $TransitionLayer/AnimatedSprite2D
 
 @onready var qrect: ColorRect = $QRect
 @onready var erect: ColorRect = $ERect
@@ -38,10 +38,10 @@ func _process(delta):
 		var decimal: int = ceili(Main.floor_timer * 100) % 100
 		timer_label.text = "[color=#AA2222]%02d:%02d.%02d[/color]" % [minutes, seconds, decimal]
 
-	if transition_layer.visible:
-		transition_layer_rect.modulate.a = max(0.0, transition_layer_rect.modulate.a - .5 * delta)
-		if transition_layer_rect.modulate.a == 0.0:
-			transition_layer.visible = false
+#	if transition_layer.visible:
+#		transition_layer_sprite.modulate.a = max(0.0, transition_layer_sprite.modulate.a - .5 * delta)
+#		if transition_layer_sprite.modulate.a == 0.0:
+#			transition_layer.visible = false
 
 	if Input.is_action_just_pressed("Show Stats"):
 		stats.visible = !stats.visible
@@ -100,7 +100,8 @@ func get_progress_text(string, color_string, progress):
 
 func fade_transition():
 	transition_layer.visible = true
-	transition_layer_rect.modulate.a = 1.0
+	transition_layer_sprite.play()
+	transition_layer_sprite.modulate.a = 1.0
 
 func show_level_up():
 	var instance = level_up_scene.instantiate()
@@ -109,3 +110,8 @@ func show_level_up():
 func show_cant_equip():
 	var instance = cant_equip_scene.instantiate()
 	add_child(instance)
+
+
+func _on_animated_sprite_2d_animation_looped():
+	transition_layer_sprite.stop()
+	transition_layer.visible = false

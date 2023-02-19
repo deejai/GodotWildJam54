@@ -10,7 +10,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(timer)
 	timer -= delta
 	label.position.y -= delta * 20.0
 	label.modulate.a -= delta * .8

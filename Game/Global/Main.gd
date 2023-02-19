@@ -30,7 +30,7 @@ var paused: bool = false
 @onready var death_jingle: AudioStreamPlayer = main_scene.get_node("DeathJingle")
 @onready var descend_sound: AudioStreamPlayer = main_scene.get_node("DescendSound")
 
-const boss_floor_cadence = 2
+const boss_floor_cadence = 4
 
 var floor_timer: float
 var floor_timer_enabled: bool = false

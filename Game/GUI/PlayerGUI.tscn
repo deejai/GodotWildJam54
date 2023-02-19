@@ -1,9 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://bra6tpwpgfe7d"]
+[gd_scene load_steps=28 format=3 uid="uid://bra6tpwpgfe7d"]
 
 [ext_resource type="Script" path="res://Game/GUI/PlayerGUI.gd" id="1_nf05u"]
 [ext_resource type="Theme" uid="uid://iyxlsgw4xv0r" path="res://default_theme.tres" id="2_fbmb7"]
 [ext_resource type="PackedScene" uid="uid://c7jsg6chsvpyk" path="res://Game/GUI/YouDied.tscn" id="3_qiq40"]
+[ext_resource type="Texture2D" uid="uid://b1fled748s1u6" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-1.png" id="4_rmtu6"]
 [ext_resource type="Texture2D" uid="uid://d71ctfjwd73b" path="res://Assets/Sprites/heresjohnny.png" id="4_tn8hh"]
+[ext_resource type="Texture2D" uid="uid://csg5x6fxnh8i3" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-2.png" id="5_n8hvv"]
+[ext_resource type="Texture2D" uid="uid://dy4g42e6do1ya" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-3.png" id="6_7w3b1"]
+[ext_resource type="Texture2D" uid="uid://x5ntkimk11u5" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-4.png" id="7_2auna"]
+[ext_resource type="Texture2D" uid="uid://cn546q66gde80" path="res://Assets/Sprites/ui/screen transition/Untitled_Artwork-5.png" id="8_fjhtt"]
 
 [sub_resource type="Gradient" id="Gradient_mp8i4"]
 colors = PackedColorArray(0.411765, 0.411765, 0.411765, 0.780392, 0.643137, 0.643137, 0.643137, 0.694118)
@@ -40,12 +45,48 @@ gradient = SubResource("Gradient_eeddt")
 width = 256
 height = 8
 
-[sub_resource type="Gradient" id="Gradient_76qkj"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf7w0"]
+atlas = ExtResource("4_rmtu6")
+region = Rect2(0, 0, 1920, 1080)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_epe1n"]
-gradient = SubResource("Gradient_76qkj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xjed"]
+atlas = ExtResource("5_n8hvv")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5snjk"]
+atlas = ExtResource("6_7w3b1")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkvjd"]
+atlas = ExtResource("7_2auna")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op08l"]
+atlas = ExtResource("8_fjhtt")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmh1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf7w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xjed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5snjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkvjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op08l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_12uy8"]
 colors = PackedColorArray(0, 0, 0, 0, 0.560784, 0, 0, 0.643137)
@@ -152,12 +193,11 @@ text = "Press Tab to Show Stats"
 layer = 10
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="TransitionLayer"]
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 1241.0
-offset_bottom = 684.0
-texture = SubResource("GradientTexture1D_epe1n")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TransitionLayer"]
+position = Vector2(635, 317)
+scale = Vector2(1.03333, 1.03333)
+sprite_frames = SubResource("SpriteFrames_kmh1b")
+speed_scale = 2.0
 
 [node name="Items" type="Node" parent="."]
 
@@ -284,3 +324,5 @@ offset_bottom = 668.0
 theme = ExtResource("2_fbmb7")
 theme_override_font_sizes/font_size = 16
 text = "Ctrl+Q/E or Right Click to Drop"
+
+[connection signal="animation_looped" from="TransitionLayer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
