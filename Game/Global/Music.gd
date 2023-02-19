@@ -12,6 +12,8 @@ var resume_track: Track
 
 var mode = Mode.TRACK
 
+var stopped = false
+
 var current_track: Track = Track.MENU
 
 @onready var trackdict: Dictionary = {
@@ -32,6 +34,11 @@ func _ready():
 		stemplayer.volume_db = -12
 		stems.append(stemplayer)
 
+func _process(delta):
+#	if mode == Mode.STEMS and randf() < .14 * delta:
+#		play_random_stems()
+	pass
+
 func play_level_up_sound():
 	if resume_volume != -1.0 or mode == Mode.STEMS:
 		return
@@ -46,13 +53,15 @@ func _on_level_up_player_finished():
 	resume_volume = -1.0
 
 func stop():
+	var stopped = true
 	if mode == Mode.TRACK:
 		trackdict[current_track].stop()
 	else:
 		for stem in stems:
 			stem.stop()
 
-func set_track(track: Track):	
+func set_track(track: Track):
+	var stopped = false
 	stop()
 	mode = Mode.TRACK
 
@@ -64,15 +73,18 @@ func set_track(track: Track):
 	current_track = track
 
 func play_random_stems():
+	var stopped = false
 	if mode == Mode.TRACK:
 		stop()
 		mode = Mode.STEMS
 
-	var chosen_stems = stems.duplicate(true)
+	for stem in stems:
+		stem.play()
+		stem.volume_db = -12
+
+	var chosen_stems = stems.duplicate()
 	chosen_stems.shuffle()
 	for i in range(randi_range(4,5)):
-		chosen_stems.pop_front().stop()
-
-	for stem in chosen_stems:
-		stem.play()
+		var excluded_stem = chosen_stems.pop_front()
+		excluded_stem.volume_db = -100
 
