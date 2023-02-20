@@ -1,34 +1,24 @@
-[gd_scene load_steps=19 format=3 uid="uid://s7tfk4kl1coq"]
+[gd_scene load_steps=17 format=3 uid="uid://s7tfk4kl1coq"]
 
 [ext_resource type="Script" path="res://Game/Global/Music.gd" id="1_sbsg8"]
-[ext_resource type="AudioStream" uid="uid://du10c0oxww4bu" path="res://Assets/Music/StemsLVL1/Level1Musicwav.wav" id="2_ly14o"]
-[ext_resource type="AudioStream" uid="uid://p15wl736hyhr" path="res://Assets/Music/StemsLVL2/Level2_Music.wav" id="3_iq1ur"]
 [ext_resource type="AudioStream" uid="uid://dj0rtxxnw0877" path="res://Assets/Music/Boss_Music/Stems_Boss1/Boss1Theme.wav" id="3_s3lsq"]
 [ext_resource type="AudioStream" uid="uid://de3kuq2q3xvy6" path="res://Assets/Music/Boss_Music/Stems_Boss2/Boss2_Theme.wav" id="4_7r37h"]
 [ext_resource type="AudioStream" uid="uid://ctodgt4ktybxh" path="res://Assets/SFX/26. Level Up.wav" id="5_jt3vl"]
+[ext_resource type="AudioStream" uid="uid://bdbmdkcsqxo6o" path="res://Assets/Music/StemsLVL2/Level2_Arp1.mp3" id="6_alflw"]
+[ext_resource type="AudioStream" uid="uid://q2ehnm4bxvwy" path="res://Assets/Music/StemsLVL2/Level2_Arp2.mp3" id="7_pcr6m"]
 [ext_resource type="AudioStream" uid="uid://1acqh2jquyv8" path="res://Assets/Music/Menu Loop/WJ#54_Menu_Music.wav" id="7_ppf5b"]
-[ext_resource type="AudioStream" uid="uid://1p7wjmaxlfw1" path="res://Assets/Music/StemsLVL2/Level2_Arp1.wav" id="8_eljoi"]
-[ext_resource type="AudioStream" uid="uid://4xb4mymurn0h" path="res://Assets/Music/StemsLVL2/Level2_Arp2.wav" id="9_5j3nd"]
-[ext_resource type="AudioStream" uid="uid://csb3yu8nes6jx" path="res://Assets/Music/StemsLVL2/Level2_Bass.wav" id="10_e8ano"]
-[ext_resource type="AudioStream" uid="uid://dfelfmbnpctlo" path="res://Assets/Music/StemsLVL2/Level2_Clave.wav" id="11_njqag"]
-[ext_resource type="AudioStream" uid="uid://badt0t4puvcii" path="res://Assets/Music/StemsLVL2/Level2_Conga.wav" id="12_is102"]
-[ext_resource type="AudioStream" uid="uid://h7tift1gqvvf" path="res://Assets/Music/StemsLVL2/Level2_HiHat.wav" id="13_1qb0v"]
-[ext_resource type="AudioStream" uid="uid://b8mhcqxatuup6" path="res://Assets/Music/StemsLVL2/Level2_Kick.wav" id="14_qwf1f"]
-[ext_resource type="AudioStream" uid="uid://t5dteb4r7i13" path="res://Assets/Music/StemsLVL2/Level2_Marimba.wav" id="15_5u82g"]
-[ext_resource type="AudioStream" uid="uid://bhdsgsciig6u2" path="res://Assets/Music/StemsLVL2/Level2_Perc.wav" id="16_487ch"]
-[ext_resource type="AudioStream" uid="uid://bgbjpul6otjq6" path="res://Assets/Music/StemsLVL2/Level2_Snare.wav" id="17_sfhud"]
-[ext_resource type="AudioStream" uid="uid://k1yva4hwwbnv" path="res://Assets/Music/StemsLVL2/Level2_Synth1.wav" id="18_vtwog"]
+[ext_resource type="AudioStream" uid="uid://dlxl16oykc10g" path="res://Assets/Music/StemsLVL2/Level2_Bass.mp3" id="8_scw4q"]
+[ext_resource type="AudioStream" uid="uid://blyftbvi63iu6" path="res://Assets/Music/StemsLVL2/Level2_Clave.mp3" id="9_gso6i"]
+[ext_resource type="AudioStream" uid="uid://cysl70qeqe1dx" path="res://Assets/Music/StemsLVL2/Level2_Conga.mp3" id="10_qqhpu"]
+[ext_resource type="AudioStream" uid="uid://bkxslb7v6qi05" path="res://Assets/Music/StemsLVL2/Level2_HiHat.mp3" id="11_neec3"]
+[ext_resource type="AudioStream" uid="uid://dhaj1pjvva73w" path="res://Assets/Music/StemsLVL2/Level2_Kick.mp3" id="12_vygng"]
+[ext_resource type="AudioStream" uid="uid://cvqrmxk7y3m3f" path="res://Assets/Music/StemsLVL2/Level2_Marimba.mp3" id="13_07nq5"]
+[ext_resource type="AudioStream" uid="uid://cvvkq3dhjdj5i" path="res://Assets/Music/StemsLVL2/Level2_Perc.mp3" id="14_toxfv"]
+[ext_resource type="AudioStream" uid="uid://dpiiu2jpy77y8" path="res://Assets/Music/StemsLVL2/Level2_Snare.mp3" id="15_qiccn"]
+[ext_resource type="AudioStream" uid="uid://btoo22t67m2ub" path="res://Assets/Music/StemsLVL2/Level2_Synth1.mp3" id="16_wpljj"]
 
 [node name="Music" type="Node2D"]
 script = ExtResource("1_sbsg8")
-
-[node name="DungeonMusic1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ly14o")
-volume_db = -12.0
-
-[node name="DungeonMusic2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_iq1ur")
-volume_db = -12.0
 
 [node name="BossMusic1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_s3lsq")
@@ -52,36 +42,36 @@ volume_db = -12.0
 [node name="Stems" type="Node" parent="."]
 
 [node name="Arp1" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("8_eljoi")
+stream = ExtResource("6_alflw")
 
 [node name="Arp2" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("9_5j3nd")
+stream = ExtResource("7_pcr6m")
 
 [node name="Bass" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("10_e8ano")
+stream = ExtResource("8_scw4q")
 
 [node name="Clave" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("11_njqag")
+stream = ExtResource("9_gso6i")
 
 [node name="Conga" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("12_is102")
+stream = ExtResource("10_qqhpu")
 
 [node name="HiHat" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("13_1qb0v")
+stream = ExtResource("11_neec3")
 
 [node name="Kick" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("14_qwf1f")
+stream = ExtResource("12_vygng")
 
 [node name="Marimba" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("15_5u82g")
+stream = ExtResource("13_07nq5")
 
 [node name="Perc" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("16_487ch")
+stream = ExtResource("14_toxfv")
 
 [node name="Snare" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("17_sfhud")
+stream = ExtResource("15_qiccn")
 
 [node name="Synth" type="AudioStreamPlayer" parent="Stems"]
-stream = ExtResource("18_vtwog")
+stream = ExtResource("16_wpljj")
 
 [connection signal="finished" from="LevelUpPlayer" to="." method="_on_level_up_player_finished"]

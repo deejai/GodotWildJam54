@@ -17,8 +17,6 @@ var stopped = false
 var current_track: Track = Track.MENU
 
 @onready var trackdict: Dictionary = {
-	Track.DUNGEON1: $DungeonMusic1,
-	Track.DUNGEON2: $DungeonMusic2,
 	Track.BOSS1: $BossMusic1,
 	Track.BOSS2: $BossMusic2,
 	Track.BOSS3: $BossMusic3,
@@ -40,12 +38,11 @@ func _process(delta):
 	pass
 
 func play_level_up_sound():
-	if resume_volume != -1.0 or mode == Mode.STEMS:
-		return
+	if resume_volume == -1.0 and mode == Mode.STEMS:
+		resume_track = current_track
+		resume_volume = trackdict[current_track].volume_db
+		trackdict[current_track].volume_db -= 12
 
-	resume_track = current_track
-	resume_volume = trackdict[current_track].volume_db
-	trackdict[current_track].volume_db -= 12
 	level_up_player.play()
 
 func _on_level_up_player_finished():

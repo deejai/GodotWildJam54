@@ -5,7 +5,7 @@ enum CharState {IDLE, WALKING}
 
 var audio_players: Array[AudioStreamPlayer2D] = []
 var audio_player_index: int = 0
-const num_audio_players: int = 16
+const num_audio_players: int = 64
 
 var level = 1
 
